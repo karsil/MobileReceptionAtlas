@@ -1,6 +1,6 @@
 const express = require('express');
 const expressGraphql = require('express-graphql');
-const { buildSchema } = require('graphql');
+const schema = require('./graphql/schema');
 
 const getConnectionByProvider = require('./graphql/databaseQuery');
 
@@ -14,26 +14,6 @@ mongoose.connect("mongodb://localhost:27017/database").catch(err => {
 });
 
 const ConnectionData = require('./model/data');
-
-const schema = buildSchema(`
-    type Query {
-        connectionData: [ConnectionInformation]
-        connectionDataByProvider(provider: String): [ConnectionInformation]
-    }
-
-    type ConnectionInformation {
-        id: String
-        location: Location
-        signal: Float
-        provider: String
-    }
-
-    type Location {
-        x: Float
-        y: Float
-    }
-`);
-
 
 const rootQuery = {
     connectionData: () => ConnectionData.find(),
