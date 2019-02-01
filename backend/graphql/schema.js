@@ -17,6 +17,15 @@ const schema = buildSchema(`
         x: Float
         y: Float
     }
+
+    input LocationInput {
+        x: Float!
+        y: Float!
+    }
+
+    type Mutation {
+        createConnectionData(location: LocationInput!, signal: Float!, provider: String!): ConnectionInformation
+    }
 `);
 
 module.exports = schema;
