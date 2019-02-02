@@ -7,9 +7,7 @@ const consoleOutFormat = printf ( ({ level, message, timestamp }) => {
 
 const logger = createLogger({
     levels: config.syslog.levels,
-
     format: combine(format.colorize(), timestamp(), consoleOutFormat),
-
     transports: [
         new transports.Console(),
     ],
