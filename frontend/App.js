@@ -1,21 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Button } from 'react-native';
+import Info from './components/Info'
+import ButtonField from './components/ButtonField'
+import { Styles } from './styles'
 
+const dummy = {
+  locationX: 10.42,
+  locationY: 49.52,
+  signal: 80,
+  isp: 'Telekom'
+}
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <View style={Styles.container}>
+        <Info data={dummy}></Info>
+        <ButtonField></ButtonField>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
