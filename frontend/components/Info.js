@@ -2,7 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Styles } from '../styles'
 import { bindActionCreators } from 'redux'
+import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
+
 class Info extends React.Component {
     render() {
       return (
