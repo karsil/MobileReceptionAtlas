@@ -1,24 +1,31 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-import Info from './components/Info'
-import ButtonField from './components/ButtonField'
-import { Styles } from './styles'
+import { createStore, applyMiddleware, } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const dummy = {
-  locationX: 10.42,
-  locationY: 49.52,
-  signal: 80,
-  isp: 'Telekom'
-}
-export default class App extends React.Component {
+import reducer from './reducers'
+import Root from './Root'
+
+/*
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+const reducer = combineReducers(reducers)
+const store = createStoreWithMiddleware(reducer)
+*/
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(thunk))
+)
+
+class App extends React.Component {
   render() {
     return (
-      <View style={Styles.container}>
-        <Info data={dummy}></Info>
-        <ButtonField></ButtonField>
-      </View>
-    );
+      <Provider store={store}>
+        <Root />
+      </Provider>
+    )
   }
 }
 
-
+export default App
