@@ -7,12 +7,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import reducer from './reducers'
 import Root from './Root'
 
-/*
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
-const reducer = combineReducers(reducers)
-const store = createStoreWithMiddleware(reducer)
-*/
-
 const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(thunk))
