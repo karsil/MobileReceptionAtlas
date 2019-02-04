@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(ButtonField);
 
