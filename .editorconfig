@@ -1,3 +1,4 @@
+# Config for tab-space/encoding consistency for all developer editors 
 root = true
 
 [*]
