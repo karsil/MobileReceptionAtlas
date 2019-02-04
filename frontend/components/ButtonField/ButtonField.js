@@ -10,16 +10,20 @@ import * as actionCreators from './ButtonField.Action';
 class ButtonField extends React.Component {
     recieveData = () => {
         this.props.getConnectionInfo();
-        alert('Dummy: Send own data')
     }
 
     render() {
         return (
             <View style={buttonStyles.container}>
                 <Button
-                style={buttonStyles.button}
-                onPress={() => this.recieveData()}
-                title="Send own data"
+                    style={buttonStyles.button}
+                    onPress={() => this.recieveData()}
+                    title="DEV: Fetch data"
+                />
+                <Button
+                    style={buttonStyles.button}
+                    onPress={() => alert('Dummy: Send own data')}
+                    title="Send own data"
                 />
                 <Button
                 style={buttonStyles.button}
