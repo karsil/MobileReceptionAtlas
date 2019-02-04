@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Button } from 'react-native';
+import { connect } from 'react-redux'
 import { buttonStyles } from './ButtonField.Styles';
+import { bindActionCreators } from 'redux'
+import * as actionCreators from '../../actions'
+import { showMap } from '../../actions'
 
-export default class ButtonField extends React.Component {
+class ButtonField extends React.Component {
     render() {
       return (
         <View style={buttonStyles.container}>
@@ -13,7 +17,7 @@ export default class ButtonField extends React.Component {
             />
             <Button
               style={buttonStyles.button}
-              onPress={() => alert('Dummy View map')}
+              onPress={() => this.props.showMap(true)}
               title="View map"
             />
         </View>
@@ -21,3 +25,23 @@ export default class ButtonField extends React.Component {
     }
   }
 
+  function mapStateToProps(state) {
+    return {
+        showMap: state.showMap
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            showMap: actionCreators.showMap
+        },
+        dispatch
+    );
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ) (ButtonField);
+  

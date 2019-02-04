@@ -7,3 +7,11 @@ export function updateGPS(x,y){
         y: y
     }
 }
+
+export const SHOW_MAP = 'showMap'
+export function showMap(toActivate){
+    return {
+        type: SHOW_MAP,
+        payload: toActivate
+    }
+}
