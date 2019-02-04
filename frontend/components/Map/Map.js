@@ -7,24 +7,6 @@ import { MapStyles } from './Map.Styles';
 import { points } from './getExampleData'
 
 class Map extends React.Component {
-
-    renderMap(){
-        return (
-            <MapView
-                provider={PROVIDER_GOOGLE}
-                style={MapStyles.map}
-                initialRegion={{
-                    latitude: 6.82646681,
-                    longitude: 79.87121907,
-                    latitudeDelta: 0.09,
-                    longitudeDelta: 0.0121
-                }}
-            >
-                {this.renderMarker(points)}
-            </MapView>
-        )
-    }
-
     renderMarker(marker) {
         return marker.map(point => {
             if (point.latitude && point.longitude) {
@@ -42,9 +24,18 @@ class Map extends React.Component {
 
     render() {
         return (
-            <View style ={MapStyles.container}>
-                {this.renderMap()}
-            </View>
+            <MapView
+                style={MapStyles.container}
+                provider={PROVIDER_GOOGLE}
+                initialRegion={{
+                    latitude: 6.82646681,
+                    longitude: 79.87121907,
+                    latitudeDelta: 0.09,
+                    longitudeDelta: 0.0121
+                }}
+            >
+                {this.renderMarker(points)}
+            </MapView>
         );
     }
 }

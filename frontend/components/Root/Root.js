@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, StyleSheet } from "react-native";
 import { connect } from 'react-redux'
 
 import Info from './../InfoField/InfoField'
@@ -10,18 +10,14 @@ import { rootStyles } from './Root.Styles';
 class Root extends React.Component {
   render() {
     const { showMap } = this.props
-    if(showMap){
-      return (
-        <View style={rootStyles.container}>
-          <Info></Info>
-          <Map />
-        </View>
-      );
-    }
     return (
-        <View style={rootStyles.container}>
-          <Info></Info>
-          <ButtonField></ButtonField>
+        <View style={[rootStyles.container, {alignItems: 'stretch'}] }>
+          <View style={{flex: 4, backgroundColor: '#333'}}>
+            {showMap ? <Map /> : <Info />}
+          </View>
+          <View style={{flex: 2}}>
+            <ButtonField></ButtonField>
+          </View>
         </View>
     );
   }
