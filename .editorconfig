@@ -1,0 +1,9 @@
+# Config for tab-space/encoding consistency for all developer editors 
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = false
