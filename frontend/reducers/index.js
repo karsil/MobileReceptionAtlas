@@ -4,7 +4,7 @@ const initialState = {
     locationX: 10.11,
     locationY: 12.13,
     signal: 100,
-    isp: 'Undefinied'
+    provider: 'Undefinied'
   };
 
 export default function reducer(state = initialState, {type, payload}){

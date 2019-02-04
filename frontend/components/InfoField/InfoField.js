@@ -16,7 +16,7 @@ class Info extends React.Component {
           <Text style={infoFieldStyles.text}>
             Signal: {this.props.signal}
           </Text>
-          <Text style={infoFieldStyles.text}>ISP: {this.props.isp}</Text>
+          <Text style={infoFieldStyles.text}>Provider: {this.props.provider}</Text>
         </View>
       );
     }
@@ -27,7 +27,7 @@ function mapStateToProps(state) {
       locationX: state.locationX,
       locationY: state.locationY,
       signal: state.signal,
-      isp: state.isp
+      provider: state.provider
   };
 }
 
