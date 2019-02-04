@@ -1,12 +1,6 @@
 import { UPDATE_GPS, SHOW_MAP } from '../actions'
+import initialState from './../store';
 
-const initialState = {
-    locationX: 10.11,
-    locationY: 12.13,
-    signal: 100,
-    provider: 'Undefinied',
-    showMap: false
-  };
 
 export default function reducer(state = initialState, {type, payload}){
     switch(type){
@@ -14,7 +8,7 @@ export default function reducer(state = initialState, {type, payload}){
             return {
                 ...state,
                 showMap: payload
-            } 
+            }
 
         default:
             return state;

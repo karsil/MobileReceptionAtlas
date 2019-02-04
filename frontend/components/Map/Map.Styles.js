@@ -4,8 +4,7 @@ import styleVariables from './../../settings/styles';
 export const MapStyles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        height: 400,
-        width: 400,
+        height: 600,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
