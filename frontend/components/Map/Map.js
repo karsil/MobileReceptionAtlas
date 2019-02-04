@@ -1,5 +1,5 @@
 import React from 'react';
-import {MapView, PROVIDER_GOOGLE } from 'expo';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
