@@ -31,18 +31,8 @@ class ButtonField extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        locationX: state.locationX,
-        locationY: state.locationY,
-        signal: state.signal,
-        provider: state.provider
-    };
-}
-
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
+    return bindActionCreators({
             getConnectionInfo: actionCreators.getAllConnectionDataAction
         },
         dispatch
