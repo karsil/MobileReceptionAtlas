@@ -1,17 +1,22 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Styles } from '../styles'
 import { bindActionCreators } from 'redux'
-import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
+
+import * as actionCreators from '../../actions'
+import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
     render() {
       return (
-        <View style={Styles.container}>
-          <Text>GPS: X{this.props.locationX}/ Y{this.props.locationY}</Text>
-          <Text>Signal: {this.props.signal}</Text>
-          <Text>ISP: {this.props.isp}</Text>
+        <View style={infoFieldStyles.container}>
+          <Text style={infoFieldStyles.text}>
+            GPS: X{this.props.locationX}/ Y{this.props.locationY}
+          </Text>
+          <Text style={infoFieldStyles.text}>
+            Signal: {this.props.signal}
+          </Text>
+          <Text style={infoFieldStyles.text}>ISP: {this.props.isp}</Text>
         </View>
       );
     }

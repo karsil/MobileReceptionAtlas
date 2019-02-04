@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import reducer from './reducers'
-import Root from './Root'
+import Root from './components/Root/Root'
 
 const store = createStore(
   reducer,
