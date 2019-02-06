@@ -1,25 +1,17 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:11-alpine'
-      args '-p 5000:5000'
-    }
-
-  }
+  agent none
   stages {
     stage('Build') {
       parallel {
-        stage('Build') {
-          steps {
-            sh '''cd 
-backend 
-
-&& npm install'''
+        stage('Build backend') {
+          agent {
+              dockerfile {
+                  filename 'dockerfile'
+                  dir './backend'
+              }
           }
-        }
-        stage('') {
           steps {
-            sh 'cd frontend && npm install'
+            sh '''npm install'''
           }
         }
       }
