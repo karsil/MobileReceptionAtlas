@@ -1,18 +1,17 @@
 import React from 'react';
-import { View} from 'react-native';
+import { View } from 'react-native';
 
-import Info from './../InfoField/InfoField'
-import ButtonField from './../ButtonField/ButtonField'
+import Info from './../InfoField/InfoField';
+import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
 
 export default class Root extends React.Component {
-  render() {
-    return (
-        <View style={rootStyles.container}>
-          <Info></Info>
-          <ButtonField></ButtonField>
-        </View>
-    );
-  }
+    render() {
+        return (
+            <View style={rootStyles.container}>
+                <Info />
+                <ButtonField />
+            </View>
+        );
+    }
 }
-
