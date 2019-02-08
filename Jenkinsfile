@@ -13,14 +13,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm config ls'
-                sh '''npm install'''
+                dir('backend') {
+                    sh 'npm config ls'
+                    sh '''npm install'''
+                }
             }
         }
 
         stage('Testing') {
             steps {
-                sh 'npm test'
+                dir('backend') {
+                    sh 'npm test'
+                }
             }
         }
     }
