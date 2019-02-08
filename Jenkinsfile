@@ -21,6 +21,11 @@ pipeline {
         }
 
         stage('Testing') {
+            environment {
+                DATABASE_URL = 'mongodb://nilsjung.de:32807'
+                DATABASE_NAME = 'test'
+                NODE_ENV = 'test'
+            }
             steps {
                 dir('backend') {
                     sh 'npm test'
