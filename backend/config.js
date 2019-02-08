@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     database: {
         name: process.env.DATABASE_NAME || 'development',
         url: process.env.DATABASE_URL || 'mongodb://localhost:27017',
