@@ -2,6 +2,22 @@ const ConnectionData = require('../model/data');
 const uuid = require('uuid/v4');
 const logger = require('./../logging');
 
+async function getConnectionData() {
+    return new Promise((resolve, reject) => {
+        ConnectionData.find({}).then((res, err) => {
+            if (err) {
+                reject(err);
+            }
+
+            if (res) {
+                resolve(res);
+            }
+
+            reject('Something went wrong');
+        });
+    });
+}
+
 async function getConnectionByProvider({ provider }) {
     return new Promise((resolve, reject) => {
         ConnectionData.find()
@@ -16,10 +32,15 @@ async function getConnectionByProvider({ provider }) {
                 }
             });
     });
-
 }
 
-async function createConnectionData({ location, signal, provider, platform, connectionType}) {
+async function createConnectionData({
+    location,
+    signal,
+    provider,
+    platform,
+    connectionType,
+}) {
     return new Promise((resolve, reject) => {
         ConnectionData.create(
             {
@@ -29,7 +50,6 @@ async function createConnectionData({ location, signal, provider, platform, conn
                 provider: provider,
                 platform: platform,
                 connectionType: connectionType,
-
             },
             (err, result) => {
                 if (err) {
@@ -44,4 +64,8 @@ async function createConnectionData({ location, signal, provider, platform, conn
     });
 }
 
-module.exports = { getConnectionByProvider, createConnectionData };
+module.exports = {
+    getConnectionByProvider,
+    createConnectionData,
+    getConnectionData,
+};
