@@ -3,9 +3,7 @@ const uuid = require('uuid/v4');
 const logger = require('./../logging');
 
 async function getConnectionByProvider({ provider }) {
-    let results = [];
-
-    const query = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         ConnectionData.find()
             .where({ provider: provider })
             .then((res, err) => {
@@ -19,22 +17,19 @@ async function getConnectionByProvider({ provider }) {
             });
     });
 
-    return query.then((entry) => {
-        entry.forEach((result) => {
-            results.push(result);
-        });
-        return results;
-    });
 }
 
-async function createConnectionData({ location, signal, provider }) {
-    const query = new Promise((resolve, reject) => {
+async function createConnectionData({ location, signal, provider, platform, connectionType}) {
+    return new Promise((resolve, reject) => {
         ConnectionData.create(
             {
                 id: uuid(),
                 signal: signal,
                 location: location,
                 provider: provider,
+                platform: platform,
+                connectionType: connectionType,
+
             },
             (err, result) => {
                 if (err) {
@@ -47,8 +42,6 @@ async function createConnectionData({ location, signal, provider }) {
             }
         );
     });
-
-    return query.then((result) => result).catch((error) => logger.error(error));
 }
 
 module.exports = { getConnectionByProvider, createConnectionData };
