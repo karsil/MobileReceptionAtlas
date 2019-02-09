@@ -4,7 +4,13 @@ import { connect } from 'react-redux'
 
 import { infoFieldStyles } from './InfoField.Styles';
 
+import { getLocationAsync } from '../../helper/GPSHelper'
+
 class Info extends React.Component {
+    componentWillMount() {
+        getLocationAsync()
+      }
+
     render() {
         return (
             <View style={infoFieldStyles.container}>

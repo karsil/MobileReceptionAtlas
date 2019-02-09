@@ -1,5 +1,5 @@
-import { UPDATE_GPS } from '../actions'
 
+import { UPDATE_GPS } from '../helper/GPSHelper.Action'
 import FETCH_RESULT from './../components/ButtonField/ButtonField.Action';
 
 const initialState = {
@@ -16,6 +16,17 @@ export default function reducer(state = initialState, action){
     switch (action.type) {
         case FETCH_RESULT:
             return {...state,  array: action.payload.result}
+
+        case UPDATE_GPS:
+            return {
+                ...state,
+                currentInformation: {
+                    ...state.currentInformation,
+                    locationX: action.payload.x,
+                    locationY: action.payload.y
+                }
+            }
+
         default:
             return state;
     }
