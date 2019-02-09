@@ -39,8 +39,11 @@ app.use(
 );
 
 const port = config.server.port;
+
 app.listen(port, () => {
     logger.info(
-        `express graphql server is running on localhost:${port}/graphql`
+        `express graphql server is running on localhost:${port}${
+            config.server.graphqlEndpoint
+        }`
     );
 });
