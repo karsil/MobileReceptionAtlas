@@ -1,9 +1,12 @@
 export const UPDATE_GPS = 'updateGPS'
 
 export function updateGPS(x,y){
+    console.log('updateGPS called')
     return {
         type: UPDATE_GPS,
-        x: x,
-        y: y
+        payload: {
+            x: x,
+            y: y
+        }
     }
 }
