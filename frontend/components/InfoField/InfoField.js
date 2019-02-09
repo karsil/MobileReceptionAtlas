@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as actionCreators from '../../actions'
 import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
@@ -37,17 +35,9 @@ function mapStateToProps({currentInformation}) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-          updateGPS: actionCreators.updateGPS,
-      },
-      dispatch
-  );
-}
-
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 ) (Info);
 
