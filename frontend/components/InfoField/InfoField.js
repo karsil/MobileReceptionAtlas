@@ -11,7 +11,13 @@ class Info extends React.Component {
         return (
             <View style={infoFieldStyles.container}>
             <Text style={infoFieldStyles.text}>
-                GPS: X{this.props.locationX}/ Y{this.props.locationY}
+                GPS:
+            </Text>
+            <Text style={infoFieldStyles.text}>
+                X: {this.props.locationX}
+            </Text>
+            <Text style={infoFieldStyles.text}>
+                Y: {this.props.locationY}
             </Text>
             <Text style={infoFieldStyles.text}>
                 Signal: {this.props.signal}
