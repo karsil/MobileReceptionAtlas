@@ -9,7 +9,7 @@ import client from './graphql/client';
 import reducer from './reducers'
 import Root from './components/Root/Root'
 
-const store = createStore(
+export const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(thunk))
 )
