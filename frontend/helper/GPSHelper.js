@@ -4,7 +4,7 @@ import { Permissions, Location } from 'expo'
 import { store } from '../App'
 import { updateGPS } from './GPSHelper.Action';
 
-export const getLocationAsync = async () => {
+export const getLocation = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
             getLocationError('Permission to access location was denied')

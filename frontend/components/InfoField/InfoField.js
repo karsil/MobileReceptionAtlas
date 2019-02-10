@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 import { infoFieldStyles } from './InfoField.Styles';
 
-import { getLocationAsync } from '../../helper/GPSHelper'
+import { getLocation } from '../../helper/GPSHelper'
 
 class Info extends React.Component {
     componentWillMount() {
-        getLocationAsync()
+        getLocation()
       }
 
     render() {
