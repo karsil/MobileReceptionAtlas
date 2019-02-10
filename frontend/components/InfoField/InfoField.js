@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 import { infoFieldStyles } from './InfoField.Styles';
 
-import { getLocation } from '../../helper/GPSHelper'
+import { requestLocation } from '../../helper/GPSHelper'
 
 class Info extends React.Component {
     componentWillMount() {
-        getLocation()
+        this.props.dispatch(requestLocation())
       }
 
     render() {

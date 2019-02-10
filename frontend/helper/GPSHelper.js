@@ -1,25 +1,42 @@
-import { Platform } from 'react-native'
 import { Permissions, Location } from 'expo'
 
-import { store } from '../App'
 import { updateGPS } from './GPSHelper.Action';
 
-export const getLocation = async () => {
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-            getLocationError('Permission to access location was denied')
-        }
-        else {
-            console.log('Permission to access location was granted')
-            let location = await Location.getCurrentPositionAsync({});
-            getLocationSuccess(location)
-        }
-};
+export const requestLocation = () => {
+    return  function(dispatch){
+        Permissions.askAsync(Permissions.LOCATION)
+        .then(
+            result => {
+                const { status } = result
+                if (status === 'granted'){
+                    dispatch(getLocation())
+                }
+                else {
+                    alert('Location permissions has not been granted')
+                }
+            },
+            error => requestLocationError(error)
+        )
+    }
+}
 
-getLocationSuccess = locationData => {
+requestLocationError = errorMessage => {
+    alert(errorMessage)
+}
+
+const getLocation = () => {
+    return  function(dispatch){
+        Location.getCurrentPositionAsync({})
+        .then(
+            result => getLocationSuccess(dispatch, result),
+            error => getLocationError(error)
+        )
+    }
+}
+
+getLocationSuccess = (dispatch, locationData) => {
     const {latitude, longitude} = locationData.coords
-    console.log('setting to x ' + latitude + ' and y ' + longitude)
-    store.dispatch(updateGPS(latitude, longitude))
+    dispatch(updateGPS(latitude, longitude))
 }
 
 getLocationError = errorMessage => {
