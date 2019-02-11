@@ -2,27 +2,15 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux'
 
+import GPSInfo from '../GPSInfo/GPSInfo'
+
 import { infoFieldStyles } from './InfoField.Styles';
 
-import { requestLocation } from '../../helper/GPSHelper'
-
 class Info extends React.Component {
-    componentWillMount() {
-        this.props.dispatch(requestLocation())
-      }
-
     render() {
         return (
             <View style={infoFieldStyles.container}>
-            <Text style={infoFieldStyles.text}>
-                GPS:
-            </Text>
-            <Text style={infoFieldStyles.text}>
-                X: {this.props.locationX}
-            </Text>
-            <Text style={infoFieldStyles.text}>
-                Y: {this.props.locationY}
-            </Text>
+            <GPSInfo></GPSInfo>
             <Text style={infoFieldStyles.text}>
                 Signal: {this.props.signal}
             </Text>
@@ -34,8 +22,6 @@ class Info extends React.Component {
 
 function mapStateToProps({currentInformation}) {
     return {
-        locationX: currentInformation.locationX,
-        locationY: currentInformation.locationY,
         signal: currentInformation.signal,
         provider: currentInformation.provider
     };
