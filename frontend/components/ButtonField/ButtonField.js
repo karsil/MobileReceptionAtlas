@@ -25,12 +25,12 @@ class ButtonField extends React.Component {
             <View style={buttonStyles.container}>
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => this.storeData()}
+                    onPress={() => this.recieveData()}
                     title="DEV: Fetch data"
                 />
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => alert('Dummy: Send own data')}
+                    onPress={() => this.storeData()}
                     title="Send own data"
                 />
                 <Button
