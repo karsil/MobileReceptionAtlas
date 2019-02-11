@@ -34,7 +34,7 @@ class Map extends React.Component {
                     longitudeDelta: 0.0121
                 }}
             >
-                {this.renderMarkers(points)}
+                {this.renderMarkers(this.props.data)}
             </MapView>
         );
     }
@@ -42,10 +42,10 @@ class Map extends React.Component {
 
 function mapStateToProps(state) {
   return {
-      locationX: state.locationX,
-      locationY: state.locationY,
-      signal: state.signal,
-      provider: state.provider
+      data: state.data,
+      locationX: state.currentInformation.locationX,
+      locationY: state.currentInformation.locationY,
+      provider: state.currentInformation.provider
   };
 }
 
