@@ -8,6 +8,6 @@ export const MapStyles = StyleSheet.create({
         alignItems: 'center',
     },
     map: {
-      ...StyleSheet.absoluteFillObject,
+        ...StyleSheet.absoluteFillObject,
     },
 });

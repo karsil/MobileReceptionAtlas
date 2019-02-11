@@ -1,18 +1,16 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actionCreators from '../../actions';
+import GPSInfo from '../GPSInfo/GPSInfo';
+
 import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
     render() {
         return (
             <View style={infoFieldStyles.container}>
-                <Text style={infoFieldStyles.text}>
-                    GPS: X{this.props.locationX}/ Y{this.props.locationY}
-                </Text>
+                <GPSInfo />
                 <Text style={infoFieldStyles.text}>
                     Signal: {this.props.signal}
                 </Text>
@@ -33,16 +31,7 @@ function mapStateToProps({ currentInformation }) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            updateGPS: actionCreators.updateGPS,
-        },
-        dispatch
-    );
-}
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
 )(Info);

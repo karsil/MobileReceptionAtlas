@@ -38,7 +38,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             getConnectionInfo: actionCreators.getAllConnectionDataAction,
-            showMap: actionCreators.showMap
+            showMap: actionCreators.showMap,
         },
         dispatch
     );
@@ -47,5 +47,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     null,
     mapDispatchToProps
-) (ButtonField);
-
+)(ButtonField);
