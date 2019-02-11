@@ -8,6 +8,7 @@ import { createNewConnectionData } from '../../graphql/mutation';
 
 export const FETCH_RESULT = 'fetch-result';
 export const FETCH_ERROR = 'fetch-error';
+export const SHOW_MAP = 'showMap';
 
 export const ADD_DATA = 'add-data';
 
@@ -83,5 +84,12 @@ function fetchError(error) {
         payload: {
             error: error,
         },
+    };
+}
+
+export function showMap(toActivate) {
+    return {
+        type: SHOW_MAP,
+        payload: toActivate,
     };
 }

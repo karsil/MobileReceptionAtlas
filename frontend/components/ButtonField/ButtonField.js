@@ -8,6 +8,7 @@ import { buttonStyles } from './ButtonField.Styles';
 import {
     getAllConnectionDataAction,
     createConnectionData,
+    showMap,
 } from './ButtonField.Action';
 
 class ButtonField extends React.Component {
@@ -34,7 +35,7 @@ class ButtonField extends React.Component {
                 />
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => alert('Dummy View map')}
+                    onPress={() => this.props.showMap(true)}
                     title="View map"
                 />
             </View>
@@ -57,6 +58,7 @@ function mapDispatchToProps(dispatch) {
         {
             getConnectionInfo: getAllConnectionDataAction,
             storeConnectionInfo: createConnectionData,
+            showMap: showMap,
         },
         dispatch
     );

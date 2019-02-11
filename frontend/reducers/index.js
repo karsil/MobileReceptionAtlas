@@ -1,6 +1,6 @@
-import { UPDATE_GPS } from '../actions';
-
-import FETCH_RESULT, {
+import {
+    FETCH_RESULT,
+    SHOW_MAP,
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
@@ -14,7 +14,7 @@ const initialState = {
         signal: 100,
         provider: 'Telekom',
         connectionType: '4G',
-        platform: 'Android',
+        platform: 'Android', // test data for now / graphql expects Android/IOs
     },
 };
 
@@ -24,6 +24,11 @@ export default function reducer(state = initialState, action) {
             return { ...state, data: action.payload.result };
         case ADD_DATA:
             return addDataConnectionReducer(state, action);
+        case SHOW_MAP:
+            return {
+                ...state,
+                showMap: action.payload,
+            };
         default:
             return state;
     }
