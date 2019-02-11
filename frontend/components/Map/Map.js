@@ -7,8 +7,8 @@ import { MapStyles } from './Map.Styles';
 import { points } from './getExampleData'
 
 class Map extends React.Component {
-    renderMarker(marker) {
-        return marker.map(point => {
+    renderMarkers(markers) {
+        return markers.map(point => {
             if (point.latitude && point.longitude) {
                 return (
                   <Marker
@@ -34,7 +34,7 @@ class Map extends React.Component {
                     longitudeDelta: 0.0121
                 }}
             >
-                {this.renderMarker(points)}
+                {this.renderMarkers(points)}
             </MapView>
         );
     }
