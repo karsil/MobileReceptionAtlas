@@ -11,5 +11,5 @@ export const buttonStyles = StyleSheet.create({
 
     button: {
         width: '100',
-    }
+    },
 });

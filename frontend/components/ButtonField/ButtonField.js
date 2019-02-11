@@ -1,16 +1,15 @@
 import React from 'react';
-
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
+
 import * as actionCreators from './ButtonField.Action';
 
 class ButtonField extends React.Component {
     recieveData = () => {
         this.props.getConnectionInfo();
-    }
+    };
 
     render() {
         return (
@@ -26,9 +25,9 @@ class ButtonField extends React.Component {
                     title="Send own data"
                 />
                 <Button
-                style={buttonStyles.button}
-                onPress={() => alert('Dummy View map')}
-                title="View map"
+                    style={buttonStyles.button}
+                    onPress={() => this.props.showMap(true)}
+                    title="View map"
                 />
             </View>
         );
@@ -36,16 +35,16 @@ class ButtonField extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-            getConnectionInfo: actionCreators.getAllConnectionDataAction
+    return bindActionCreators(
+        {
+            getConnectionInfo: actionCreators.getAllConnectionDataAction,
+            showMap: actionCreators.showMap,
         },
         dispatch
     );
 }
 
-
 export default connect(
     null,
     mapDispatchToProps
 )(ButtonField);
-
