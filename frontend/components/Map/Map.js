@@ -8,10 +8,11 @@ import { points } from './getExampleData'
 
 class Map extends React.Component {
     renderMarkers(markers) {
-        return markers.map(point => {
+        return markers.map((point, index) => {
             if (point.latitude && point.longitude) {
                 return (
                   <Marker
+                    key={index}
                     coordinate={{
                       latitude: point.latitude,
                       longitude: point.longitude
