@@ -13,7 +13,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_RESULT:
-            return { ...state, array: action.payload.result };
+            return { ...state, data: action.payload.result };
         case SHOW_MAP:
             return {
                 ...state,
