@@ -27,8 +27,8 @@ class Map extends React.Component {
                 style={MapStyles.container}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: 6.82646681,
-                    longitude: 79.87121907,
+                    latitude: this.props.locationX,
+                    longitude: this.props.locationY,
                     latitudeDelta: 0.09,
                     longitudeDelta: 0.0121
                 }}
