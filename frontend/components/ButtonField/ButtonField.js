@@ -11,6 +11,27 @@ class ButtonField extends React.Component {
         this.props.getConnectionInfo();
     };
 
+    renderMapButton = () => {
+        const { showingMap } = this.props
+        console.log('showMap is ' + showingMap)
+        if(showingMap){
+            return (
+                <Button
+                style={buttonStyles.button}
+                onPress={() => this.props.showMap(false)}
+                title="Back"
+                />
+            )
+        }
+        return (
+            <Button
+            style={buttonStyles.button}
+            onPress={() => this.props.showMap(true)}
+            title="View map"
+            />
+        )
+    }
+
     render() {
         return (
             <View style={buttonStyles.container}>
@@ -24,14 +45,16 @@ class ButtonField extends React.Component {
                     onPress={() => alert('Dummy: Send own data')}
                     title="Send own data"
                 />
-                <Button
-                    style={buttonStyles.button}
-                    onPress={() => this.props.showMap(true)}
-                    title="View map"
-                />
+                {this.renderMapButton()}
             </View>
         );
     }
+}
+
+function mapStateToProps( state ) {
+    return {
+        showingMap: state.showingMap,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -45,7 +68,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 ) (ButtonField);
 

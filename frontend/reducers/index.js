@@ -8,6 +8,7 @@ const initialState = {
         signal: 100,
         provider: 'Undefinied',
     },
+    showingMap: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -17,7 +18,7 @@ export default function reducer(state = initialState, action) {
         case SHOW_MAP:
             return {
                 ...state,
-                showMap: action.payload
+                showingMap: action.payload
             }
         default:
             return state;

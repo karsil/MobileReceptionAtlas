@@ -9,11 +9,11 @@ import { rootStyles } from './Root.Styles';
 
 class Root extends React.Component {
   render() {
-    const { showMap } = this.props
+    const { showingMap } = this.props
     return (
         <View style={[rootStyles.container, {alignItems: 'stretch'}] }>
           <View style={{flex: 4, backgroundColor: '#333'}}>
-            {showMap ? <Map /> : <Info />}
+            {showingMap ? <Map /> : <Info />}
           </View>
           <View style={{flex: 2}}>
             <ButtonField></ButtonField>
@@ -25,7 +25,7 @@ class Root extends React.Component {
 
 function mapStateToProps(state) {
   return {
-      showMap: state.showMap
+    showingMap: state.showingMap
   };
 }
 
