@@ -7,10 +7,14 @@ import FETCH_RESULT, {
 const initialState = {
     data: [],
     currentInformation: {
-        locationX: 10.11,
-        locationY: 12.13,
+        location: {
+            x: 10.11,
+            y: 12.13,
+        },
         signal: 100,
-        provider: null,
+        provider: 'Telekom',
+        connectionType: '4G',
+        platform: 'Android',
     },
 };
 
@@ -19,13 +23,7 @@ export default function reducer(state = initialState, action) {
         case FETCH_RESULT:
             return { ...state, data: action.payload.result };
         case ADD_DATA:
-            return {
-                ...state,
-                data: addElementToArray(
-                    action.payload.dataConnectionInformation,
-                    state.data
-                ),
-            };
+            return addDataConnectionReducer(state, action);
         default:
             return state;
     }

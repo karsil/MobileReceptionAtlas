@@ -5,11 +5,18 @@ import { connect } from 'react-redux';
 
 import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
-import * as actionCreators from './ButtonField.Action';
+import {
+    getAllConnectionDataAction,
+    createConnectionData,
+} from './ButtonField.Action';
 
 class ButtonField extends React.Component {
     recieveData = () => {
         this.props.getConnectionInfo();
+    };
+
+    storeData = () => {
+        this.props.storeConnectionInfo(this.props);
     };
 
     render() {
@@ -17,7 +24,7 @@ class ButtonField extends React.Component {
             <View style={buttonStyles.container}>
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => this.recieveData()}
+                    onPress={() => this.storeData()}
                     title="DEV: Fetch data"
                 />
                 <Button
@@ -35,16 +42,27 @@ class ButtonField extends React.Component {
     }
 }
 
+function mapStateToProps({ currentInformation }) {
+    return {
+        location: currentInformation.location,
+        signal: currentInformation.signal,
+        provider: currentInformation.provider,
+        platform: currentInformation.platform,
+        connectionType: currentInformation.connectionType,
+    };
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getConnectionInfo: actionCreators.getAllConnectionDataAction,
+            getConnectionInfo: getAllConnectionDataAction,
+            storeConnectionInfo: createConnectionData,
         },
         dispatch
     );
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(ButtonField);
