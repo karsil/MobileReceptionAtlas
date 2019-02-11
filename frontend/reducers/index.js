@@ -1,6 +1,4 @@
-import { UPDATE_GPS } from '../actions';
-
-import FETCH_RESULT from './../components/ButtonField/ButtonField.Action';
+import {FETCH_RESULT, SHOW_MAP} from './../components/ButtonField/ButtonField.Action';
 
 const initialState = {
     data: [],
@@ -16,6 +14,11 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_RESULT:
             return { ...state, array: action.payload.result };
+        case SHOW_MAP:
+            return {
+                ...state,
+                showMap: action.payload
+            }
         default:
             return state;
     }

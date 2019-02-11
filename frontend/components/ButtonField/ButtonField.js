@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
+
 import * as actionCreators from './ButtonField.Action';
 
 class ButtonField extends React.Component {
@@ -27,7 +26,7 @@ class ButtonField extends React.Component {
                 />
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => alert('Dummy View map')}
+                    onPress={() => this.props.showMap(true)}
                     title="View map"
                 />
             </View>
@@ -39,6 +38,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             getConnectionInfo: actionCreators.getAllConnectionDataAction,
+            showMap: actionCreators.showMap
         },
         dispatch
     );
@@ -47,4 +47,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     null,
     mapDispatchToProps
-)(ButtonField);
+) (ButtonField);
+
