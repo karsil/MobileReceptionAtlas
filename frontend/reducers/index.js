@@ -1,8 +1,8 @@
-import { UPDATE_GPS } from '../helper/GPSHelper.Action';
 import {
     FETCH_RESULT,
     SHOW_MAP,
 } from './../components/ButtonField/ButtonField.Action';
+import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
 
 const initialState = {
     data: [],
@@ -12,13 +12,13 @@ const initialState = {
         signal: 100,
         provider: 'Undefinied',
     },
+    showingMap: false,
 };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_RESULT:
             return { ...state, array: action.payload.result };
-
         case UPDATE_GPS:
             return {
                 ...state,
@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action) {
         case SHOW_MAP:
             return {
                 ...state,
-                showMap: action.payload,
+                showingMap: action.payload,
             };
         default:
             return state;
