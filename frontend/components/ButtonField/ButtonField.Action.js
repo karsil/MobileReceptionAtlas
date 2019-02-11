@@ -7,7 +7,7 @@ import { getAllConnectionData } from '../../graphql/query';
 
 export const FETCH_RESULT = 'fetch-result';
 export const FETCH_ERROR = 'fetch-error';
-export const SHOW_MAP = 'showMap'
+export const SHOW_MAP = 'showMap';
 
 /**
  * Queries the _getAllConnectionData_ endpoint on backend.
@@ -46,9 +46,9 @@ function fetchError(error) {
     };
 }
 
-export function showMap(toActivate){
+export function showMap(toActivate) {
     return {
         type: SHOW_MAP,
-        payload: toActivate
-    }
+        payload: toActivate,
+    };
 }
