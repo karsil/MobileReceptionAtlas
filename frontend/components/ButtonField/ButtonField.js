@@ -13,21 +13,13 @@ class ButtonField extends React.Component {
 
     renderMapButton = () => {
         const { showingMap } = this.props
-        console.log('showMap is ' + showingMap)
-        if(showingMap){
-            return (
-                <Button
-                style={buttonStyles.button}
-                onPress={() => this.props.showMap(false)}
-                title="Back"
-                />
-            )
-        }
+        const title = showingMap ? "Back" : "View map"
+
         return (
             <Button
             style={buttonStyles.button}
-            onPress={() => this.props.showMap(true)}
-            title="View map"
+            onPress={() => this.props.showMap(!showingMap)}
+            title={title}
             />
         )
     }
