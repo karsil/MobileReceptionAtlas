@@ -20,7 +20,7 @@ export const requestLocation = () => {
     }
 }
 
-requestLocationError = errorMessage => {
+const requestLocationError = errorMessage => {
     alert(errorMessage)
 }
 
@@ -34,11 +34,11 @@ const getLocation = () => {
     }
 }
 
-getLocationSuccess = (dispatch, locationData) => {
+const getLocationSuccess = (dispatch, locationData) => {
     const {latitude, longitude} = locationData.coords
     dispatch(updateGPS(latitude, longitude))
 }
 
-getLocationError = errorMessage => {
-    alert(errorMessage)
+const getLocationError = errorMessage => {
+    alert(errorMessage);
 }
