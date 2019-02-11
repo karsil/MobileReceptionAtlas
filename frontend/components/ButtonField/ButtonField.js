@@ -1,47 +1,51 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { View, Button } from 'react-native';
-import { connect } from 'react-redux'
 import { buttonStyles } from './ButtonField.Styles';
-import { bindActionCreators } from 'redux'
-import * as actionCreators from '../../actions'
-import { showMap } from '../../actions'
+
+import * as actionCreators from './ButtonField.Action';
 
 class ButtonField extends React.Component {
-    render() {
-      return (
-        <View style={buttonStyles.container}>
-            <Button
-              style={buttonStyles.button}
-              onPress={() => alert('Dummy: Send own data')}
-              title="Send own data"
-            />
-            <Button
-              style={buttonStyles.button}
-              onPress={() => this.props.showMap(true)}
-              title="View map"
-            />
-        </View>
-      );
-    }
-  }
-
-  function mapStateToProps(state) {
-    return {
-        showMap: state.showMap
+    recieveData = () => {
+        this.props.getConnectionInfo();
     };
-  }
 
-  function mapDispatchToProps(dispatch) {
+    render() {
+        return (
+            <View style={buttonStyles.container}>
+                <Button
+                    style={buttonStyles.button}
+                    onPress={() => this.recieveData()}
+                    title="DEV: Fetch data"
+                />
+                <Button
+                    style={buttonStyles.button}
+                    onPress={() => alert('Dummy: Send own data')}
+                    title="Send own data"
+                />
+                <Button
+                    style={buttonStyles.button}
+                    onPress={() => this.props.showMap(true)}
+                    title="View map"
+                />
+            </View>
+        );
+    }
+}
+
+function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
+            getConnectionInfo: actionCreators.getAllConnectionDataAction,
             showMap: actionCreators.showMap
         },
         dispatch
     );
-  }
-  
-  export default connect(
-    mapStateToProps,
+}
+
+export default connect(
+    null,
     mapDispatchToProps
-  ) (ButtonField);
-  
+) (ButtonField);
+
