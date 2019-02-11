@@ -3,11 +3,11 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
-import { points } from './getExampleData';
 
 class Map extends React.Component {
     renderMarkers(markers) {
-        return markers.map((point, index) => {
+        const dataMarker = markers.map((point, index) => {
+            console.log(point);
             if (point.latitude && point.longitude) {
                 return (
                     <Marker
@@ -20,6 +20,18 @@ class Map extends React.Component {
                 );
             }
         });
+        // add users position to list
+        dataMarker.push(
+            <Marker
+                key="own-data-marker"
+                coordinate={{
+                    latitude: this.props.locationX,
+                    longitude: this.props.locationY,
+                }}
+            />
+        );
+
+        return dataMarker;
     }
 
     render() {
@@ -28,13 +40,13 @@ class Map extends React.Component {
                 style={MapStyles.container}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: 6.82646681,
-                    longitude: 79.87121907,
+                    latitude: this.props.locationX,
+                    longitude: this.props.locationY,
                     latitudeDelta: 0.09,
                     longitudeDelta: 0.0121,
                 }}
             >
-                {this.renderMarkers(points)}
+                {this.renderMarkers(this.props.data)}
             </MapView>
         );
     }
@@ -42,10 +54,10 @@ class Map extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        locationX: state.locationX,
-        locationY: state.locationY,
-        signal: state.signal,
-        provider: state.provider,
+        data: state.data,
+        locationX: state.currentInformation.locationX,
+        locationY: state.currentInformation.locationY,
+        provider: state.currentInformation.provider,
     };
 }
 
