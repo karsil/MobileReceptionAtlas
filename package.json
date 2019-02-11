@@ -2,7 +2,8 @@
     "name": "mobile-reception-atlas",
     "version": "1.0.0",
     "scripts": {
-        "format": "npx prettier --write \"./{backend,frontend}/**/*.js\""
+        "format": "npx prettier --write \"./{backend,frontend}/**/*.js\"",
+        "watch": "cd backend && npm run watch"
     },
     "devDependencies": {
         "husky": "^1.2.0",

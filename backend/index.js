@@ -7,6 +7,7 @@ const config = require('./config');
 const {
     getConnectionByProvider,
     createConnectionData,
+    getConnectionData,
 } = require('./graphql/databaseQuery');
 
 const logger = require('./logging');
@@ -18,10 +19,8 @@ mongoose.connect(config.database.url).catch((err) => {
     }
 });
 
-const ConnectionData = require('./model/data');
-
 const root = {
-    connectionData: () => ConnectionData.find(),
+    connectionData: getConnectionData,
     connectionDataByProvider: getConnectionByProvider,
     createConnectionData: createConnectionData,
 };

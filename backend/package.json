@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon index.js",
-        "test": "npx mocha './{,!(node_modules)/**}/*.test.js' --exit"
+        "test": "NODE_ENV=test npx mocha './{,!(node_modules)/**}/*.test.js' --exit",
+        "watch": "nodemon --exec \"npm test\""
     },
     "repository": {
         "type": "git",

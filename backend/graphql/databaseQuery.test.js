@@ -1,10 +1,8 @@
 'use strict';
-const mongoose = require('mongoose');
 const chai = require('chai');
 const { expect, assert } = chai;
 
-const dbOperations = require('./../graphql/databaseQuery');
-const config = require('./../config');
+const dbOperations = require('./databaseQuery');
 
 const data = {
     platform: 'Android',
@@ -15,20 +13,6 @@ const data = {
 };
 
 describe('Mongodb Data Schema', () => {
-    // start seperate database connection
-    before((done) => {
-        // start mongo connection for database testing
-        mongoose.connect(`${config.database.url}/${config.database.name}`);
-        mongoose.connection.on(
-            'error',
-            console.error.bind(console, 'Connection error')
-        );
-        mongoose.connection.once('open', () => {
-            console.log(`Connection established on ${config.database.url}`);
-            done();
-        });
-    });
-
     describe('Test Database', () => {
         it('Can store new entries', async () => {
             const result = await dbOperations.createConnectionData(data);
@@ -63,14 +47,6 @@ describe('Mongodb Data Schema', () => {
                 provider: 'Telekom',
             });
             assert.lengthOf(result, 1, 'Return just the "Telekom" entries');
-        });
-    });
-
-    // after testing clear
-    after((done) => {
-        mongoose.connection.dropDatabase(() => {
-            console.log('database dropped...');
-            done();
         });
     });
 });

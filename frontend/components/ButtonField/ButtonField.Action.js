@@ -4,9 +4,12 @@
 
 import client from '../../graphql/client';
 import { getAllConnectionData } from '../../graphql/query';
+import { createNewConnectionData } from '../../graphql/mutation';
 
 export const FETCH_RESULT = 'fetch-result';
 export const FETCH_ERROR = 'fetch-error';
+
+export const ADD_DATA = 'add-data';
 
 /**
  * Queries the _getAllConnectionData_ endpoint on backend.
@@ -27,6 +30,44 @@ export const getAllConnectionDataAction = () => {
     };
 };
 
+export const createConnectionData = ({
+    location,
+    signal,
+    provider,
+    platform,
+    connectionType,
+}) => {
+    return (dispatch) => {
+        client
+            .mutate({
+                mutation: createNewConnectionData,
+                variables: {
+                    location,
+                    signal,
+                    provider,
+                    platform,
+                    connectionType,
+                },
+            })
+            .then((result) => {
+                return dispatch(addData(result));
+            });
+    };
+};
+
+function addData(result) {
+    return {
+        type: ADD_DATA,
+        payload: {
+            dataConnectionInformation: result,
+        },
+    };
+}
+
+/**
+ *
+ * @param {Array} result the array of data objects
+ */
 function fetchResult(result) {
     return {
         type: FETCH_RESULT,
