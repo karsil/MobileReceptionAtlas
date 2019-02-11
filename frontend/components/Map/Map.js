@@ -6,7 +6,8 @@ import { MapStyles } from './Map.Styles';
 
 class Map extends React.Component {
     renderMarkers(markers) {
-        return markers.map((point, index) => {
+        const dataMarker = markers.map((point, index) => {
+            console.log(point);
             if (point.latitude && point.longitude) {
                 return (
                     <Marker
@@ -19,6 +20,18 @@ class Map extends React.Component {
                 );
             }
         });
+        // add users position to list
+        dataMarker.push(
+            <Marker
+                key="own-data-marker"
+                coordinate={{
+                    latitude: this.props.locationX,
+                    longitude: this.props.locationY,
+                }}
+            />
+        );
+
+        return dataMarker;
     }
 
     render() {
