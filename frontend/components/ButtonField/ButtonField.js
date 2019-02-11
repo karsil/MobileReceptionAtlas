@@ -12,17 +12,17 @@ class ButtonField extends React.Component {
     };
 
     renderMapButton = () => {
-        const { showingMap } = this.props
-        const title = showingMap ? "Back" : "View map"
+        const { showingMap } = this.props;
+        const title = showingMap ? 'Back' : 'View map';
 
         return (
             <Button
-            style={buttonStyles.button}
-            onPress={() => this.props.showMap(!showingMap)}
-            title={title}
+                style={buttonStyles.button}
+                onPress={() => this.props.showMap(!showingMap)}
+                title={title}
             />
-        )
-    }
+        );
+    };
 
     render() {
         return (
@@ -43,7 +43,7 @@ class ButtonField extends React.Component {
     }
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps(state) {
     return {
         showingMap: state.showingMap,
     };
@@ -53,7 +53,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             getConnectionInfo: actionCreators.getAllConnectionDataAction,
-            showMap: actionCreators.showMap
+            showMap: actionCreators.showMap,
         },
         dispatch
     );
@@ -62,5 +62,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-) (ButtonField);
-
+)(ButtonField);

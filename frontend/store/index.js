@@ -3,5 +3,5 @@ export default {
     locationY: 12.13,
     signal: 100,
     provider: 'Undefinied',
-    showMap: false
+    showMap: false,
 };
