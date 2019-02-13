@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
 import {
@@ -20,6 +18,19 @@ class ButtonField extends React.Component {
         this.props.storeConnectionInfo(this.props);
     };
 
+    renderMapButton = () => {
+        const { showingMap } = this.props;
+        const title = showingMap ? 'Back' : 'View map';
+
+        return (
+            <Button
+                style={buttonStyles.button}
+                onPress={() => this.props.showMap(!showingMap)}
+                title={title}
+            />
+        );
+    };
+
     render() {
         return (
             <View style={buttonStyles.container}>
@@ -33,23 +44,20 @@ class ButtonField extends React.Component {
                     onPress={() => this.storeData()}
                     title="Send own data"
                 />
-                <Button
-                    style={buttonStyles.button}
-                    onPress={() => this.props.showMap(true)}
-                    title="View map"
-                />
+                {this.renderMapButton()}
             </View>
         );
     }
 }
 
-function mapStateToProps({ currentInformation }) {
+function mapStateToProps({ currentInformation, showingMap }) {
     return {
         location: currentInformation.location,
         signal: currentInformation.signal,
         provider: currentInformation.provider,
         platform: currentInformation.platform,
         connectionType: currentInformation.connectionType,
+        showingMap: showingMap,
     };
 }
 

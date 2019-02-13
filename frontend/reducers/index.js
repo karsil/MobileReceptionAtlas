@@ -3,20 +3,9 @@ import {
     SHOW_MAP,
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
+import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
 
-const initialState = {
-    data: [],
-    currentInformation: {
-        location: {
-            x: 10.11,
-            y: 12.13,
-        },
-        signal: 100,
-        provider: 'Telekom',
-        connectionType: '4G',
-        platform: 'Android', // test data for now / graphql expects Android/IOs
-    },
-};
+import initialState from './../store';
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -24,10 +13,21 @@ export default function reducer(state = initialState, action) {
             return { ...state, data: action.payload.result };
         case ADD_DATA:
             return addDataConnectionReducer(state, action);
+        case UPDATE_GPS:
+            return {
+                ...state,
+                currentInformation: {
+                    ...state.currentInformation,
+                    location: {
+                        x: action.payload.x,
+                        y: action.payload.y,
+                    },
+                },
+            };
         case SHOW_MAP:
             return {
                 ...state,
-                showMap: action.payload,
+                showingMap: action.payload,
             };
         default:
             return state;

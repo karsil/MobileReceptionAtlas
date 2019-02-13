@@ -3,24 +3,43 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
-import { points } from './getExampleData';
 
 class Map extends React.Component {
-    renderMarkers(markers) {
-        return markers.map((point, index) => {
-            if (point.latitude && point.longitude) {
+    constructor() {
+        super();
+        this.state = {
+            marker: [],
+        };
+    }
+
+    componentDidMount = () => {
+        const dataMarker = this.props.data.map((information, index) => {
+            if (information.location) {
                 return (
                     <Marker
                         key={index}
                         coordinate={{
-                            latitude: point.latitude,
-                            longitude: point.longitude,
+                            latitude: information.location.x,
+                            longitude: information.location.y,
                         }}
                     />
                 );
             }
         });
-    }
+        // add users position to list
+        dataMarker.push(
+            <Marker
+                key="own-data-marker"
+                pinColor="#4569ab"
+                coordinate={{
+                    latitude: this.props.location.x,
+                    longitude: this.props.location.y,
+                }}
+            />
+        );
+
+        this.setState({ marker: dataMarker });
+    };
 
     render() {
         return (
@@ -28,13 +47,13 @@ class Map extends React.Component {
                 style={MapStyles.container}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: 6.82646681,
-                    longitude: 79.87121907,
+                    latitude: this.props.location.x,
+                    longitude: this.props.location.y,
                     latitudeDelta: 0.09,
                     longitudeDelta: 0.0121,
                 }}
             >
-                {this.renderMarkers(points)}
+                {this.state.marker}
             </MapView>
         );
     }
@@ -42,10 +61,8 @@ class Map extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        locationX: state.locationX,
-        locationY: state.locationY,
-        signal: state.signal,
-        provider: state.provider,
+        data: state.data,
+        location: state.currentInformation.location,
     };
 }
 

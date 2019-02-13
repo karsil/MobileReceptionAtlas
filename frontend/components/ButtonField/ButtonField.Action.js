@@ -19,10 +19,11 @@ export const getAllConnectionDataAction = () => {
                 query: getAllConnectionData,
             })
             .then((result) => {
-                return dispatch(fetchResult(result));
+                console.log(result.data.connectionData);
+                return dispatch(fetchResult(result.data.connectionData));
             })
             .catch((err) => {
-                return dispatch(fetchError(err.message));
+                return dispatch(fetchError(err));
             });
     };
 };
@@ -47,7 +48,8 @@ export const createConnectionData = ({
                 },
             })
             .then((result) => {
-                return dispatch(addData(result));
+                console.log(result.data.createConnectionData);
+                return dispatch(addData(result.data.createConnectionData));
             })
             .catch((err) => {
                 console.log(err);
