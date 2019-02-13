@@ -57,7 +57,6 @@ export const createConnectionData = ({
 };
 
 function addData(result) {
-    console.log(result);
     return {
         type: ADD_DATA,
         payload: {
