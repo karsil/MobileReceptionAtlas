@@ -19,7 +19,6 @@ export const getAllConnectionDataAction = () => {
                 query: getAllConnectionData,
             })
             .then((result) => {
-                console.log(result.data.connectionData);
                 return dispatch(fetchResult(result.data.connectionData));
             })
             .catch((err) => {
@@ -48,7 +47,6 @@ export const createConnectionData = ({
                 },
             })
             .then((result) => {
-                console.log(result.data.createConnectionData);
                 return dispatch(addData(result.data.createConnectionData));
             })
             .catch((err) => {

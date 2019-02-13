@@ -37,7 +37,7 @@ class ButtonField extends React.Component {
                 <Button
                     style={buttonStyles.button}
                     onPress={() => this.recieveData()}
-                    title="DEV: Fetch data"
+                    title="Update Data"
                 />
                 <Button
                     style={buttonStyles.button}
