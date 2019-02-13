@@ -13,11 +13,13 @@ const {
 const logger = require('./logging');
 const mongoose = require('mongoose');
 
-mongoose.connect(config.database.url).catch((err) => {
-    if (err) {
-        logger.error(`Database error: ${err}`);
-    }
-});
+mongoose
+    .connect(`${config.database.url}/${config.database.name}`)
+    .catch((err) => {
+        if (err) {
+            logger.error(`Database error: ${err}`);
+        }
+    });
 
 const root = {
     connectionData: getConnectionData,
