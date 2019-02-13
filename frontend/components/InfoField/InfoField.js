@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import GPSInfo from '../GPSInfo/GPSInfo';
+import SignalInfo from '../SignalInfo/SignalInfo'
 
 import { infoFieldStyles } from './InfoField.Styles';
 
@@ -11,9 +12,7 @@ class Info extends React.Component {
         return (
             <View style={infoFieldStyles.container}>
                 <GPSInfo />
-                <Text style={infoFieldStyles.text}>
-                    Signal: {this.props.signal}
-                </Text>
+                <SignalInfo />
                 <Text style={infoFieldStyles.text}>
                     Provider: {this.props.provider}
                 </Text>
@@ -26,7 +25,6 @@ function mapStateToProps({ currentInformation }) {
     return {
         locationX: currentInformation.locationX,
         locationY: currentInformation.locationY,
-        signal: currentInformation.signal,
         provider: currentInformation.provider,
     };
 }

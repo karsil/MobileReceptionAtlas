@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import styleVariables from './../../settings/styles';
 
-export const GPSInfoStyles = StyleSheet.create({
+export const SignalInfoStyles = StyleSheet.create({
     container: {
         flex: 0.2,
         backgroundColor: styleVariables.color.background,

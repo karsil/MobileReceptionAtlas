@@ -20,6 +20,7 @@ export const getAllConnectionDataAction = () => {
                 query: getAllConnectionData,
             })
             .then((result) => {
+                console.log('getAllConnectionDataAction', result)
                 return dispatch(fetchResult(result));
             })
             .catch((err) => {
