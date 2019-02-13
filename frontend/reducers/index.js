@@ -35,16 +35,10 @@ export default function reducer(state = initialState, action) {
 }
 
 function addDataConnectionReducer(state, { payload }) {
-    const elements = payload.dataConnectionInformation;
-
+    const element = payload.dataConnectionInformation;
+    state.data.push(element);
     return {
         ...state,
-        data: addElementToArray(elements, state.data),
+        data: state.data,
     };
-}
-
-function addElementToArray(element, array) {
-    let elements = [...array];
-    elements.push(element);
-    return elements;
 }
