@@ -1,7 +1,3 @@
-/** action P R O T O T Y P E
- * inspired by https://medium.com/netscape/how-to-integrate-graphql-with-redux-in-react-native-c1912bf33120
- */
-
 import client from '../../graphql/client';
 import { getAllConnectionData } from '../../graphql/query';
 import { createNewConnectionData } from '../../graphql/mutation';
@@ -26,7 +22,7 @@ export const getAllConnectionDataAction = () => {
                 return dispatch(fetchResult(result));
             })
             .catch((err) => {
-                return dispatch(fetchError(err));
+                return dispatch(fetchError(err.message));
             });
     };
 };
@@ -52,11 +48,16 @@ export const createConnectionData = ({
             })
             .then((result) => {
                 return dispatch(addData(result));
+            })
+            .catch((err) => {
+                console.log(err);
+                alert(err.message);
             });
     };
 };
 
 function addData(result) {
+    console.log(result);
     return {
         type: ADD_DATA,
         payload: {
