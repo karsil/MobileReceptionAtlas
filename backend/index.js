@@ -8,6 +8,7 @@ const {
     getConnectionDataByProvider,
     createConnectionData,
     getConnectionData,
+    getConnectionDataByRadius,
 } = require('./graphql/databaseQuery');
 
 const logger = require('./logging');
@@ -24,6 +25,7 @@ mongoose
 const root = {
     connectionData: getConnectionData,
     connectionDataByProvider: getConnectionDataByProvider,
+    connectionDataByRadius: getConnectionDataByRadius,
     createConnectionData: createConnectionData,
 };
 
