@@ -12,8 +12,8 @@ class Map extends React.Component {
         };
     }
 
-    componentDidMount = () => {
-        const dataMarker = this.props.data.map((information, index) => {
+    updateMapMarkerFromLocations = (data) => {
+        const dataMarker = data.map((information, index) => {
             if (information.location) {
                 return (
                     <Marker
@@ -29,6 +29,7 @@ class Map extends React.Component {
         // add users position to list
         dataMarker.push(
             <Marker
+                title="your position"
                 key="own-data-marker"
                 pinColor="#4569ab"
                 coordinate={{
@@ -40,6 +41,10 @@ class Map extends React.Component {
 
         this.setState({ marker: dataMarker });
     };
+
+    componentWillReceiveProps(props) {
+        this.updateMapMarkerFromLocations(props.data);
+    }
 
     render() {
         return (
