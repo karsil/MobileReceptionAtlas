@@ -5,7 +5,7 @@ const schema = require('./graphql/schema');
 const config = require('./config');
 
 const {
-    getConnectionByProvider,
+    getConnectionDataByProvider,
     createConnectionData,
     getConnectionData,
 } = require('./graphql/databaseQuery');
@@ -23,7 +23,7 @@ mongoose
 
 const root = {
     connectionData: getConnectionData,
-    connectionDataByProvider: getConnectionByProvider,
+    connectionDataByProvider: getConnectionDataByProvider,
     createConnectionData: createConnectionData,
 };
 

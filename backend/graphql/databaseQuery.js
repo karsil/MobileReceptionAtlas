@@ -18,7 +18,7 @@ async function getConnectionData() {
     });
 }
 
-async function getConnectionByProvider({ provider }) {
+async function getConnectionDataByProvider({ provider }) {
     return new Promise((resolve, reject) => {
         ConnectionData.find()
             .where({ provider: provider })
