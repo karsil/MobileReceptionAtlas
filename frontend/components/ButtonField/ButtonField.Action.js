@@ -1,5 +1,8 @@
 import client from '../../graphql/client';
-import { getAllConnectionData } from '../../graphql/query';
+import {
+    getAllConnectionData,
+    getConnectionDataByRadius,
+} from '../../graphql/query';
 import { createNewConnectionData } from '../../graphql/mutation';
 
 export const FETCH_RESULT = 'fetch-result';
@@ -20,6 +23,28 @@ export const getAllConnectionDataAction = () => {
             })
             .then((result) => {
                 return dispatch(fetchResult(result.data.connectionData));
+            })
+            .catch((err) => {
+                return dispatch(fetchError(err));
+            });
+    };
+};
+
+export const getConnectionDataByRadiusAction = () => {
+    return (dispatch, getState) => {
+        const { currentInformation } = getState();
+
+        client
+            .query({
+                query: getConnectionDataByRadius(
+                    currentInformation.location,
+                    50
+                ),
+            })
+            .then((result) => {
+                return dispatch(
+                    fetchResult(result.data.connectionDataByRadius)
+                );
             })
             .catch((err) => {
                 return dispatch(fetchError(err));
