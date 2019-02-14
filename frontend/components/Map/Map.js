@@ -1,5 +1,7 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import { Text } from 'react-native';
+
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
@@ -18,11 +20,19 @@ class Map extends React.Component {
                 return (
                     <Marker
                         key={index}
+                        title={`Information`}
+                        pinColor={getPinColorBySignal(information.signal)}
                         coordinate={{
                             latitude: information.location.x,
                             longitude: information.location.y,
                         }}
-                    />
+                    >
+                        <Callout>
+                            <Text style={MapStyles.title}>Information</Text>
+                            <Text>Signal: {information.signal}</Text>
+                            <Text>Provider: {information.provider}</Text>
+                        </Callout>
+                    </Marker>
                 );
             }
         });
@@ -62,6 +72,18 @@ class Map extends React.Component {
             </MapView>
         );
     }
+}
+
+function getPinColorBySignal(signal) {
+    if (signal < 20) {
+        return '#CC0000';
+    } else if (signal < 50) {
+        return '#FFA500';
+    } else if (signal < 90) {
+        return '#66b266';
+    }
+
+    return '#00B200';
 }
 
 function mapStateToProps(state) {
