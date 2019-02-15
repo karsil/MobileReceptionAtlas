@@ -42,6 +42,10 @@ class Map extends React.Component {
         this.setState({ marker: dataMarker });
     };
 
+    componentDidMount() {
+        this.updateMapMarkerFromLocations(this.props.data);
+    }
+
     componentWillReceiveProps(props) {
         this.updateMapMarkerFromLocations(props.data);
     }
