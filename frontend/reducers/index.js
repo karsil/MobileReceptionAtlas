@@ -3,7 +3,9 @@ import {
     SHOW_MAP,
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
+
 import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
+import { UPDATE_PLATFORM } from '../components/Root/Root.Action'
 
 import initialState from './../store';
 
@@ -29,6 +31,14 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 showingMap: action.payload,
             };
+        case UPDATE_PLATFORM:
+            return {
+                ...state,
+                currentInformation: {
+                    ...state.currentInformation,
+                    platform: action.payload
+                }
+            }
         default:
             return state;
     }

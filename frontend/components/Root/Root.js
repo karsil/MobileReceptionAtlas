@@ -1,13 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Info from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
+import * as actionCreators from './Root.Action'
 
 class Root extends React.Component {
+    componentDidMount(){
+        this.props.getPlatform()
+    }
+
     render() {
         const { showingMap } = this.props;
         return (
@@ -29,4 +35,16 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Root);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            getPlatform: actionCreators.getPlatform,
+        },
+        dispatch
+    );
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Root);
