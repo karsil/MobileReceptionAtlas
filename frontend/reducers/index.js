@@ -41,6 +41,5 @@ function addDataConnectionReducer(state, { payload }) {
     }
     return {
         ...state,
-        data: state.data,
     };
 }
