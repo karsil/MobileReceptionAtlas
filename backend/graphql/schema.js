@@ -8,8 +8,8 @@ const schema = buildSchema(`
     }
 
     enum Platform {
-        Android
-        IOs
+        android
+        ios
     }
 
     type ConnectionInformation {
