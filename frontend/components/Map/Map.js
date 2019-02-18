@@ -16,12 +16,12 @@ class Map extends React.Component {
 
     updateMapMarkerFromLocations = (d) => {
         let data = d || [];
-
-        const dataMarker = data.map((information, index) => {
+      
+        const dataMarker = data.map((information) => {
             if (information.location) {
                 return (
                     <Marker
-                        key={index}
+                        key={information.id}
                         title={`Information`}
                         pinColor={getPinColorBySignal(information.signal)}
                         coordinate={{
