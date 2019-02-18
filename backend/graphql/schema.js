@@ -6,8 +6,15 @@ const schema = buildSchema(`
         connectionDataByProvider(provider: String): [ConnectionInformation]
     }
 
+    enum Platform {
+        Android
+        IOs
+    }
+
     type ConnectionInformation {
         id: String
+        platform: Platform
+        connectionType: String
         location: Location
         signal: Float
         provider: String
@@ -24,7 +31,7 @@ const schema = buildSchema(`
     }
 
     type Mutation {
-        createConnectionData(location: LocationInput!, signal: Float!, provider: String!): ConnectionInformation
+        createConnectionData(location: LocationInput!, signal: Float!, provider: String!, platform: Platform!, connectionType: String!): ConnectionInformation
     }
 `);
 

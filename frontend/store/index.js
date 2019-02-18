@@ -1,10 +1,14 @@
 const initialState = {
     data: [],
     currentInformation: {
-        locationX: 10.11,
-        locationY: 12.13,
+        location: {
+            x: 0,
+            y: 0,
+        },
         signal: 100,
         provider: 'Undefinied',
+        connectionType: '4G',
+        platform: 'Android',
     },
     showingMap: false,
 };

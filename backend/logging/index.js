@@ -11,4 +11,9 @@ const logger = createLogger({
     transports: [new transports.Console()],
 });
 
+// disable logging in testing mode
+if (process.env.NODE_ENV === 'test') {
+    logger.transports.forEach((t) => (t.silent = true));
+}
+
 module.exports = logger;

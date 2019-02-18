@@ -2,10 +2,24 @@ const ConnectionData = require('../model/data');
 const uuid = require('uuid/v4');
 const logger = require('./../logging');
 
-async function getConnectionByProvider({ provider }) {
-    let results = [];
+async function getConnectionData() {
+    return new Promise((resolve, reject) => {
+        ConnectionData.find({}).then((res, err) => {
+            if (err) {
+                reject(err);
+            }
 
-    const query = new Promise((resolve, reject) => {
+            if (res) {
+                resolve(res);
+            }
+
+            reject('Something went wrong');
+        });
+    });
+}
+
+async function getConnectionByProvider({ provider }) {
+    return new Promise((resolve, reject) => {
         ConnectionData.find()
             .where({ provider: provider })
             .then((res, err) => {
@@ -18,23 +32,24 @@ async function getConnectionByProvider({ provider }) {
                 }
             });
     });
-
-    return query.then((entry) => {
-        entry.forEach((result) => {
-            results.push(result);
-        });
-        return results;
-    });
 }
 
-async function createConnectionData({ location, signal, provider }) {
-    const query = new Promise((resolve, reject) => {
+async function createConnectionData({
+    location,
+    signal,
+    provider,
+    platform,
+    connectionType,
+}) {
+    return new Promise((resolve, reject) => {
         ConnectionData.create(
             {
                 id: uuid(),
                 signal: signal,
                 location: location,
                 provider: provider,
+                platform: platform,
+                connectionType: connectionType,
             },
             (err, result) => {
                 if (err) {
@@ -47,8 +62,10 @@ async function createConnectionData({ location, signal, provider }) {
             }
         );
     });
-
-    return query.then((result) => result).catch((error) => logger.error(error));
 }
 
-module.exports = { getConnectionByProvider, createConnectionData };
+module.exports = {
+    getConnectionByProvider,
+    createConnectionData,
+    getConnectionData,
+};

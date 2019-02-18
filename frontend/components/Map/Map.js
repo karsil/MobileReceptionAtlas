@@ -5,16 +5,24 @@ import { connect } from 'react-redux';
 import { MapStyles } from './Map.Styles';
 
 class Map extends React.Component {
-    renderMarkers(markers) {
-        const dataMarker = markers.map((point, index) => {
-            console.log(point);
-            if (point.latitude && point.longitude) {
+    constructor() {
+        super();
+        this.state = {
+            marker: [],
+        };
+    }
+
+    updateMapMarkerFromLocations = (d) => {
+        let data = d || [];
+
+        const dataMarker = data.map((information, index) => {
+            if (information.location) {
                 return (
                     <Marker
                         key={index}
                         coordinate={{
-                            latitude: point.latitude,
-                            longitude: point.longitude,
+                            latitude: information.location.x,
+                            longitude: information.location.y,
                         }}
                     />
                 );
@@ -23,15 +31,25 @@ class Map extends React.Component {
         // add users position to list
         dataMarker.push(
             <Marker
+                title="your position"
                 key="own-data-marker"
+                pinColor="#4569ab"
                 coordinate={{
-                    latitude: this.props.locationX,
-                    longitude: this.props.locationY,
+                    latitude: this.props.location.x,
+                    longitude: this.props.location.y,
                 }}
             />
         );
 
-        return dataMarker;
+        this.setState({ marker: dataMarker });
+    };
+
+    componentDidMount() {
+        this.updateMapMarkerFromLocations(this.props.data);
+    }
+
+    componentWillReceiveProps(props) {
+        this.updateMapMarkerFromLocations(props.data);
     }
 
     render() {
@@ -40,13 +58,13 @@ class Map extends React.Component {
                 style={MapStyles.container}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: this.props.locationX,
-                    longitude: this.props.locationY,
+                    latitude: this.props.location.x,
+                    longitude: this.props.location.y,
                     latitudeDelta: 0.09,
                     longitudeDelta: 0.0121,
                 }}
             >
-                {this.renderMarkers(this.props.data)}
+                {this.state.marker}
             </MapView>
         );
     }
@@ -55,9 +73,7 @@ class Map extends React.Component {
 function mapStateToProps(state) {
     return {
         data: state.data,
-        locationX: state.currentInformation.locationX,
-        locationY: state.currentInformation.locationY,
-        provider: state.currentInformation.provider,
+        location: state.currentInformation.location,
     };
 }
 

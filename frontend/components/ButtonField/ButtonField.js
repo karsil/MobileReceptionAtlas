@@ -3,12 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
-
-import * as actionCreators from './ButtonField.Action';
+import {
+    getAllConnectionDataAction,
+    createConnectionData,
+    showMap,
+} from './ButtonField.Action';
 
 class ButtonField extends React.Component {
     recieveData = () => {
         this.props.getConnectionInfo();
+    };
+
+    storeData = () => {
+        this.props.storeConnectionInfo(this.props);
     };
 
     renderMapButton = () => {
@@ -30,11 +37,11 @@ class ButtonField extends React.Component {
                 <Button
                     style={buttonStyles.button}
                     onPress={() => this.recieveData()}
-                    title="DEV: Fetch data"
+                    title="Update Data"
                 />
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => alert('Dummy: Send own data')}
+                    onPress={() => this.storeData()}
                     title="Send own data"
                 />
                 {this.renderMapButton()}
@@ -43,17 +50,23 @@ class ButtonField extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ currentInformation, showingMap }) {
     return {
-        showingMap: state.showingMap,
+        location: currentInformation.location,
+        signal: currentInformation.signal,
+        provider: currentInformation.provider,
+        platform: currentInformation.platform,
+        connectionType: currentInformation.connectionType,
+        showingMap: showingMap,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getConnectionInfo: actionCreators.getAllConnectionDataAction,
-            showMap: actionCreators.showMap,
+            getConnectionInfo: getAllConnectionDataAction,
+            storeConnectionInfo: createConnectionData,
+            showMap: showMap,
         },
         dispatch
     );

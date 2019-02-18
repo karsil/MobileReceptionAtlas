@@ -7,6 +7,8 @@ const locationSchema = new mongoose.Schema({
 
 const connectionDataSchema = new mongoose.Schema({
     id: String,
+    platform: String,
+    connectionType: String,
     location: locationSchema,
     signal: Number,
     provider: String,

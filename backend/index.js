@@ -7,21 +7,22 @@ const config = require('./config');
 const {
     getConnectionByProvider,
     createConnectionData,
+    getConnectionData,
 } = require('./graphql/databaseQuery');
 
 const logger = require('./logging');
 const mongoose = require('mongoose');
 
-mongoose.connect(config.database.url).catch((err) => {
-    if (err) {
-        logger.error(`Database error: ${err}`);
-    }
-});
-
-const ConnectionData = require('./model/data');
+mongoose
+    .connect(`${config.database.url}/${config.database.name}`)
+    .catch((err) => {
+        if (err) {
+            logger.error(`Database error: ${err}`);
+        }
+    });
 
 const root = {
-    connectionData: () => ConnectionData.find(),
+    connectionData: getConnectionData,
     connectionDataByProvider: getConnectionByProvider,
     createConnectionData: createConnectionData,
 };

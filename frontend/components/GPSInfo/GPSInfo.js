@@ -16,10 +16,10 @@ class GPSInfo extends React.Component {
             <View style={GPSInfoStyles.container}>
                 <Text style={GPSInfoStyles.header}>GPS:</Text>
                 <Text style={GPSInfoStyles.text}>
-                    X: {this.props.locationX}
+                    X: {this.props.location.x}
                 </Text>
                 <Text style={GPSInfoStyles.text}>
-                    Y: {this.props.locationY}
+                    Y: {this.props.location.y}
                 </Text>
             </View>
         );
@@ -28,8 +28,7 @@ class GPSInfo extends React.Component {
 
 function mapStateToProps({ currentInformation }) {
     return {
-        locationX: currentInformation.locationX,
-        locationY: currentInformation.locationY,
+        location: currentInformation.location,
     };
 }
 
