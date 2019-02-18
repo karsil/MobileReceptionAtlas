@@ -3,14 +3,9 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actionCreators from './GPSInfo.Action';
 import { GPSInfoStyles } from './GPSInfo.Styles';
 
 class GPSInfo extends React.Component {
-    componentWillMount() {
-        this.props.requestLocation();
-    }
-
     render() {
         return (
             <View style={GPSInfoStyles.container}>
@@ -32,16 +27,4 @@ function mapStateToProps({ currentInformation }) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            requestLocation: actionCreators.requestLocation,
-        },
-        dispatch
-    );
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(GPSInfo);
+export default connect(mapStateToProps)(GPSInfo);

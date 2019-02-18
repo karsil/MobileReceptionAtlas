@@ -4,8 +4,7 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
-import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
-import { UPDATE_PLATFORM } from '../components/Root/Root.Action'
+import { UPDATE_PLATFORM, UPDATE_GPS } from '../components/Root/Root.Action';
 
 import initialState from './../store';
 
@@ -36,9 +35,9 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 currentInformation: {
                     ...state.currentInformation,
-                    platform: action.payload
-                }
-            }
+                    platform: action.payload,
+                },
+            };
         default:
             return state;
     }
