@@ -2,7 +2,7 @@ const ConnectionData = require('./../model/data');
 const uuid = require('uuid/v4');
 const logger = require('./../logging');
 
-module.exports.mockData = () => {
+const mockData = () => {
     ConnectionData.deleteMany((err) => {
         if (err) {
             logger.error('Error while deleting', err);
@@ -11,40 +11,11 @@ module.exports.mockData = () => {
         logger.info('Database content removed for initialization...');
     });
 
-    const data = [
-        {
-            id: uuid(),
-            platform: 'Android', // android or ios
-            connectionType: '2G', // possible values are 2G, 3G, 4G
-            location: { x: 54.3227, y: 10.136 },
-            signal: 85.3,
-            provider: 'Telekom',
-        },
-        {
-            id: uuid(),
-            platform: 'Android',
-            connectionType: '2G',
-            location: { x: 54.32606, y: 10.13556 },
-            signal: 10.101,
-            provider: 'Vodafone',
-        },
-        {
-            id: uuid(),
-            platform: 'IOs',
-            connectionType: '4G',
-            location: { x: 54.3204, y: 10.1415 },
-            signal: 99.13,
-            provider: 'O2',
-        },
-        {
-            id: uuid(),
-            platform: 'Android',
-            connectionType: '3G',
-            location: { x: 54.3196, y: 10.1378 },
-            signal: 35.5,
-            provider: 'Telekom',
-        },
-    ];
+    const data = [];
+    for (let i = 0; i < 30; i++) {
+        let generatedData = generateRandomData();
+        data.push(generatedData);
+    }
 
     ConnectionData.insertMany(data).then((data, err) => {
         if (err) {
@@ -55,3 +26,39 @@ module.exports.mockData = () => {
         }
     });
 };
+
+/**
+ * Schleswig Holstein grobe Koordinaten für Random Kooridnation Gernator.
+ * links oben 54.818936, 8.753612
+ * rechts unten 53.901706, 10.851482
+ * Differenz Latitude: 0.91723
+ * Differenz Longitude: 2.0979
+ */
+function generateRandomData() {
+    const platforms = ['Android', 'IOs'];
+    const connectionTypes = ['2G', '3G', '4G'];
+    const provider = ['Telekom', 'Vodafone', 'O2'];
+    const signal = randomFloatGenerator(100);
+    const location = {
+        x: randomFloatGenerator(1, 53.901706),
+        y: randomFloatGenerator(2.09, 8.753612),
+    };
+    return {
+        id: uuid(),
+        platform: platforms[randomIntegerGenerator(2)],
+        connectionType: connectionTypes[randomIntegerGenerator(3)],
+        provider: provider[randomIntegerGenerator(3)],
+        signal,
+        location,
+    };
+}
+
+function randomFloatGenerator(max, offset = 0) {
+    return Math.random() * max + offset;
+}
+
+function randomIntegerGenerator(max) {
+    return Math.floor(Math.random() * max);
+}
+
+module.exports = { mockData, generateRandomData, randomIntegerGenerator };

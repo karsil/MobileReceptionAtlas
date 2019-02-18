@@ -5,19 +5,12 @@ import { View, Button } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
 import {
     getAllConnectionDataAction,
+    getConnectionDataByRadiusAction,
     createConnectionData,
     showMap,
 } from './ButtonField.Action';
 
 class ButtonField extends React.Component {
-    recieveData = () => {
-        this.props.getConnectionInfo();
-    };
-
-    storeData = () => {
-        this.props.storeConnectionInfo(this.props);
-    };
-
     renderMapButton = () => {
         const { showingMap } = this.props;
         const title = showingMap ? 'Back' : 'View map';
@@ -36,12 +29,19 @@ class ButtonField extends React.Component {
             <View style={buttonStyles.container}>
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => this.recieveData()}
+                    onPress={() => this.props.getConnectionInfo()}
                     title="Update Data"
                 />
                 <Button
                     style={buttonStyles.button}
-                    onPress={() => this.storeData()}
+                    onPress={() =>
+                        this.props.getConnectionInfoByRadius(this.props)
+                    }
+                    title="Get By Radius"
+                />
+                <Button
+                    style={buttonStyles.button}
+                    onPress={() => this.props.storeConnectionInfo(this.props)}
                     title="Send own data"
                 />
                 {this.renderMapButton()}
@@ -65,6 +65,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             getConnectionInfo: getAllConnectionDataAction,
+            getConnectionInfoByRadius: getConnectionDataByRadiusAction,
             storeConnectionInfo: createConnectionData,
             showMap: showMap,
         },

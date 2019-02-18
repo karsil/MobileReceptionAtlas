@@ -15,3 +15,22 @@ export const getAllConnectionData = gql`
         }
     }
 `;
+
+export const getConnectionDataByRadius = (currentLocation, radius) => {
+    return gql`
+    query {
+        connectionDataByRadius(currentLocation: {x: ${currentLocation.x}, y: ${
+        currentLocation.y
+    }}, radius: ${radius}) {
+            id
+            platform
+            connectionType
+            location {
+                x
+                y
+            }
+            signal
+            provider
+        }
+    }`;
+};

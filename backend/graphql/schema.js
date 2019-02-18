@@ -3,6 +3,7 @@ const { buildSchema } = require('graphql');
 const schema = buildSchema(`
     type Query {
         connectionData: [ConnectionInformation]
+        connectionDataByRadius(currentLocation: LocationInput!, radius: Int!): [ConnectionInformation]
         connectionDataByProvider(provider: String): [ConnectionInformation]
     }
 

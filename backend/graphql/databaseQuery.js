@@ -18,7 +18,7 @@ async function getConnectionData() {
     });
 }
 
-async function getConnectionByProvider({ provider }) {
+async function getConnectionDataByProvider({ provider }) {
     return new Promise((resolve, reject) => {
         ConnectionData.find()
             .where({ provider: provider })
@@ -29,6 +29,39 @@ async function getConnectionByProvider({ provider }) {
 
                 if (res) {
                     resolve(res);
+                }
+            });
+    });
+}
+
+/**
+ * the actual calculation just reduces the result to an square with radius on longitude and latitude axis.
+ * To improve to filter per distance, you have to do some math here.
+ * This solution should fit for now
+ */
+async function getConnectionDataByRadius({ currentLocation, radius }) {
+    const R = 6378.137; // earth as reference
+    const alpha = (180 * radius) / (R * Math.PI);
+
+    return new Promise((resolve, reject) => {
+        ConnectionData.find()
+            .where({
+                'location.x': {
+                    $gte: currentLocation.x - alpha,
+                    $lte: currentLocation.x + alpha,
+                },
+                'location.y': {
+                    $gte: currentLocation.y - alpha,
+                    $lte: currentLocation.y + alpha,
+                },
+            })
+            .then((res, err) => {
+                if (err) {
+                    reject(err);
+                } else if (res) {
+                    resolve(res);
+                } else {
+                    reject(new Error('Something went wrong...'));
                 }
             });
     });
@@ -65,7 +98,8 @@ async function createConnectionData({
 }
 
 module.exports = {
-    getConnectionByProvider,
+    getConnectionDataByRadius,
+    getConnectionDataByProvider,
     createConnectionData,
     getConnectionData,
 };

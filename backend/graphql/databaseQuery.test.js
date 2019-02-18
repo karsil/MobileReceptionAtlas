@@ -43,7 +43,7 @@ describe('Mongodb Data Schema', () => {
                 provider: 'Vodafone',
                 id: 'test1',
             });
-            const result = await dbOperations.getConnectionByProvider({
+            const result = await dbOperations.getConnectionDataByProvider({
                 provider: 'Telekom',
             });
             assert.lengthOf(result, 1, 'Return just the "Telekom" entries');
