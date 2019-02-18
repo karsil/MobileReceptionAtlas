@@ -15,6 +15,7 @@ export const createNewConnectionData = gql`
             platform: $platform
             connectionType: $connectionType
         ) {
+            id
             location {
                 x
                 y
