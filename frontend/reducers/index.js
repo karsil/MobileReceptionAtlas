@@ -38,6 +38,10 @@ function addDataConnectionReducer(state, { payload }) {
     const element = payload.dataConnectionInformation;
     if (state.data) {
         state.data.push(element);
+        return {
+            ...state,
+            data: [...state.data],
+        };
     }
     return {
         ...state,
