@@ -35,7 +35,7 @@ const mockData = () => {
  * Differenz Longitude: 2.0979
  */
 function generateRandomData() {
-    const platforms = ['Android', 'IOs'];
+    const platforms = ['android', 'ios'];
     const connectionTypes = ['2G', '3G', '4G'];
     const provider = ['Telekom', 'Vodafone', 'O2'];
     const signal = randomFloatGenerator(100);

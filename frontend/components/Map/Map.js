@@ -70,8 +70,8 @@ class Map extends React.Component {
                 initialRegion={{
                     latitude: this.props.location.x,
                     longitude: this.props.location.y,
-                    latitudeDelta: 0.09,
-                    longitudeDelta: 0.0121,
+                    latitudeDelta: 2,
+                    longitudeDelta: 1,
                 }}
             >
                 {this.state.marker}

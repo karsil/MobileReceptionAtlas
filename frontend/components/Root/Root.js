@@ -7,12 +7,14 @@ import Info from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
-import * as actionCreators from './Root.Action'
+import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
 
 class Root extends React.Component {
-    componentDidMount(){
-        this.props.getPlatform()
-        this.props.getConnectionInfo()
+    constructor(props) {
+        super(props);
+        props.requestLocation();
+        props.getPlatform();
+        props.getConnectionInfo()
     }
 
     render() {
@@ -39,8 +41,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getPlatform: actionCreators.getPlatform,
-            getConnectionInfo: actionCreators.getConnectionInfo,
+            requestLocation: requestLocation,
+            getPlatform: getPlatform,
+            getConnectionInfo: getConnectionInfo
         },
         dispatch
     );

@@ -4,8 +4,8 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
-import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
-import { UPDATE_PLATFORM, UPDATE_CONNECTION_TYPE } from '../components/Root/Root.Action'
+
+import { UPDATE_PLATFORM, UPDATE_GPS, UPDATE_CONNECTION_TYPE } from '../components/Root/Root.Action';
 
 import initialState from './../store';
 
