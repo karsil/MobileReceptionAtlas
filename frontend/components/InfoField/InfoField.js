@@ -12,7 +12,7 @@ class Info extends React.Component {
             <View style={infoFieldStyles.container}>
                 <GPSInfo />
                 <Text style={infoFieldStyles.text}>
-                    Signal: {this.props.signal}
+                    Signal: {this.props.signal} ({this.props.connectionType})
                 </Text>
                 <Text style={infoFieldStyles.text}>
                     Provider: {this.props.provider}
@@ -30,6 +30,7 @@ function mapStateToProps({ currentInformation }) {
         locationX: currentInformation.locationX,
         locationY: currentInformation.locationY,
         signal: currentInformation.signal,
+        connectionType: currentInformation.connectionType,
         provider: currentInformation.provider,
         platform: currentInformation.platform,
     };
