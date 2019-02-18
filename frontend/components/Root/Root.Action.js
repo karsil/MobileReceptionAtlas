@@ -23,7 +23,6 @@ export const getConnectionInfo = () => {
     return function(dispatch) {
         NetInfo.getConnectionInfo()
         .then(info => {
-            console.log(info)
             dispatch(handleConnectionInfo(info))
         })
         .catch(
