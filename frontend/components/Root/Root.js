@@ -12,6 +12,7 @@ import * as actionCreators from './Root.Action'
 class Root extends React.Component {
     componentDidMount(){
         this.props.getPlatform()
+        this.props.getConnectionInfo()
     }
 
     render() {
@@ -39,6 +40,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             getPlatform: actionCreators.getPlatform,
+            getConnectionInfo: actionCreators.getConnectionInfo,
         },
         dispatch
     );
