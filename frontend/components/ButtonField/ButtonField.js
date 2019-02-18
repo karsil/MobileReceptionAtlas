@@ -43,6 +43,7 @@ class ButtonField extends React.Component {
                     style={buttonStyles.button}
                     onPress={() => this.props.storeConnectionInfo(this.props)}
                     title="Send own data"
+                    disabled={(this.props.connectionType === 'wifi') ? true : false}
                 />
                 {this.renderMapButton()}
             </View>
