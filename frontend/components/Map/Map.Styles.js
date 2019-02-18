@@ -10,4 +10,8 @@ export const MapStyles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
 });

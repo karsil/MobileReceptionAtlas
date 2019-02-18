@@ -35,12 +35,16 @@ export default function reducer(state = initialState, action) {
 }
 
 function addDataConnectionReducer(state, { payload }) {
-    const element = payload.dataConnectionInformation;
-    if (state.data) {
-        state.data.push(element);
+    const element = payload.dataConnectionInformation,
+        tempState = { ...state };
+    if (tempState.data) {
+        tempState.data.push(element);
+        return {
+            ...tempState,
+            data: [...tempState.data],
+        };
     }
     return {
-        ...state,
-        data: state.data,
+        ...tempState,
     };
 }
