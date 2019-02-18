@@ -7,13 +7,14 @@ import Info from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
-import { requestLocation, getPlatform } from './Root.Action';
+import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
 
 class Root extends React.Component {
     constructor(props) {
         super(props);
         props.requestLocation();
         props.getPlatform();
+        props.getConnectionInfo()
     }
 
     render() {
@@ -42,6 +43,7 @@ function mapDispatchToProps(dispatch) {
         {
             requestLocation: requestLocation,
             getPlatform: getPlatform,
+            getConnectionInfo: getConnectionInfo
         },
         dispatch
     );

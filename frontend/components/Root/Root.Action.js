@@ -1,4 +1,5 @@
 import { Permissions, Location, Constants } from 'expo';
+import { NetInfo } from 'react-native'
 
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
@@ -16,7 +17,40 @@ const updatePlatform = (platform) => {
         type: UPDATE_PLATFORM,
         payload: platform,
     };
-};
+}
+
+export const getConnectionInfo = () => {
+    return function(dispatch) {
+        NetInfo.getConnectionInfo()
+        .then(info => {
+            dispatch(handleConnectionInfo(info))
+        })
+        .catch(
+            error => alert(error)
+        );
+    };
+}
+
+
+const handleConnectionInfo = connection => {
+    let connectionType = connection.type;
+    if (connection.type === 'cellular') {
+        connectionType = connection.EffectiveConnectionType;
+    }
+
+    return (dispatch) => {
+        dispatch(updateConnectionType(connectionType))
+    }
+}
+
+
+export const UPDATE_CONNECTION_TYPE = 'updateConnectionType'
+const updateConnectionType = type => {
+    return {
+        type: UPDATE_CONNECTION_TYPE,
+        payload: type
+    };
+}
 
 export const requestLocation = () => {
     return function(dispatch) {
