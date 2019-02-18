@@ -33,13 +33,13 @@ export const getConnectionInfo = () => {
 
 
 const handleConnectionInfo = connection => {
-    if(connection.type === 'cellular'){
-        return function(dispatch) {
-            dispatch(updateConnectionType(connection.EffectiveConnectionType))
-        }
+    let connectionType = connection.type;
+    if (connection.type === 'cellular') {
+        connectionType = connection.EffectiveConnectionType;
     }
-    return function(dispatch) {
-        dispatch(updateConnectionType(connection.type))
+
+    return (dispatch) => {
+        dispatch(updateConnectionType(connectionType))
     }
 }
 
