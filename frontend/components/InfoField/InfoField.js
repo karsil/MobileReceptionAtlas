@@ -1,18 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import GPSInfo from '../GPSInfo/GPSInfo';
 
-import * as actionCreators from './InfoField.Action'
 import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
-    componentDidMount(){
-        this.props.getPlatform()
-    }
-
     render() {
         return (
             <View style={infoFieldStyles.container}>
@@ -41,16 +35,7 @@ function mapStateToProps({ currentInformation }) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            getPlatform: actionCreators.getPlatform,
-        },
-        dispatch
-    );
-}
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
 )(Info);

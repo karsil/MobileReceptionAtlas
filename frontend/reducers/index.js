@@ -3,8 +3,9 @@ import {
     SHOW_MAP,
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
+
 import { UPDATE_GPS } from '../components/GPSInfo/GPSInfo.Action';
-import { UPDATE_PLATFORM } from '../components/InfoField/InfoField.Action'
+import { UPDATE_PLATFORM } from '../components/Root/Root.Action'
 
 import initialState from './../store';
 
