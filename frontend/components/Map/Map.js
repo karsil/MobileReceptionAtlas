@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
 
-import { ProviderFilterPicker } from '../ProviderFilterPicker/ProviderFilterPicker'
+import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
 
 class Map extends React.Component {
     constructor() {
