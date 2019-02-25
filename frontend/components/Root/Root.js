@@ -14,15 +14,22 @@ class Root extends React.Component {
         super(props);
         props.requestLocation();
         props.getPlatform();
-        props.getConnectionInfo()
+        props.getConnectionInfo();
     }
+
+    renderMapOrInfoField = () => {
+        if (this.props.showingMap) {
+            return <Map />;
+        }
+        return <Info />;
+    };
 
     render() {
         const { showingMap } = this.props;
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
                 <View style={{ flex: 4, backgroundColor: '#333' }}>
-                    {showingMap ? <Map /> : <Info />}
+                    {this.renderMapOrInfoField()}
                 </View>
                 <View style={{ flex: 2 }}>
                     <ButtonField />
@@ -43,7 +50,7 @@ function mapDispatchToProps(dispatch) {
         {
             requestLocation: requestLocation,
             getPlatform: getPlatform,
-            getConnectionInfo: getConnectionInfo
+            getConnectionInfo: getConnectionInfo,
         },
         dispatch
     );

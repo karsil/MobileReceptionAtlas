@@ -1,7 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
-
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
 import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
@@ -11,47 +9,52 @@ class Map extends React.Component {
         super();
         this.state = {
             marker: [],
+            currentPosition: null,
         };
     }
 
     updateMapMarkerFromLocations = (d) => {
         let data = d || [];
-      
+
         const dataMarker = data.map((information) => {
             if (information.location) {
-                return (
-                    <Marker
-                        key={information.id}
-                        title={`Information`}
-                        pinColor={getPinColorBySignal(information.signal)}
-                        coordinate={{
-                            latitude: information.location.x,
-                            longitude: information.location.y,
-                        }}
-                    >
-                        <Callout>
-                            <Text style={MapStyles.title}>Information</Text>
-                            <Text>Signal: {information.signal}</Text>
-                            <Text>Provider: {information.provider}</Text>
-                        </Callout>
-                    </Marker>
-                );
+                return getCircleBySignalStrength(information);
             }
         });
-        // add users position to list
-        dataMarker.push(
-            <Marker
-                title="your position"
-                key="own-data-marker"
-                pinColor="#4569ab"
-                coordinate={{
-                    latitude: this.props.location.x,
-                    longitude: this.props.location.y,
-                }}
-            />
-        );
 
+        // add users position to list
+        if (this.currentPositionHasChanged()) {
+            const position = (
+                <Marker
+                    title="your position"
+                    key="own-data-marker"
+                    coordinate={{
+                        latitude: this.props.location.x,
+                        longitude: this.props.location.y,
+                    }}
+                />
+            );
+            this.setState({ currentPosition: position });
+        }
         this.setState({ marker: dataMarker });
+    };
+
+    currentPositionHasChanged = () => {
+        const currentPosition = this.props.location;
+        const previousPosition = this.state.currentPosition;
+
+        // if there is no position in state, the current position has changed
+        if (previousPosition === null) {
+            return true;
+        }
+
+        if (
+            currentPosition.x !== previousPosition.x ||
+            currentPosition.y !== previousPosition.y
+        ) {
+            return true;
+        }
+        return false;
     };
 
     componentDidMount() {
@@ -75,21 +78,51 @@ class Map extends React.Component {
                 }}
             >
                 {this.state.marker}
+                {this.state.currentPosition}
             </MapView>
         );
     }
 }
+function getCircleBySignalStrength(information) {
+    const { id, location, signal } = information;
+    return (
+        <Circle
+            key={id}
+            center={{ latitude: location.x, longitude: location.y }}
+            radius={signal * 100}
+            fillColor={getColorBySignal(signal)}
+            strokeWidth={0}
+            lineJoin={'round'}
+        />
+    );
+}
 
-function getPinColorBySignal(signal) {
+function getColorBySignal(signal) {
+    let color = {
+        r: 69,
+        g: 139,
+        b: 0,
+        a: 0.5,
+    };
+
     if (signal < 20) {
-        return '#CC0000';
+        color.r = 127;
+        color.g = 255;
+        color.b = 0;
+        color.a = 0.3;
     } else if (signal < 50) {
-        return '#FFA500';
+        color.r = 118;
+        color.g = 238;
+        color.b = 0;
+        color.a = 0.35;
     } else if (signal < 90) {
-        return '#66b266';
+        color.r = 102;
+        color.g = 205;
+        color.b = 0;
+        color.a = 0.4;
     }
 
-    return '#00B200';
+    return `rgba(${color.r},${color.g},${color.b},${color.a})`;
 }
 
 function mapStateToProps(state) {
