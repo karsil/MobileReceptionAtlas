@@ -25,7 +25,6 @@ class Root extends React.Component {
     };
 
     render() {
-        const { showingMap } = this.props;
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
                 <View style={{ flex: 4, backgroundColor: '#333' }}>

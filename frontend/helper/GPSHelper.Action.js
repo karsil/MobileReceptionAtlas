@@ -1,10 +1,10 @@
 export const UPDATE_GPS = 'updateGPS';
-export function updateGPS(x, y) {
+export function updateGPS(latitude, longitude) {
     return {
         type: UPDATE_GPS,
         payload: {
-            x: x,
-            y: y,
+            latitude: latitude,
+            longitude: longitude,
         },
     };
 }

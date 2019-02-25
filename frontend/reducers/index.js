@@ -24,8 +24,8 @@ export default function reducer(state = initialState, action) {
                 currentInformation: {
                     ...state.currentInformation,
                     location: {
-                        x: action.payload.x,
-                        y: action.payload.y,
+                        latitude: action.payload.latitude,
+                        longitude: action.payload.longitude,
                     },
                 },
             };

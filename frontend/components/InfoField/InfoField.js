@@ -40,8 +40,6 @@ class Info extends React.Component {
 
 function mapStateToProps({ currentInformation }) {
     return {
-        locationX: currentInformation.locationX,
-        locationY: currentInformation.locationY,
         signal: currentInformation.signal,
         connectionType: currentInformation.connectionType,
         provider: currentInformation.provider,

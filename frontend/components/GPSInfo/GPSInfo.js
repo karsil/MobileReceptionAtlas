@@ -11,10 +11,10 @@ class GPSInfo extends React.Component {
             <View style={GPSInfoStyles.container}>
                 <Text style={GPSInfoStyles.header}>GPS:</Text>
                 <Text style={GPSInfoStyles.text}>
-                    X: {this.props.location.x}
+                    Longitude: {this.props.location.latitude}
                 </Text>
                 <Text style={GPSInfoStyles.text}>
-                    Y: {this.props.location.y}
+                    Latitude: {this.props.location.longitude}
                 </Text>
             </View>
         );

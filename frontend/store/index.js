@@ -2,8 +2,8 @@ const initialState = {
     data: [],
     currentInformation: {
         location: {
-            x: 0,
-            y: 0,
+            latitude: 0,
+            longitude: 0,
         },
         signal: 100,
         provider: 'Undefinied',

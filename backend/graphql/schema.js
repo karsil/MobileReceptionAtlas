@@ -22,13 +22,13 @@ const schema = buildSchema(`
     }
 
     type Location {
-        x: Float
-        y: Float
+        latitude: Float
+        longitude: Float
     }
 
     input LocationInput {
-        x: Float!
-        y: Float!
+        latitude: Float!
+        longitude: Float!
     }
 
     type Mutation {

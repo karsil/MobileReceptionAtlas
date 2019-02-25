@@ -1,5 +1,5 @@
 import { Permissions, Location, Constants } from 'expo';
-import { NetInfo } from 'react-native'
+import { NetInfo } from 'react-native';
 
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
@@ -17,40 +17,36 @@ const updatePlatform = (platform) => {
         type: UPDATE_PLATFORM,
         payload: platform,
     };
-}
+};
 
 export const getConnectionInfo = () => {
     return function(dispatch) {
         NetInfo.getConnectionInfo()
-        .then(info => {
-            dispatch(handleConnectionInfo(info))
-        })
-        .catch(
-            error => alert(error)
-        );
+            .then((info) => {
+                dispatch(handleConnectionInfo(info));
+            })
+            .catch((error) => alert(error));
     };
-}
+};
 
-
-const handleConnectionInfo = connection => {
+const handleConnectionInfo = (connection) => {
     let connectionType = connection.type;
     if (connection.type === 'cellular') {
         connectionType = connection.EffectiveConnectionType;
     }
 
     return (dispatch) => {
-        dispatch(updateConnectionType(connectionType))
-    }
-}
+        dispatch(updateConnectionType(connectionType));
+    };
+};
 
-
-export const UPDATE_CONNECTION_TYPE = 'updateConnectionType'
-const updateConnectionType = type => {
+export const UPDATE_CONNECTION_TYPE = 'updateConnectionType';
+const updateConnectionType = (type) => {
     return {
         type: UPDATE_CONNECTION_TYPE,
-        payload: type
+        payload: type,
     };
-}
+};
 
 export const requestLocation = () => {
     return function(dispatch) {
@@ -90,12 +86,12 @@ const getLocationError = (errorMessage) => {
     alert(errorMessage);
 };
 
-function updateGPS(x, y) {
+function updateGPS(latitude, longitude) {
     return {
         type: UPDATE_GPS,
         payload: {
-            x: x,
-            y: y,
+            latitude: latitude,
+            longitude: longitude,
         },
     };
 }
