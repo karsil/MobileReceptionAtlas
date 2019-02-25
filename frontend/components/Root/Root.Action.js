@@ -77,21 +77,17 @@ const getLocation = () => {
     };
 };
 
-const getLocationSuccess = (dispatch, locationData) => {
-    const { latitude, longitude } = locationData.coords;
-    dispatch(updateGPS(latitude, longitude));
+const getLocationSuccess = (dispatch, location) => {
+    dispatch(updateGPS(location));
 };
 
 const getLocationError = (errorMessage) => {
     alert(errorMessage);
 };
 
-function updateGPS(latitude, longitude) {
+function updateGPS(location) {
     return {
         type: UPDATE_GPS,
-        payload: {
-            latitude: latitude,
-            longitude: longitude,
-        },
+        payload: location,
     };
 }

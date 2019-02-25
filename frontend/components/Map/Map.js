@@ -5,11 +5,17 @@ import { connect } from 'react-redux';
 import { MapStyles } from './Map.Styles';
 
 class Map extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            region: {
+                latitude: props.location.latitude,
+                longitude: props.location.longitude,
+                latitudeDelta: 2,
+                longitudeDelta: 1,
+            },
             marker: [],
-            currentPosition: null,
+            currentPositionMarker: null,
         };
     }
 
@@ -28,33 +34,27 @@ class Map extends React.Component {
                 <Marker
                     title="your position"
                     key="own-data-marker"
-                    coordinate={{
-                        latitude: this.props.location.x,
-                        longitude: this.props.location.y,
-                    }}
+                    coordinate={this.props.location}
                 />
             );
-            this.setState({ currentPosition: position });
+            this.setState({ currentPositionMarker: position });
         }
         this.setState({ marker: dataMarker });
     };
 
     currentPositionHasChanged = () => {
         const currentPosition = this.props.location;
-        const previousPosition = this.state.currentPosition;
+        const previousPosition = this.state.currentPositionMarker;
 
         // if there is no position in state, the current position has changed
         if (previousPosition === null) {
             return true;
         }
 
-        if (
-            currentPosition.x !== previousPosition.x ||
-            currentPosition.y !== previousPosition.y
-        ) {
-            return true;
-        }
-        return false;
+        return (
+            currentPosition.latitude !== previousPosition.latitude ||
+            currentPosition.longitude !== previousPosition.longitude
+        );
     };
 
     componentDidMount() {
@@ -70,15 +70,10 @@ class Map extends React.Component {
             <MapView
                 style={MapStyles.container}
                 provider={PROVIDER_GOOGLE}
-                initialRegion={{
-                    latitude: this.props.location.x,
-                    longitude: this.props.location.y,
-                    latitudeDelta: 2,
-                    longitudeDelta: 1,
-                }}
+                initialRegion={this.state.region}
             >
                 {this.state.marker}
-                {this.state.currentPosition}
+                {this.state.currentPositionMarker}
             </MapView>
         );
     }
@@ -88,7 +83,7 @@ function getCircleBySignalStrength(information) {
     return (
         <Circle
             key={id}
-            center={{ latitude: location.x, longitude: location.y }}
+            center={location}
             radius={signal * 100}
             fillColor={getColorBySignal(signal)}
             strokeWidth={0}

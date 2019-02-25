@@ -23,10 +23,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 currentInformation: {
                     ...state.currentInformation,
-                    location: {
-                        latitude: action.payload.latitude,
-                        longitude: action.payload.longitude,
-                    },
+                    location: action.payload,
                 },
             };
         case SHOW_MAP:
