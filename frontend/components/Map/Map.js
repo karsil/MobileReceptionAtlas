@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
+
+import { ProviderFilterPicker } from '../ProviderFilterPicker/ProviderFilterPicker'
 
 class Map extends React.Component {
     constructor() {
@@ -16,7 +18,7 @@ class Map extends React.Component {
 
     updateMapMarkerFromLocations = (d) => {
         let data = d || [];
-      
+
         const dataMarker = data.map((information) => {
             if (information.location) {
                 return (
@@ -64,18 +66,21 @@ class Map extends React.Component {
 
     render() {
         return (
-            <MapView
-                style={MapStyles.container}
-                provider={PROVIDER_GOOGLE}
-                initialRegion={{
-                    latitude: this.props.location.x,
-                    longitude: this.props.location.y,
-                    latitudeDelta: 2,
-                    longitudeDelta: 1,
-                }}
-            >
-                {this.state.marker}
-            </MapView>
+            <View style={MapStyles.container}>
+                <MapView
+                    style={MapStyles.container}
+                    provider={PROVIDER_GOOGLE}
+                    initialRegion={{
+                        latitude: this.props.location.x,
+                        longitude: this.props.location.y,
+                        latitudeDelta: 2,
+                        longitudeDelta: 1,
+                    }}
+                >
+                    {this.state.marker}
+                </MapView>
+                <ProviderFilterPicker />
+            </View>
         );
     }
 }

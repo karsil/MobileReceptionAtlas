@@ -11,6 +11,7 @@ const initialState = {
         platform: 'Android',
     },
     showingMap: false,
+    filterByProvider: 'Unfiltered'
 };
 
 export default initialState;
