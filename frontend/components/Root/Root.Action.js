@@ -71,14 +71,16 @@ const requestLocationError = (errorMessage) => {
 const getLocation = () => {
     return function(dispatch) {
         Location.getCurrentPositionAsync({}).then(
-            (result) => getLocationSuccess(dispatch, result),
-            (error) => getLocationError(error)
+            (result) => dispatch(getLocationSuccess(result.coords)),
+            (error) => dispatch(getLocationError(error))
         );
     };
 };
 
-const getLocationSuccess = (dispatch, location) => {
-    dispatch(updateGPS(location));
+const getLocationSuccess = (location) => {
+    return function(dispatch) {
+        dispatch(updateGPS(location));
+    };
 };
 
 const getLocationError = (errorMessage) => {
