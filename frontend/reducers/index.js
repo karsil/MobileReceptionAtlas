@@ -49,7 +49,6 @@ export default function reducer(state = initialState, action) {
                 }
             }
         case FILTER_MAP_BY_PROVIDER:
-        console.log(action.payload.provider)
             return {
                 ...state,
                 filterByProvider: action.payload.provider
