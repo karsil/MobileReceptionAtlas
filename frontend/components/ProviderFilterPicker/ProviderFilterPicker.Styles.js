@@ -3,17 +3,19 @@ import styleVariables from '../../settings/styles';
 
 export const providerFilterStyles = StyleSheet.create({
     container: {
-        flex: 0.3,
+        flexDirection: 'row',
         justifyContent: styleVariables.content.justify,
         backgroundColor: styleVariables.color.background,
-        alignItems: 'stretch',
+        alignItems: 'center',
+        maxHeight: 190
     },
 
      picker: {
-        height: 90,
-        width: 150
+        width: 100,
+        height: 190,
+        justifyContent: styleVariables.content.justify,
     },
-    item: {
+    text: {
         fontSize: 18,
     }
 });

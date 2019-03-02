@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Picker } from 'react-native';
+import { View, Picker, Text } from 'react-native';
 import { providerFilterStyles } from './ProviderFilterPicker.Styles';
 
 import { filterMapByProvider } from './ProviderFilterPicker.Action'
@@ -10,13 +10,14 @@ class ProviderFilterPicker extends React.Component {
      render() {
         return (
             <View style={providerFilterStyles.container}>
+                <Text style = {providerFilterStyles.text}>Filter by</Text>
                 <Picker
                     // default case is 'Unfiltered' item
                     selectedValue={this.props.filterProvider || 'Unfiltered'}
                     style={providerFilterStyles.picker}
-                    itemStyle={providerFilterStyles.item}
+                    itemStyle={providerFilterStyles.text}
                     onValueChange={value => this.props.filterBy(value)}>
-                        <Picker.Item label="Unfiltered" value="Unfiltered" />
+                        <Picker.Item label="None" value="Unfiltered" />
                         <Picker.Item label="Telekom" value="telekom" />
                         <Picker.Item label="Vodafone" value="vodafone" />
                         <Picker.Item label="O2" value="o2" />
