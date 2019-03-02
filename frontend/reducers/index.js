@@ -4,6 +4,7 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
+import { FILTER_MAP_BY_PROVIDER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action'
 
 import { UPDATE_PLATFORM, UPDATE_GPS, UPDATE_CONNECTION_TYPE } from '../components/Root/Root.Action';
 
@@ -46,6 +47,12 @@ export default function reducer(state = initialState, action) {
                     ...state.currentInformation,
                     connectionType: action.payload
                 }
+            }
+        case FILTER_MAP_BY_PROVIDER:
+        console.log(action.payload.provider)
+            return {
+                ...state,
+                filterByProvider: action.payload.provider
             }
         default:
             return state;

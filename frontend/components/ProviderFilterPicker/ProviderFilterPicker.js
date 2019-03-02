@@ -29,7 +29,7 @@ class ProviderFilterPicker extends React.Component {
 
  function mapStateToProps(state) {
     return {
-        filterProvider: state.filterMapByProvider,
+        filterProvider: state.filterByProvider,
     };
 }
 
