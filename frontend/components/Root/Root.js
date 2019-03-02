@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import Info from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
+import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker'
 import { rootStyles } from './Root.Styles';
 import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
 
@@ -17,13 +18,29 @@ class Root extends React.Component {
         props.getConnectionInfo()
     }
 
-    render() {
+    renderMapOrInfo = () => {
         const { showingMap } = this.props;
+        if (showingMap) {
+            return (
+                <View style={{ flex: 4}}>
+                    <View style={{ flex: 4, backgroundColor: '#333' }}>
+                        <Map />
+                    </View>
+                    <ProviderFilterPicker />
+                </View>
+            )
+        }
+        return (
+            <View style={{ flex: 4}}>
+                <Info />
+            </View>
+        )
+    }
+
+    render() {
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
-                <View style={{ flex: 4, backgroundColor: '#333' }}>
-                    {showingMap ? <Map /> : <Info />}
-                </View>
+                {this.renderMapOrInfo()}
                 <View style={{ flex: 2 }}>
                     <ButtonField />
                 </View>

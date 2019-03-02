@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import { MapStyles } from './Map.Styles';
 
-import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
 
 class Map extends React.Component {
     constructor() {
@@ -79,7 +78,6 @@ class Map extends React.Component {
                 >
                     {this.state.marker}
                 </MapView>
-                <ProviderFilterPicker />
             </View>
         );
     }
