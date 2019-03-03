@@ -4,8 +4,11 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
-
-import { UPDATE_PLATFORM, UPDATE_GPS, UPDATE_CONNECTION_TYPE } from '../components/Root/Root.Action';
+import {
+    UPDATE_PLATFORM,
+    UPDATE_GPS,
+    UPDATE_CONNECTION_TYPE,
+} from '../components/Root/Root.Action';
 
 import initialState from './../store';
 
@@ -20,10 +23,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 currentInformation: {
                     ...state.currentInformation,
-                    location: {
-                        x: action.payload.x,
-                        y: action.payload.y,
-                    },
+                    location: action.payload,
                 },
             };
         case SHOW_MAP:
@@ -36,17 +36,17 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 currentInformation: {
                     ...state.currentInformation,
-                    platform: action.payload
-                }
-            }
+                    platform: action.payload,
+                },
+            };
         case UPDATE_CONNECTION_TYPE:
             return {
                 ...state,
                 currentInformation: {
                     ...state.currentInformation,
-                    connectionType: action.payload
-                }
-            }
+                    connectionType: action.payload,
+                },
+            };
         default:
             return state;
     }
@@ -58,11 +58,11 @@ function addDataConnectionReducer(state, { payload }) {
     if (tempState.data) {
         tempState.data.push(element);
         return {
-            ...tempState,
+            ...state,
             data: [...tempState.data],
         };
     }
     return {
-        ...tempState,
+        ...state,
     };
 }

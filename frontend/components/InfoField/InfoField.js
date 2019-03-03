@@ -13,14 +13,14 @@ class Info extends React.Component {
                 <Text style={infoFieldStyles.text}>
                     Connected by {this.props.connectionType}
                 </Text>
-            )
+            );
         }
         return (
             <Text style={infoFieldStyles.text}>
-                    Signal: {this.props.signal} ({this.props.connectionType})
-                </Text>
-        )
-    }
+                Signal: {this.props.signal} ({this.props.connectionType})
+            </Text>
+        );
+    };
 
     render() {
         return (
@@ -40,8 +40,6 @@ class Info extends React.Component {
 
 function mapStateToProps({ currentInformation }) {
     return {
-        locationX: currentInformation.locationX,
-        locationY: currentInformation.locationY,
         signal: currentInformation.signal,
         connectionType: currentInformation.connectionType,
         provider: currentInformation.provider,
@@ -49,7 +47,4 @@ function mapStateToProps({ currentInformation }) {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    null
-)(Info);
+export default connect(mapStateToProps)(Info);

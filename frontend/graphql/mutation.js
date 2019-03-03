@@ -17,8 +17,8 @@ export const createNewConnectionData = gql`
         ) {
             id
             location {
-                x
-                y
+                latitude
+                longitude
             }
             signal
             provider

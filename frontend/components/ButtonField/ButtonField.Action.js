@@ -53,7 +53,7 @@ export const getConnectionDataByRadiusAction = () => {
 };
 
 export const createConnectionData = ({
-    location,
+    location: { latitude, longitude },
     signal,
     provider,
     platform,
@@ -64,7 +64,7 @@ export const createConnectionData = ({
             .mutate({
                 mutation: createNewConnectionData,
                 variables: {
-                    location,
+                    location: { latitude, longitude },
                     signal,
                     provider,
                     platform,

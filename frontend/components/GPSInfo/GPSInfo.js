@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { GPSInfoStyles } from './GPSInfo.Styles';
 
@@ -11,10 +10,10 @@ class GPSInfo extends React.Component {
             <View style={GPSInfoStyles.container}>
                 <Text style={GPSInfoStyles.header}>GPS:</Text>
                 <Text style={GPSInfoStyles.text}>
-                    X: {this.props.location.x}
+                    Latitude: {this.props.location.latitude}
                 </Text>
                 <Text style={GPSInfoStyles.text}>
-                    Y: {this.props.location.y}
+                    Longitude: {this.props.location.longitude}
                 </Text>
             </View>
         );
