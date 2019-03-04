@@ -12,7 +12,7 @@ export const buttonStyles = StyleSheet.create({
     buttonText: {
         width: '100%',
         textAlign: 'center',
-        color: colors.secondaryColor,
+        color: colors.textColor,
     },
     buttonDisabled: {
         backgroundColor: '#eee',

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     },
     toolbarButton: {
         width: 100,
-        color: colors.secondaryColor,
+        color: colors.textColor,
         textAlign: 'center',
     },
     toolbarButtonText: {
