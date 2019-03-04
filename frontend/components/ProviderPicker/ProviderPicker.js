@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Picker } from 'react-native';
+import { View, Text, Picker, ActivityIndicator } from 'react-native';
 import { providerPickerStyles } from './ProviderPicker.Styles';
 
 import { updateProvider } from './ProviderPicker.Action';
@@ -9,7 +9,8 @@ import { updateProvider } from './ProviderPicker.Action';
 export const NO_PROVIDER = 'no-provider';
 
 class ProviderPicker extends React.Component {
-    render() {
+
+    renderPicker = () => {
         return (
             <View style={providerPickerStyles.container}>
                 <Text style={providerPickerStyles.text}>Your provider:</Text>
@@ -33,11 +34,28 @@ class ProviderPicker extends React.Component {
             </View>
         );
     }
+
+    renderActivityIndicator = () => {
+        return (
+            <View style={providerPickerStyles.container}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        )
+    }
+
+    render() {
+        const { isFetchingDeviceGPS } = this.props
+        if (isFetchingDeviceGPS){
+            return this.renderActivityIndicator()
+        }
+        return this.renderPicker()
+    }
 }
 
-function mapStateToProps({ currentInformation }) {
+function mapStateToProps(state) {
     return {
-        provider: currentInformation.provider,
+        provider: state.currentInformation.provider,
+        isFetchingDeviceGPS: state.isFetchingDeviceGPS,
     };
 }
 

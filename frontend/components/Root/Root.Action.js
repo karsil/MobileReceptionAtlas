@@ -70,12 +70,29 @@ const requestLocationError = (errorMessage) => {
 
 const getLocation = () => {
     return function(dispatch) {
+        dispatch(fetchingDeviceGPS(true))
         Location.getCurrentPositionAsync({}).then(
-            (result) => dispatch(getLocationSuccess(result.coords)),
-            (error) => dispatch(getLocationError(error))
+            (result) => {
+                dispatch(fetchingDeviceGPS(false))
+                dispatch(getLocationSuccess(result.coords))
+            },
+            (error) => {
+                dispatch(fetchingDeviceGPS(false))
+                dispatch(getLocationError(error))
+            }
         );
     };
 };
+
+export const FETCHING_DEVICE_GPS = 'fetchingDeviceGPS'
+const fetchingDeviceGPS = isFetching => {
+    return {
+        type: FETCHING_DEVICE_GPS,
+        payload: {
+            isFetching: isFetching
+        }
+    };
+}
 
 const getLocationSuccess = (location) => {
     return function(dispatch) {

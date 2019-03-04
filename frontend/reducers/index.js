@@ -9,6 +9,7 @@ import {
     UPDATE_PLATFORM,
     UPDATE_GPS,
     UPDATE_CONNECTION_TYPE,
+    FETCHING_DEVICE_GPS
 } from '../components/Root/Root.Action';
 
 import initialState from './../store';
@@ -56,6 +57,11 @@ export default function reducer(state = initialState, action) {
                     provider: action.payload.provider,
                 },
             };
+        case FETCHING_DEVICE_GPS:
+        return {
+            ...state,
+            isFetchingDeviceGPS: action.payload.isFetching
+        }
         default:
             return state;
     }
