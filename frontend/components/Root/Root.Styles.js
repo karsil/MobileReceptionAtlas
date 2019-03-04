@@ -13,6 +13,8 @@ export const rootStyles = StyleSheet.create({
     text: {
         margin: 30,
         backgroundColor: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontStyle: 'italic',
+        color: 'grey'
     }
 });

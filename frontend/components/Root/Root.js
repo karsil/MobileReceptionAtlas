@@ -31,7 +31,7 @@ class Root extends React.Component {
                     >
                         <View style={rootStyles.container}>
                             <Map />
-                            <Text style={rootStyles.text}>Toggle map size by holding map for a short time</Text>
+                            <Text style={rootStyles.text}>Toggle map size by hold and drop</Text>
                         </View>
                     </TouchableWithoutFeedback>
             );
