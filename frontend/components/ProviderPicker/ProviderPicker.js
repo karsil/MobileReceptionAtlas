@@ -9,26 +9,32 @@ import { updateProvider } from './ProviderPicker.Action';
 export const NO_PROVIDER = 'no-provider';
 
 class ProviderPicker extends React.Component {
-    constructor(){
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
-            selectedOption: NO_PROVIDER
-        }
+            selectedOption: NO_PROVIDER,
+        };
     }
 
     render() {
         return (
             <View style={providerPickerStyles.container}>
-            <Text style={providerPickerStyles.headerText}>Mobile Reception Atlas</Text>
-                <Text style={providerPickerStyles.text}>Please select your provider:</Text>
+                <Text style={providerPickerStyles.headerText}>
+                    Mobile Reception Atlas
+                </Text>
+                <Text style={providerPickerStyles.text}>
+                    Please select your provider:
+                </Text>
                 <Picker
                     selectedValue={this.state.selectedOption}
                     style={providerPickerStyles.picker}
                     itemStyle={providerPickerStyles.pickerItem}
-                    onValueChange={(value) => this.setState({selectedOption: value})}
+                    onValueChange={(value) =>
+                        this.setState({ selectedOption: value })
+                    }
                 >
                     <Picker.Item
-                        label="---"
+                        label="Select Your Provider"
                         value={NO_PROVIDER}
                     />
                     <Picker.Item label="Telekom" value="telekom" />
@@ -38,7 +44,9 @@ class ProviderPicker extends React.Component {
                     <Picker.Item label="other" value="other" />
                 </Picker>
                 <Button
-                    onPress={() => this.props.setProvider(this.state.selectedOption)}
+                    onPress={() =>
+                        this.props.setProvider(this.state.selectedOption)
+                    }
                     title="Okay"
                     disabled={this.state.selectedOption === NO_PROVIDER}
                 />

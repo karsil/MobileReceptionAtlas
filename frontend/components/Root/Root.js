@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -25,11 +25,9 @@ class Root extends React.Component {
     };
 
     render() {
-        const { provider } = this.props
-        if( provider === NO_PROVIDER ){
-            return (
-                <ProviderPicker />
-            )
+        const { provider } = this.props;
+        if (provider === NO_PROVIDER) {
+            return <ProviderPicker />;
         }
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
