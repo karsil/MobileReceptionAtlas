@@ -3,8 +3,6 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import GPSInfo from '../GPSInfo/GPSInfo';
-import ProviderPicker from '../ProviderPicker/ProviderPicker';
-
 import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
@@ -31,7 +29,6 @@ class Info extends React.Component {
                 <Text style={infoFieldStyles.text}>
                     Platform: {this.props.platform}
                 </Text>
-                <ProviderPicker />
             </View>
         );
     }
