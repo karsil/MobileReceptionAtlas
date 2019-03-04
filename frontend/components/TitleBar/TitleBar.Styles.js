@@ -15,10 +15,11 @@ export const styles = StyleSheet.create({
     },
     toolbarButtonText: {
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 12,
     },
     toolbarTitle: {
-        color: colors.secondaryColor,
+        color: colors.foreground,
+        fontSize: 10,
         textAlign: 'center',
         fontWeight: 'bold',
         flex: 1,

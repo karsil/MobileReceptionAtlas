@@ -15,24 +15,18 @@ import { connect } from 'react-redux';
 
 class TitleBar extends React.Component {
     renderTitle = () => {
-        const { showingMap, currentInformation } = this.props;
+        const { showingMap } = this.props;
         if (showingMap) {
             return (
                 <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
-                    <Text style={{ fontSize: 11 }}>
-                        Your Provider: {currentInformation.provider}
-                    </Text>
-                    <Text style={{ fontSize: 11 }}>
-                        Latitude: {currentInformation.location.latitude}
-                    </Text>
-                    <Text style={{ fontSize: 11 }}>
-                        Longitude: {currentInformation.location.longitude}
+                    <Text style={styles.toolbarTitle}>
+                        Click on your location for further information.
                     </Text>
                 </View>
             );
         }
         return (
-            <Text style={[styles.toolbarTitle, { fontSize: 15 }]}>
+            <Text style={styles.toolbarTitle}>
                 Your Current Device Information
             </Text>
         );
