@@ -14,6 +14,30 @@ import {
 import { connect } from 'react-redux';
 
 class TitleBar extends React.Component {
+    renderTitle = () => {
+        const { showingMap, currentInformation } = this.props;
+        if (showingMap) {
+            return (
+                <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
+                    <Text style={{ fontSize: 11 }}>
+                        Your Provider: {currentInformation.provider}
+                    </Text>
+                    <Text style={{ fontSize: 11 }}>
+                        Latitude: {currentInformation.location.latitude}
+                    </Text>
+                    <Text style={{ fontSize: 11 }}>
+                        Longitude: {currentInformation.location.longitude}
+                    </Text>
+                </View>
+            );
+        }
+        return (
+            <Text style={[styles.toolbarTitle, { fontSize: 15 }]}>
+                Your Current Device Information
+            </Text>
+        );
+    };
+
     render() {
         const { showingMap } = this.props;
         return (
@@ -22,15 +46,15 @@ class TitleBar extends React.Component {
                     onPress={() => this.props.showMap(!showingMap)}
                     disabled={!showingMap}
                     style={styles.toolbarButton}
+                    textStyle={styles.toolbarButtonText}
                     title={showingMap ? 'Back' : ''}
                 />
-                <Text style={styles.toolbarTitle}>
-                    Your Provider: {this.props.currentInformation.provider}
-                </Text>
+                {this.renderTitle()}
                 <Button
                     onPress={() => this.props.showMap(!showingMap)}
                     disabled={showingMap}
                     style={styles.toolbarButton}
+                    textStyle={styles.toolbarButtonText}
                     title={showingMap ? '' : 'Show Map'}
                 />
             </View>

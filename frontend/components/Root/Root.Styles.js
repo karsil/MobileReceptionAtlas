@@ -6,7 +6,7 @@ export const rootStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: colors.background,
-        alignItems: 'center',
+        backgroundColor: '#808080',
+        alignItems: 'stretch',
     },
 });

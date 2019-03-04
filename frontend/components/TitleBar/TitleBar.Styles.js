@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
         color: colors.secondaryColor,
         textAlign: 'center',
     },
+    toolbarButtonText: {
+        fontWeight: 'bold',
+        fontSize: 15,
+    },
     toolbarTitle: {
         color: colors.secondaryColor,
         textAlign: 'center',

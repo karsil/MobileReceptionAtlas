@@ -9,6 +9,7 @@ export const buttonStyles = StyleSheet.create({
     buttonText: {},
     button: {
         borderWidth: 0.3,
+        borderColor: '#fff',
         flex: 1,
         paddingTop: 20,
         paddingBottom: 20,
