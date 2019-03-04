@@ -8,6 +8,7 @@ export default (Button = (props) => {
         <TouchableOpacity
             onPress={props.onPress}
             style={buttonStyles.buttonContainer}
+            {...props}
         >
             <Text style={buttonStyles.buttonText}>{props.title}</Text>
         </TouchableOpacity>

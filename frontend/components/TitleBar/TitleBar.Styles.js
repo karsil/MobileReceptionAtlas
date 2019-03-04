@@ -4,12 +4,12 @@ import colors from '../../settings/colors';
 export const styles = StyleSheet.create({
     toolbar: {
         backgroundColor: colors.primaryColor,
-        paddingTop: 30,
-        paddingBottom: 10,
+        paddingTop: 50,
+        paddingBottom: 20,
         flexDirection: 'row',
     },
     toolbarButton: {
-        width: 50,
+        width: 100,
         color: colors.secondaryColor,
         textAlign: 'center',
     },
