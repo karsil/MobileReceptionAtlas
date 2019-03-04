@@ -10,7 +10,9 @@ export default (Button = (props) => {
             style={buttonStyles.buttonContainer}
             {...props}
         >
-            <Text style={buttonStyles.buttonText}>{props.title}</Text>
+            <Text style={[buttonStyles.buttonText, props.textStyle]}>
+                {props.title}
+            </Text>
         </TouchableOpacity>
     );
 });

@@ -29,12 +29,10 @@ class Root extends React.Component {
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
                 <TitleBar />
-                <View style={{ flex: 4, backgroundColor: '#333' }}>
+                <View style={{ flex: 5, backgroundColor: '#333' }}>
                     {this.renderMapOrInfoField()}
                 </View>
-                <View style={{ flex: 2 }}>
-                    <ButtonField />
-                </View>
+                <ButtonField />
             </View>
         );
     }
