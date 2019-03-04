@@ -8,7 +8,7 @@ import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
 import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
-
+import ProviderPicker, { NO_PROVIDER } from '../ProviderPicker/ProviderPicker';
 class Root extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +25,10 @@ class Root extends React.Component {
     };
 
     render() {
+        const { provider } = this.props;
+        if (provider === NO_PROVIDER) {
+            return <ProviderPicker />;
+        }
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
                 <View style={{ flex: 4, backgroundColor: '#333' }}>
@@ -41,6 +45,7 @@ class Root extends React.Component {
 function mapStateToProps(state) {
     return {
         showingMap: state.showingMap,
+        provider: state.currentInformation.provider,
     };
 }
 
