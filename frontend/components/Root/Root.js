@@ -8,6 +8,7 @@ import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
 import { rootStyles } from './Root.Styles';
 import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
+import TitleBar from '../TitleBar/TitleBar';
 
 class Root extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class Root extends React.Component {
     render() {
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
+                <TitleBar />
                 <View style={{ flex: 4, backgroundColor: '#333' }}>
                     {this.renderMapOrInfoField()}
                 </View>
