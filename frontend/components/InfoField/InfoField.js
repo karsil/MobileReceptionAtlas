@@ -29,6 +29,9 @@ class Info extends React.Component {
                 <Text style={infoFieldStyles.text}>
                     Platform: {this.props.platform}
                 </Text>
+                <Text style={infoFieldStyles.text}>
+                    Provider: {this.props.provider}
+                </Text>
             </View>
         );
     }
@@ -39,6 +42,7 @@ function mapStateToProps({ currentInformation }) {
         signal: currentInformation.signal,
         connectionType: currentInformation.connectionType,
         platform: currentInformation.platform,
+        provider: currentInformation.provider,
     };
 }
 
