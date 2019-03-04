@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import styleVariables from '../../settings/styles';
+import colors from '../../settings/colors';
 
 export const styles = StyleSheet.create({
     toolbar: {
-        backgroundColor: styleVariables.color.primaryColor,
+        backgroundColor: colors.primaryColor,
         paddingTop: 30,
         paddingBottom: 10,
         flexDirection: 'row',

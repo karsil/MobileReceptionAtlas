@@ -10,14 +10,25 @@ import {
     showMap,
 } from './ButtonField.Action';
 
+const AppButton = (props) => {
+    return (
+        <Button
+            title={props.title}
+            onPress={props.onPress}
+            constainerStyle={{ margin: '15' }}
+            clear
+            {...props}
+        />
+    );
+};
+
 class ButtonField extends React.Component {
     renderMapButton = () => {
         const { showingMap } = this.props;
         const title = showingMap ? 'Back' : 'View map';
 
         return (
-            <Button
-                style={buttonStyles.button}
+            <AppButton
                 onPress={() => this.props.showMap(!showingMap)}
                 title={title}
             />
@@ -27,20 +38,17 @@ class ButtonField extends React.Component {
     render() {
         return (
             <View style={buttonStyles.container}>
-                <Button
-                    style={buttonStyles.button}
+                <AppButton
                     onPress={() => this.props.getConnectionInfo()}
                     title="Update Data"
                 />
-                <Button
-                    style={buttonStyles.button}
+                <AppButton
                     onPress={() =>
                         this.props.getConnectionInfoByRadius(this.props)
                     }
                     title="Get By Radius"
                 />
-                <Button
-                    style={buttonStyles.button}
+                <AppButton
                     onPress={() => this.props.storeConnectionInfo(this.props)}
                     title="Send own data"
                     disabled={
