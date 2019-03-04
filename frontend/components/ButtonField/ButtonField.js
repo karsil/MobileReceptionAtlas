@@ -10,6 +10,7 @@ import {
     showMap,
 } from './ButtonField.Action';
 
+import { NO_PROVIDER } from '../ProviderPicker/ProviderPicker';
 const AppButton = (props) => {
     return (
         <Button
@@ -36,6 +37,9 @@ class ButtonField extends React.Component {
     };
 
     render() {
+        const isProduction = process.env.NODE_ENV === 'production',
+            hasWifi = this.props.connectionType === 'wifi',
+            hasNoProvider = this.props.provider === NO_PROVIDER;
         return (
             <View style={buttonStyles.container}>
                 <AppButton
@@ -51,10 +55,7 @@ class ButtonField extends React.Component {
                 <AppButton
                     onPress={() => this.props.storeConnectionInfo(this.props)}
                     title="Send own data"
-                    disabled={
-                        this.props.connectionType === 'wifi' &&
-                        !(process.env.NODE_ENV === 'development')
-                    }
+                    disabled={(hasNoProvider || hasWifi) && isProduction}
                 />
                 {this.renderMapButton()}
             </View>

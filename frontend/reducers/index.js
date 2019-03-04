@@ -4,6 +4,7 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
+import { UPDATE_PROVIDER } from '../components/ProviderPicker/ProviderPicker.Action';
 import {
     UPDATE_PLATFORM,
     UPDATE_GPS,
@@ -45,6 +46,14 @@ export default function reducer(state = initialState, action) {
                 currentInformation: {
                     ...state.currentInformation,
                     connectionType: action.payload,
+                },
+            };
+        case UPDATE_PROVIDER:
+            return {
+                ...state,
+                currentInformation: {
+                    ...state.currentInformation,
+                    provider: action.payload.provider,
                 },
             };
         default:

@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import GPSInfo from '../GPSInfo/GPSInfo';
+import ProviderPicker from '../ProviderPicker/ProviderPicker';
 
 import { infoFieldStyles } from './InfoField.Styles';
 
@@ -28,11 +29,9 @@ class Info extends React.Component {
                 <GPSInfo />
                 {this.renderSignalField()}
                 <Text style={infoFieldStyles.text}>
-                    Provider: {this.props.provider}
-                </Text>
-                <Text style={infoFieldStyles.text}>
                     Platform: {this.props.platform}
                 </Text>
+                <ProviderPicker />
             </View>
         );
     }
@@ -42,7 +41,6 @@ function mapStateToProps({ currentInformation }) {
     return {
         signal: currentInformation.signal,
         connectionType: currentInformation.connectionType,
-        provider: currentInformation.provider,
         platform: currentInformation.platform,
     };
 }
