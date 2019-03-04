@@ -9,4 +9,12 @@ export const rootStyles = StyleSheet.create({
         backgroundColor: '#808080',
         alignItems: 'stretch',
     },
+
+    text: {
+        margin: 30,
+        backgroundColor: 'white',
+        textAlign: 'center',
+        fontStyle: 'italic',
+        color: 'grey',
+    },
 });
