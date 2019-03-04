@@ -14,4 +14,8 @@ export const buttonStyles = StyleSheet.create({
         textAlign: 'center',
         color: colors.secondaryColor,
     },
+    buttonDisabled: {
+        backgroundColor: '#eee',
+        color: '#555',
+    },
 });

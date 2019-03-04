@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Picker, Button, ActivityIndicator } from 'react-native';
+import { View, Text, Picker, ActivityIndicator } from 'react-native';
 import { providerPickerStyles } from './ProviderPicker.Styles';
+import Button from './../ButtonField/Button';
 
 import { updateProvider } from './ProviderPicker.Action';
 
