@@ -71,7 +71,7 @@ const requestLocationError = (errorMessage) => {
 const getLocation = () => {
     return function(dispatch) {
         dispatch(fetchingDeviceGPS(true));
-        Location.getCurrentPositionAsync({})
+        return Location.getCurrentPositionAsync({})
             .then(
                 (result) => {
                     dispatch(fetchingDeviceGPS(false));
