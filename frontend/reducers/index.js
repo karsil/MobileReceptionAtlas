@@ -4,6 +4,7 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
+import { FILTER_MAP_BY_PROVIDER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
 import { UPDATE_PROVIDER } from '../components/ProviderPicker/ProviderPicker.Action';
 import {
     UPDATE_PLATFORM,
@@ -49,6 +50,13 @@ export default function reducer(state = initialState, action) {
                     connectionType: action.payload,
                 },
             };
+
+        case FILTER_MAP_BY_PROVIDER:
+            return {
+                ...state,
+                filterByProvider: action.payload.provider,
+            };
+
         case UPDATE_PROVIDER:
             return {
                 ...state,

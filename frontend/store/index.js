@@ -13,6 +13,7 @@ const initialState = {
         platform: 'Android',
     },
     showingMap: false,
+    filterByProvider: 'Unfiltered'
     isFetchingDeviceGPS: false,
 };
 

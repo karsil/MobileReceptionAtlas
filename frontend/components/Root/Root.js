@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import Info from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
+import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
 import { rootStyles } from './Root.Styles';
 import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
 import TitleBar from '../TitleBar/TitleBar';
