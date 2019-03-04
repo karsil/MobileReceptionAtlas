@@ -5,7 +5,7 @@ export const buttonStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'center',
     },
 
     button: {

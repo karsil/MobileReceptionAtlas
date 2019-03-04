@@ -1,8 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import { buttonStyles } from './ButtonField.Styles';
+import Button from './Button.js';
+
 import {
     getAllConnectionDataAction,
     getConnectionDataByRadiusAction,
@@ -11,17 +13,6 @@ import {
 } from './ButtonField.Action';
 
 import { NO_PROVIDER } from '../ProviderPicker/ProviderPicker';
-const AppButton = (props) => {
-    return (
-        <Button
-            title={props.title}
-            onPress={props.onPress}
-            constainerStyle={{ margin: '15' }}
-            clear
-            {...props}
-        />
-    );
-};
 
 class ButtonField extends React.Component {
     renderMapButton = () => {
@@ -29,7 +20,7 @@ class ButtonField extends React.Component {
         const title = showingMap ? 'Back' : 'View map';
 
         return (
-            <AppButton
+            <Button
                 onPress={() => this.props.showMap(!showingMap)}
                 title={title}
             />
@@ -42,17 +33,17 @@ class ButtonField extends React.Component {
             hasNoProvider = this.props.provider === NO_PROVIDER;
         return (
             <View style={buttonStyles.container}>
-                <AppButton
+                <Button
                     onPress={() => this.props.getConnectionInfo()}
                     title="Update Data"
                 />
-                <AppButton
+                <Button
                     onPress={() =>
                         this.props.getConnectionInfoByRadius(this.props)
                     }
                     title="Get By Radius"
                 />
-                <AppButton
+                <Button
                     onPress={() => this.props.storeConnectionInfo(this.props)}
                     title="Send own data"
                     disabled={(hasNoProvider || hasWifi) && isProduction}
