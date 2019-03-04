@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -15,14 +15,39 @@ class Root extends React.Component {
         props.requestLocation();
         props.getPlatform();
         props.getConnectionInfo();
+        this.state = {
+            fullscreenMap: false
+        }
+    }
+    toggleMapFullscreen = () => {
+        this.setState({fullscreenMap: !this.state.fullscreenMap})
     }
 
     renderMapOrInfoField = () => {
         if (this.props.showingMap) {
-            return <Map />;
+            return (
+                    <TouchableWithoutFeedback
+                        onLongPress={this.toggleMapFullscreen}
+                    >
+                        <View style={rootStyles.container}>
+                            <Map />
+                            <Text style={rootStyles.text}>Toggle map size by hold and drop</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+            );
         }
         return <Info />;
     };
+
+    renderButtonField = () => {
+        if (this.state.fullscreenMap === false){
+            return (
+                <View style={{ flex: 2 }}>
+                    <ButtonField />
+                </View>
+            )
+        }
+    }
 
     render() {
         const { provider } = this.props;
@@ -34,9 +59,7 @@ class Root extends React.Component {
                 <View style={{ flex: 4, backgroundColor: '#333' }}>
                     {this.renderMapOrInfoField()}
                 </View>
-                <View style={{ flex: 2 }}>
-                    <ButtonField />
-                </View>
+                {this.renderButtonField()}
             </View>
         );
     }
