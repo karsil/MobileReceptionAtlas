@@ -1,4 +1,4 @@
-export const UPDATE_PROVIDER = 'updateProvider'
+export const UPDATE_PROVIDER = 'updateProvider';
 
 export function updateProvider(provider) {
     return {
