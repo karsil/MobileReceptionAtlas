@@ -17,7 +17,7 @@ export const ADD_DATA = 'add-data';
  */
 export const getAllConnectionDataAction = () => {
     return (dispatch) => {
-        client
+        return client
             .query({
                 query: getAllConnectionData,
             })
@@ -34,7 +34,7 @@ export const getConnectionDataByRadiusAction = () => {
     return (dispatch, getState) => {
         const { currentInformation } = getState();
 
-        client
+        return client
             .query({
                 query: getConnectionDataByRadius(
                     currentInformation.location,
@@ -60,7 +60,7 @@ export const createConnectionData = ({
     connectionType,
 }) => {
     return (dispatch) => {
-        client
+        return client
             .mutate({
                 mutation: createNewConnectionData,
                 variables: {

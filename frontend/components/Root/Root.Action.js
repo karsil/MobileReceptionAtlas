@@ -21,7 +21,7 @@ const updatePlatform = (platform) => {
 
 export const getConnectionInfo = () => {
     return function(dispatch) {
-        NetInfo.getConnectionInfo()
+        return NetInfo.getConnectionInfo()
             .then((info) => {
                 dispatch(handleConnectionInfo(info));
             })
@@ -50,7 +50,7 @@ const updateConnectionType = (type) => {
 
 export const requestLocation = () => {
     return function(dispatch) {
-        Permissions.askAsync(Permissions.LOCATION).then(
+        return Permissions.askAsync(Permissions.LOCATION).then(
             (result) => {
                 const { status } = result;
                 if (status === 'granted') {
