@@ -16,38 +16,40 @@ class Root extends React.Component {
         props.getPlatform();
         props.getConnectionInfo();
         this.state = {
-            fullscreenMap: false
-        }
+            fullscreenMap: false,
+        };
     }
     toggleMapFullscreen = () => {
-        this.setState({fullscreenMap: !this.state.fullscreenMap})
-    }
+        this.setState({ fullscreenMap: !this.state.fullscreenMap });
+    };
 
     renderMapOrInfoField = () => {
         if (this.props.showingMap) {
             return (
-                    <TouchableWithoutFeedback
-                        onLongPress={this.toggleMapFullscreen}
-                    >
-                        <View style={rootStyles.container}>
-                            <Map />
-                            <Text style={rootStyles.text}>Toggle map size by hold and drop</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    onLongPress={this.toggleMapFullscreen}
+                >
+                    <View style={rootStyles.container}>
+                        <Map />
+                        <Text style={rootStyles.text}>
+                            Toggle map size by hold and drop
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
         return <Info />;
     };
 
     renderButtonField = () => {
-        if (this.state.fullscreenMap === false){
+        if (this.state.fullscreenMap === false) {
             return (
                 <View style={{ flex: 2 }}>
                     <ButtonField />
                 </View>
-            )
+            );
         }
-    }
+    };
 
     render() {
         const { provider } = this.props;

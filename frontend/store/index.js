@@ -13,6 +13,7 @@ const initialState = {
         platform: 'Android',
     },
     showingMap: false,
+    isFetchingDeviceGPS: false,
 };
 
 export default initialState;

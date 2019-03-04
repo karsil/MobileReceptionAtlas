@@ -15,6 +15,6 @@ export const rootStyles = StyleSheet.create({
         backgroundColor: 'white',
         textAlign: 'center',
         fontStyle: 'italic',
-        color: 'grey'
-    }
+        color: 'grey',
+    },
 });

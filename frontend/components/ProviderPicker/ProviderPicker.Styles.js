@@ -11,19 +11,19 @@ export const providerPickerStyles = StyleSheet.create({
 
     picker: {
         height: 250,
-        width: 200
+        width: 200,
     },
     pickerItem: {
         fontSize: 18,
     },
 
     text: {
-        fontSize: 18
+        fontSize: 18,
     },
 
     headerText: {
         fontSize: 22,
         margin: 10,
-        fontWeight: "bold"
-    }
+        fontWeight: 'bold',
+    },
 });
