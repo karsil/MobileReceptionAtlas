@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Picker } from 'react-native';
+import { View, Text, Picker, Button } from 'react-native';
 import { providerPickerStyles } from './ProviderPicker.Styles';
 
 import { updateProvider } from './ProviderPicker.Action';
@@ -9,19 +9,26 @@ import { updateProvider } from './ProviderPicker.Action';
 export const NO_PROVIDER = 'no-provider';
 
 class ProviderPicker extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            selectedOption: NO_PROVIDER
+        }
+    }
+
     render() {
         return (
             <View style={providerPickerStyles.container}>
-                <Text style={providerPickerStyles.text}>Your provider:</Text>
+            <Text style={providerPickerStyles.headerText}>Mobile Reception Atlas</Text>
+                <Text style={providerPickerStyles.text}>Please select your provider:</Text>
                 <Picker
-                    // default case is 'Select Provider' item
-                    selectedValue={this.props.provider || NO_PROVIDER}
+                    selectedValue={this.state.selectedOption}
                     style={providerPickerStyles.picker}
                     itemStyle={providerPickerStyles.pickerItem}
-                    onValueChange={(value) => this.props.setProvider(value)}
+                    onValueChange={(value) => this.setState({selectedOption: value})}
                 >
                     <Picker.Item
-                        label="Select your provider"
+                        label="---"
                         value={NO_PROVIDER}
                     />
                     <Picker.Item label="Telekom" value="telekom" />
@@ -30,6 +37,11 @@ class ProviderPicker extends React.Component {
                     <Picker.Item label="e-plus" value="e-plus" />
                     <Picker.Item label="other" value="other" />
                 </Picker>
+                <Button
+                    onPress={() => this.props.setProvider(this.state.selectedOption)}
+                    title="Okay"
+                    disabled={this.state.selectedOption === NO_PROVIDER}
+                />
             </View>
         );
     }
