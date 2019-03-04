@@ -9,4 +9,10 @@ export const rootStyles = StyleSheet.create({
         backgroundColor: styleVariables.color.background,
         alignItems: styleVariables.alignment.items,
     },
+
+    text: {
+        margin: 30,
+        backgroundColor: 'white',
+        textAlign: 'center'
+    }
 });

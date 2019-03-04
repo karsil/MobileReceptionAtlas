@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -31,6 +31,7 @@ class Root extends React.Component {
                     >
                         <View style={rootStyles.container}>
                             <Map />
+                            <Text style={rootStyles.text}>Toggle map size by holding map for a short time</Text>
                         </View>
                     </TouchableWithoutFeedback>
             );
