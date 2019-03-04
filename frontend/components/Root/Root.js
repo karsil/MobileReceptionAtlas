@@ -3,10 +3,9 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Info from './../InfoField/InfoField';
+import InfoField from './../InfoField/InfoField';
 import Map from './../Map/Map';
 import ButtonField from './../ButtonField/ButtonField';
-import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
 import { rootStyles } from './Root.Styles';
 import { requestLocation, getPlatform, getConnectionInfo } from './Root.Action';
 import TitleBar from '../TitleBar/TitleBar';
@@ -41,12 +40,17 @@ class Root extends React.Component {
                 </TouchableWithoutFeedback>
             );
         }
-        return <Info />;
+        return <InfoField />;
     };
 
     renderButtonField = () => {
         if (this.state.fullscreenMap === false) {
             return <ButtonField />;
+        }
+    };
+    renderTitleBar = () => {
+        if (this.state.fullscreenMap === false) {
+            return <TitleBar />;
         }
     };
 
@@ -57,7 +61,7 @@ class Root extends React.Component {
         }
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
-                <TitleBar />
+                {this.renderTitleBar()}
                 <View style={{ flex: 6, backgroundColor: '#333' }}>
                     {this.renderMapOrInfoField()}
                 </View>

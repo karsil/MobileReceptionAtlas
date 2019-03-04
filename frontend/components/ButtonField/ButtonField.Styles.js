@@ -3,7 +3,7 @@ import colors from '../../settings/colors';
 
 export const buttonStyles = StyleSheet.create({
     container: {
-        alignItems: 'stretch',
+        alignItems: 'center',
         flexDirection: 'row',
     },
     buttonText: {},

@@ -12,6 +12,7 @@ import {
     showMap,
 } from '../ButtonField/ButtonField.Action';
 import { connect } from 'react-redux';
+import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
 
 class TitleBar extends React.Component {
     renderTitle = () => {
@@ -19,9 +20,7 @@ class TitleBar extends React.Component {
         if (showingMap) {
             return (
                 <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
-                    <Text style={styles.toolbarTitle}>
-                        Click on your location for further information.
-                    </Text>
+                    <Text>Click on your position</Text>
                 </View>
             );
         }

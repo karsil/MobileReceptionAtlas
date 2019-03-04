@@ -6,6 +6,8 @@ import { providerFilterStyles } from './ProviderFilterPicker.Styles';
 
 import { filterMapByProvider } from './ProviderFilterPicker.Action';
 
+export const NO_FILTER = 'no-filter';
+
 class ProviderFilterPicker extends React.Component {
     render() {
         return (
@@ -18,7 +20,7 @@ class ProviderFilterPicker extends React.Component {
                     itemStyle={providerFilterStyles.text}
                     onValueChange={(value) => this.props.filterBy(value)}
                 >
-                    <Picker.Item label="None" value="Unfiltered" />
+                    <Picker.Item label="None" value={NO_FILTER} />
                     <Picker.Item label="Telekom" value="telekom" />
                     <Picker.Item label="Vodafone" value="vodafone" />
                     <Picker.Item label="O2" value="o2" />

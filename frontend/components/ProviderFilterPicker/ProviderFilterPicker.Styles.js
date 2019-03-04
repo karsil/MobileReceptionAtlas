@@ -1,19 +1,19 @@
 import { StyleSheet } from 'react-native';
-import styleVariables from '../../settings/styles';
+import colors from '../../settings/colors';
 
 export const providerFilterStyles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        justifyContent: styleVariables.content.justify,
-        backgroundColor: styleVariables.color.background,
+        justifyContent: 'center',
+        backgroundColor: colors.background,
         alignItems: 'center',
-        maxHeight: 190,
+        maxHeight: 40,
     },
 
     picker: {
         width: 100,
-        height: 190,
-        justifyContent: styleVariables.content.justify,
+        height: 30,
+        justifyContent: 'center',
     },
     text: {
         fontSize: 18,
