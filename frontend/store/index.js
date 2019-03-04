@@ -1,3 +1,5 @@
+import { NO_PROVIDER } from '../components/ProviderPicker/ProviderPicker';
+
 const initialState = {
     data: [],
     currentInformation: {
@@ -6,7 +8,7 @@ const initialState = {
             longitude: 0,
         },
         signal: 100,
-        provider: 'Undefinied',
+        provider: NO_PROVIDER,
         connectionType: '4G',
         platform: 'Android',
     },
