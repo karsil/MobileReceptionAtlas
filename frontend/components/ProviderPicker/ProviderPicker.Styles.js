@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import styleVariables from '../../settings/styles';
+import colors from '../../settings/colors';
 
 export const providerPickerStyles = StyleSheet.create({
     container: {

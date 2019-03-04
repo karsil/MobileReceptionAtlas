@@ -45,11 +45,7 @@ class Root extends React.Component {
 
     renderButtonField = () => {
         if (this.state.fullscreenMap === false) {
-            return (
-                <View style={{ flex: 2 }}>
-                    <ButtonField />
-                </View>
-            );
+            return <ButtonField />;
         }
     };
 
@@ -61,7 +57,7 @@ class Root extends React.Component {
         return (
             <View style={[rootStyles.container, { alignItems: 'stretch' }]}>
                 <TitleBar />
-                <View style={{ flex: 4, backgroundColor: '#333' }}>
+                <View style={{ flex: 6, backgroundColor: '#333' }}>
                     {this.renderMapOrInfoField()}
                 </View>
                 {this.renderButtonField()}
