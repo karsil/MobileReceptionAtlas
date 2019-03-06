@@ -46,13 +46,13 @@ async function getConnectionDataByRadius({ currentLocation, radius }) {
     return new Promise((resolve, reject) => {
         ConnectionData.find()
             .where({
-                'location.latitude': {
-                    $gte: currentLocation.latitude - alpha,
-                    $lte: currentLocation.latitude + alpha,
+                'location.coordinates[1]': {
+                    $gte: currentLocation.coordinates[1] - alpha,
+                    $lte: currentLocation.coordinates[1] + alpha,
                 },
-                'location.longitude': {
-                    $gte: currentLocation.longitude - alpha,
-                    $lte: currentLocation.longitude + alpha,
+                'location.coordinates[0]': {
+                    $gte: currentLocation.coordinates[0] - alpha,
+                    $lte: currentLocation.coordinates[0] + alpha,
                 },
             })
             .then((res, err) => {

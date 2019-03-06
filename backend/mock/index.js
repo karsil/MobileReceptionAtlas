@@ -40,8 +40,11 @@ function generateRandomData() {
     const provider = ['Telekom', 'Vodafone', 'O2'];
     const signal = randomFloatGenerator(100);
     const location = {
-        latitude: randomFloatGenerator(1, 53.901706),
-        longitude: randomFloatGenerator(2.09, 8.753612),
+        type: "Point",
+        coordinates: [
+            randomFloatGenerator(1, 53.901706),
+            randomFloatGenerator(2.09, 8.753612)
+        ]
     };
     return {
         id: uuid(),

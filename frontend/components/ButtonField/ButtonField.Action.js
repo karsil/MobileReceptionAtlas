@@ -33,11 +33,17 @@ export const getAllConnectionDataAction = () => {
 export const getConnectionDataByRadiusAction = () => {
     return (dispatch, getState) => {
         const { currentInformation } = getState();
-
+        const userLocation = {
+            type: "Point",
+            coordinates: [
+                currentInformation.location.longitude,
+                currentInformation.location.latitude
+            ]
+        }
         client
             .query({
                 query: getConnectionDataByRadius(
-                    currentInformation.location,
+                    userLocation,
                     50
                 ),
             })
@@ -47,6 +53,7 @@ export const getConnectionDataByRadiusAction = () => {
                 );
             })
             .catch((err) => {
+                console.log("error", err)
                 return dispatch(fetchError(err));
             });
     };
@@ -64,7 +71,13 @@ export const createConnectionData = ({
             .mutate({
                 mutation: createNewConnectionData,
                 variables: {
-                    location: { latitude, longitude },
+                    location: {
+                        type: "Point",
+                        coordinates: [
+                            longitude,
+                            latitude
+                        ]
+                    },
                     signal,
                     provider,
                     platform,

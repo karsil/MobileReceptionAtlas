@@ -38,9 +38,9 @@ describe('random data generator', () => {
     });
 
     it('generates the right location', async () => {
-        expect(data.location).have.property('latitude');
-        expect(data.location).have.property('longitude');
-        expect(data.location.latitude).within(53.901706, 54.818936);
-        expect(data.location.longitude).within(8.753612, 10.851482);
+        expect(data.location).have.property('type');
+        expect(data.location).have.property('coordinates');
+        expect(data.location.coordinates[0]).within(53.901706, 54.818936);
+        expect(data.location.coordinates[1]).within(8.753612, 10.851482);
     });
 });

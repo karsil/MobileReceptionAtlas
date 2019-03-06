@@ -80,10 +80,15 @@ class Map extends React.Component {
 }
 function getCircleBySignalStrength(information) {
     const { id, location, signal } = information;
+    const coordinates = {
+        latitude: location.coordinates[0],
+        longitude: location.coordinates[1]
+    }
+
     return (
         <Circle
             key={id}
-            center={location}
+            center={coordinates}
             radius={signal * 100}
             fillColor={getColorBySignal(signal)}
             strokeWidth={0}

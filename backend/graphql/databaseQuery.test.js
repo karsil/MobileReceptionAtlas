@@ -7,7 +7,13 @@ const dbOperations = require('./databaseQuery');
 const data = {
     platform: 'Android',
     connectionType: '3G',
-    location: { latitude: 54.3196, longitude: 10.1378 },
+    location: {
+        type: "Point",
+        coordinates: [
+            10.1378,
+            54.3196
+        ]
+    },
     signal: 35.5,
     provider: 'Telekom',
 };

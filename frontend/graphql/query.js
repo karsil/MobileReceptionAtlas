@@ -7,8 +7,8 @@ export const getAllConnectionData = gql`
             platform
             connectionType
             location {
-                latitude
-                longitude
+                type
+                coordinates
             }
             signal
             provider
@@ -16,18 +16,22 @@ export const getAllConnectionData = gql`
     }
 `;
 
-export const getConnectionDataByRadius = (currentLocation, radius) => {
+export const getConnectionDataByRadius = (userLocation, radius) => {
     return gql`
     query {
-        connectionDataByRadius(currentLocation: {latitude: ${
-            currentLocation.latitude
-        }, longitude: ${currentLocation.longitude}}, radius: ${radius}) {
+        connectionDataByRadius(
+            currentLocation: {
+                type: ${userLocation.type},
+                coordinates: ${userLocation.coordinates}
+            },
+            radius: ${radius}
+        ){
             id
             platform
             connectionType
             location {
-                latitude
-                longitude
+                type
+                coordinates
             }
             signal
             provider

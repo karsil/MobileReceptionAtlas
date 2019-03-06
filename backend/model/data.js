@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-    latitude: Number,
-    longitude: Number,
+    type: String,
+    coordinates: [Number]
 });
 
 const connectionDataSchema = new mongoose.Schema({
