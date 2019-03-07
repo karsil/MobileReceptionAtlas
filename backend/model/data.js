@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-    latitude: Number,
-    longitude: Number,
+    type: { type: String, default: 'point' },
+    coordinates: {
+        latitude: Number,
+        longitude: Number,
+    },
 });
 
 const connectionDataSchema = new mongoose.Schema({
@@ -12,6 +15,10 @@ const connectionDataSchema = new mongoose.Schema({
     location: locationSchema,
     signal: Number,
     provider: String,
+});
+
+locationSchema.index({
+    location: '2dsphere',
 });
 
 module.exports = mongoose.model('ConnectionData', connectionDataSchema);

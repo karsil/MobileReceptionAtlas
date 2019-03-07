@@ -49,7 +49,7 @@ function generateRandomData() {
         connectionType: connectionTypes[randomIntegerGenerator(3)],
         provider: provider[randomIntegerGenerator(3)],
         signal,
-        location,
+        location: { coordinates: location },
     };
 }
 

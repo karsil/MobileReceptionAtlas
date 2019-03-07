@@ -22,8 +22,13 @@ const schema = buildSchema(`
     }
 
     type Location {
-        latitude: Float
-        longitude: Float
+        type: String!
+        coordinates: Coordinates!
+    }
+    
+    type Coordinates {
+        latitude: Float!
+        longitude: Float!
     }
 
     input LocationInput {
