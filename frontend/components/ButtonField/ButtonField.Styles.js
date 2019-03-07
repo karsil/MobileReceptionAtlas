@@ -11,6 +11,7 @@ export const buttonFieldStyles = StyleSheet.create({
         borderWidth: 0.3,
         borderColor: '#fff',
         flex: 1,
+        height: '100%',
         paddingTop: 20,
         paddingBottom: 20,
         backgroundColor: colors.primaryColor,
