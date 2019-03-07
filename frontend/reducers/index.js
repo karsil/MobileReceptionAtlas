@@ -4,12 +4,13 @@ import {
     ADD_DATA,
 } from './../components/ButtonField/ButtonField.Action';
 
+import { FILTER_MAP_BY_PROVIDER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
 import { UPDATE_PROVIDER } from '../components/ProviderPicker/ProviderPicker.Action';
 import {
     UPDATE_PLATFORM,
     UPDATE_GPS,
     UPDATE_CONNECTION_TYPE,
-    FETCHING_DEVICE_GPS
+    FETCHING_DEVICE_GPS,
 } from '../components/Root/Root.Action';
 
 import initialState from './../store';
@@ -49,6 +50,13 @@ export default function reducer(state = initialState, action) {
                     connectionType: action.payload,
                 },
             };
+
+        case FILTER_MAP_BY_PROVIDER:
+            return {
+                ...state,
+                filterByProvider: action.payload.provider,
+            };
+
         case UPDATE_PROVIDER:
             return {
                 ...state,
@@ -58,10 +66,10 @@ export default function reducer(state = initialState, action) {
                 },
             };
         case FETCHING_DEVICE_GPS:
-        return {
-            ...state,
-            isFetchingDeviceGPS: action.payload.isFetching
-        }
+            return {
+                ...state,
+                isFetchingDeviceGPS: action.payload.isFetching,
+            };
         default:
             return state;
     }

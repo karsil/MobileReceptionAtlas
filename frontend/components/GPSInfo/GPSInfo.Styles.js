@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import styleVariables from './../../settings/styles';
+import colors from '../../settings/colors';
 
 export const GPSInfoStyles = StyleSheet.create({
     container: {
         flex: 0.5,
-        backgroundColor: styleVariables.color.background,
-        alignItems: styleVariables.alignment.items,
-        justifyContent: styleVariables.content.justify,
+        backgroundColor: colors.background,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {},
     header: {

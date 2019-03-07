@@ -1,8 +1,14 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
+import MapView, {
+    PROVIDER_GOOGLE,
+    Marker,
+    Circle,
+    Callout,
+} from 'react-native-maps';
 import { connect } from 'react-redux';
-
+import { Text, View } from 'react-native';
 import { MapStyles } from './Map.Styles';
+import { mapProviderFromKey } from '../../helper';
 
 class Map extends React.Component {
     constructor(props) {
@@ -35,7 +41,22 @@ class Map extends React.Component {
                     title="your position"
                     key="own-data-marker"
                     coordinate={this.props.location}
-                />
+                >
+                    <Callout>
+                        <View>
+                            <Text>
+                                Your Provider:{' '}
+                                {mapProviderFromKey(this.props.provider)}
+                            </Text>
+                            <Text>
+                                Longitude: {this.props.location.longitude}
+                            </Text>
+                            <Text>
+                                Latitude: {this.props.location.latitude}
+                            </Text>
+                        </View>
+                    </Callout>
+                </Marker>
             );
             this.setState({ currentPositionMarker: position });
         }
@@ -124,6 +145,7 @@ function mapStateToProps(state) {
     return {
         data: state.data,
         location: state.currentInformation.location,
+        provider: state.currentInformation.provider,
     };
 }
 
