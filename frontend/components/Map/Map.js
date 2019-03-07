@@ -24,7 +24,7 @@ class Map extends React.Component {
 
         const dataMarker = data.map((information) => {
             if (information.location) {
-                return getCircleBySignalStrength(information);
+                return getCircleByConnectionType(information);
             }
         });
 
@@ -79,7 +79,7 @@ class Map extends React.Component {
     }
 }
 
-function getCircleBySignalStrength(information) {
+function getCircleByConnectionType(information) {
     const { id, location, connectionType } = information;
     return (
         <Circle

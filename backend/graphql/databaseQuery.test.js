@@ -8,7 +8,6 @@ const data = {
     platform: 'Android',
     connectionType: '3G',
     location: { latitude: 54.3196, longitude: 10.1378 },
-    signal: 35.5,
     provider: 'Telekom',
 };
 
@@ -18,7 +17,6 @@ describe('Mongodb Data Schema', () => {
             const result = await dbOperations.createConnectionData(data);
             assert.isObject(result, 'returns an object');
             expect(result).to.have.property('id');
-            expect(result).to.have.property('signal');
             expect(result).to.have.property('location');
             expect(result).to.have.property('provider');
             expect(result).to.have.property('connectionType');
@@ -31,7 +29,6 @@ describe('Mongodb Data Schema', () => {
                 'The database operation returns the stored data as object'
             );
             expect(result[0]).to.have.property('id');
-            expect(result[0]).to.have.property('signal');
             expect(result[0]).to.have.property('location');
             expect(result[0]).to.have.property('provider');
             expect(result[0]).to.have.property('connectionType');

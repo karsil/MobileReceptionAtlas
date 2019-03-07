@@ -69,7 +69,6 @@ async function getConnectionDataByRadius({ currentLocation, radius }) {
 
 async function createConnectionData({
     location,
-    signal,
     provider,
     platform,
     connectionType,
@@ -78,7 +77,6 @@ async function createConnectionData({
         ConnectionData.create(
             {
                 id: uuid(),
-                signal: signal,
                 location: location,
                 provider: provider,
                 platform: platform,

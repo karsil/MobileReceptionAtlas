@@ -60,7 +60,6 @@ class ButtonField extends React.Component {
 function mapStateToProps({ currentInformation, showingMap }) {
     return {
         location: currentInformation.location,
-        signal: currentInformation.signal,
         provider: currentInformation.provider,
         platform: currentInformation.platform,
         connectionType: currentInformation.connectionType,

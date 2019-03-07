@@ -17,7 +17,6 @@ const schema = buildSchema(`
         platform: Platform
         connectionType: String
         location: Location
-        signal: Float
         provider: String
     }
 
@@ -32,7 +31,7 @@ const schema = buildSchema(`
     }
 
     type Mutation {
-        createConnectionData(location: LocationInput!, signal: Float!, provider: String!, platform: Platform!, connectionType: String!): ConnectionInformation
+        createConnectionData(location: LocationInput!, provider: String!, platform: Platform!, connectionType: String!): ConnectionInformation
     }
 `);
 

@@ -6,7 +6,7 @@ import GPSInfo from '../GPSInfo/GPSInfo';
 import { infoFieldStyles } from './InfoField.Styles';
 
 class Info extends React.Component {
-    renderSignalField = () => {
+    renderConnectionTypeField = () => {
         if (this.props.connectionType === 'wifi') {
             return (
                 <Text style={infoFieldStyles.text}>
@@ -16,7 +16,7 @@ class Info extends React.Component {
         }
         return (
             <Text style={infoFieldStyles.text}>
-                Signal: {this.props.signal} ({this.props.connectionType})
+                Connection Type ({this.props.connectionType})
             </Text>
         );
     };
@@ -25,7 +25,7 @@ class Info extends React.Component {
         return (
             <View style={infoFieldStyles.container}>
                 <GPSInfo />
-                {this.renderSignalField()}
+                {this.renderConnectionTypeField()}
                 <Text style={infoFieldStyles.text}>
                     Platform: {this.props.platform}
                 </Text>
@@ -39,7 +39,6 @@ class Info extends React.Component {
 
 function mapStateToProps({ currentInformation }) {
     return {
-        signal: currentInformation.signal,
         connectionType: currentInformation.connectionType,
         platform: currentInformation.platform,
         provider: currentInformation.provider,

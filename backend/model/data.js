@@ -10,7 +10,6 @@ const connectionDataSchema = new mongoose.Schema({
     platform: String,
     connectionType: String,
     location: locationSchema,
-    signal: Number,
     provider: String,
 });
 
