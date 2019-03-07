@@ -12,15 +12,36 @@ import {
     showMap,
 } from '../ButtonField/ButtonField.Action';
 import { connect } from 'react-redux';
-import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
+import ModalDropdown from 'react-native-modal-dropdown';
+import { filterMapByProvider } from '../ProviderFilterPicker/ProviderFilterPicker.Action'
 
 class TitleBar extends React.Component {
+
+    providers = [
+        'Unfiltered',
+        'Telekom',
+        'Vodafone',
+        'o2',
+        'e-plus'
+    ]
+
+    filterSelected = (provider) => {
+        if (provider !== this.providers[0]){
+            console.log("dispatching...")
+            this.props.filterMapByProvider(provider)
+        }
+    }
+
     renderTitle = () => {
         const { showingMap } = this.props;
         if (showingMap) {
             return (
                 <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
-                    <Text style={{textAlign: 'center'}}>Click on your position</Text>
+                    <ModalDropdown
+                        defaultValue={'Select filter...'}
+                        options={this.providers}
+                        onSelect={(idx, value) => this.filterSelected(value)}
+                    />
                 </View>
             );
         }
@@ -69,6 +90,7 @@ function mapDispatchToProps(dispatch) {
             getConnectionInfoByRadius: getConnectionDataByRadiusAction,
             storeConnectionInfo: createConnectionData,
             showMap: showMap,
+            filterMapByProvider: filterMapByProvider
         },
         dispatch
     );
