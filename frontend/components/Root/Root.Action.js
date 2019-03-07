@@ -1,5 +1,7 @@
-import { Permissions, Location, Constants } from 'expo';
+import { Constants } from 'expo';
 import { NetInfo } from 'react-native';
+
+import getCurrentLocationLatLong from '../../handler/GeoLocationHandler';
 
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
@@ -23,7 +25,7 @@ export const getConnectionInfo = () => {
     return function(dispatch) {
         NetInfo.getConnectionInfo()
             .then((info) => {
-                dispatch(handleConnectionInfo(info));
+                return dispatch(handleConnectionInfo(info));
             })
             .catch((error) => alert(error));
     };
@@ -36,7 +38,7 @@ const handleConnectionInfo = (connection) => {
     }
 
     return (dispatch) => {
-        dispatch(updateConnectionType(connectionType));
+        return dispatch(updateConnectionType(connectionType));
     };
 };
 
@@ -50,39 +52,14 @@ const updateConnectionType = (type) => {
 
 export const requestLocation = () => {
     return function(dispatch) {
-        Permissions.askAsync(Permissions.LOCATION).then(
-            (result) => {
-                const { status } = result;
-                if (status === 'granted') {
-                    dispatch(getLocation());
-                } else {
-                    alert('Location permissions has not been granted');
-                }
-            },
-            (error) => requestLocationError(error)
-        );
-    };
-};
-
-const requestLocationError = (errorMessage) => {
-    alert(errorMessage);
-};
-
-const getLocation = () => {
-    return function(dispatch) {
         dispatch(fetchingDeviceGPS(true));
-        Location.getCurrentPositionAsync({})
-            .then(
-                (result) => {
-                    dispatch(fetchingDeviceGPS(false));
-                    dispatch(getLocationSuccess(result.coords));
-                },
-                (error) => {
-                    dispatch(fetchingDeviceGPS(false));
-                    dispatch(getLocationError(error));
-                }
-            )
-            .catch((e) => console.log(e));
+        return getCurrentLocationLatLong()
+            .then((location) => {
+                console.log(location);
+                dispatch(updateGPS(location));
+                dispatch(fetchingDeviceGPS(false));
+            })
+            .catch((err) => fetchingDeviceGPS(false));
     };
 };
 
@@ -94,16 +71,6 @@ const fetchingDeviceGPS = (isFetching) => {
             isFetching: isFetching,
         },
     };
-};
-
-const getLocationSuccess = (location) => {
-    return function(dispatch) {
-        dispatch(updateGPS(location));
-    };
-};
-
-const getLocationError = (errorMessage) => {
-    alert(errorMessage);
 };
 
 function updateGPS(location) {
