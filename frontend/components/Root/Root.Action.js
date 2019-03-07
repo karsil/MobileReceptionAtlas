@@ -1,10 +1,12 @@
 import { Constants } from 'expo';
-import { NetInfo } from 'react-native';
 
 import getCurrentLocationLatLong from '../../handler/GeoLocationHandler';
+import getConnectionType from '../../handler/ConnectionInformationHandler';
 
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
+export const UPDATE_CONNECTION_TYPE = 'updateConnectionType';
+export const FETCHING_DEVICE_GPS = 'fetchingDeviceGPS';
 
 export const getPlatform = () => {
     return function(dispatch) {
@@ -23,26 +25,12 @@ const updatePlatform = (platform) => {
 
 export const getConnectionInfo = () => {
     return function(dispatch) {
-        NetInfo.getConnectionInfo()
-            .then((info) => {
-                return dispatch(handleConnectionInfo(info));
-            })
-            .catch((error) => alert(error));
+        return getConnectionType()
+            .then((result) => dispatch(updateConnectionType(result)))
+            .catch((error) => console.log(error));
     };
 };
 
-const handleConnectionInfo = (connection) => {
-    let connectionType = connection.type;
-    if (connection.type === 'cellular') {
-        connectionType = connection.EffectiveConnectionType;
-    }
-
-    return (dispatch) => {
-        return dispatch(updateConnectionType(connectionType));
-    };
-};
-
-export const UPDATE_CONNECTION_TYPE = 'updateConnectionType';
 const updateConnectionType = (type) => {
     return {
         type: UPDATE_CONNECTION_TYPE,
@@ -52,19 +40,18 @@ const updateConnectionType = (type) => {
 
 export const requestLocation = () => {
     return function(dispatch) {
-        dispatch(fetchingDeviceGPS(true));
+        dispatch(isSearchingForLocation(true));
         return getCurrentLocationLatLong()
             .then((location) => {
                 console.log(location);
                 dispatch(updateGPS(location));
-                dispatch(fetchingDeviceGPS(false));
+                dispatch(isSearchingForLocation(false));
             })
-            .catch((err) => fetchingDeviceGPS(false));
+            .catch((err) => isSearchingForLocation(false));
     };
 };
 
-export const FETCHING_DEVICE_GPS = 'fetchingDeviceGPS';
-const fetchingDeviceGPS = (isFetching) => {
+const isSearchingForLocation = (isFetching) => {
     return {
         type: FETCHING_DEVICE_GPS,
         payload: {
