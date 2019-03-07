@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
 
-const locationSchema = new mongoose.Schema({
-    type: { type: String, default: 'point' },
-    coordinates: {
-        latitude: Number,
-        longitude: Number,
-    },
-});
-
 const connectionDataSchema = new mongoose.Schema({
     id: String,
     platform: String,
     connectionType: String,
-    location: locationSchema,
+    location: {
+        type: { type: String, default: 'point' },
+        coordinates: {
+            latitude: Number,
+            longitude: Number,
+        },
+    },
     signal: Number,
     provider: String,
 });
 
-locationSchema.index({
+connectionDataSchema.index({
     location: '2dsphere',
 });
 

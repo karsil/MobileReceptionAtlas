@@ -79,7 +79,7 @@ async function createConnectionData({
             {
                 id: uuid(),
                 signal: signal,
-                location: { type: 'point', coordinates: location },
+                location: { type: 'Point', coordinates: location },
                 provider: provider,
                 platform: platform,
                 connectionType: connectionType,
