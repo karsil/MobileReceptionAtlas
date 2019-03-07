@@ -20,7 +20,7 @@ class TitleBar extends React.Component {
         if (showingMap) {
             return (
                 <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
-                    <Text>Click on your position</Text>
+                    <Text style={{textAlign: 'center'}}>Click on your position</Text>
                 </View>
             );
         }
