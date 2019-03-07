@@ -10,7 +10,6 @@ export const getAllConnectionData = gql`
                 latitude
                 longitude
             }
-            signal
             provider
         }
     }
@@ -29,7 +28,6 @@ export const getConnectionDataByRadius = (currentLocation, radius) => {
                 latitude
                 longitude
             }
-            signal
             provider
         }
     }`;

@@ -29,7 +29,6 @@ describe('random data generator', () => {
         expect(data).have.property('id');
         expect(data).have.property('platform');
         expect(data).have.property('provider');
-        expect(data).have.property('signal');
         expect(data).have.property('connectionType');
     });
 
