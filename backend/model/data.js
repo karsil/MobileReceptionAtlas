@@ -5,7 +5,7 @@ const connectionDataSchema = new mongoose.Schema({
     platform: String,
     connectionType: String,
     location: {
-        type: { type: String, default: 'point' },
+        type: { type: String, default: 'Point' },
         coordinates: {
             latitude: Number,
             longitude: Number,
