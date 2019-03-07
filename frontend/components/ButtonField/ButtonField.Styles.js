@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../settings/colors';
 
-export const buttonStyles = StyleSheet.create({
+export const buttonFieldStyles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexDirection: 'row',

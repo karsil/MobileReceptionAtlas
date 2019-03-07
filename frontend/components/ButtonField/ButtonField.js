@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { buttonStyles } from './ButtonField.Styles';
+import { buttonFieldStyles } from './ButtonField.Styles';
 import Button from './Button.js';
 
 import {
@@ -22,22 +22,22 @@ class ButtonField extends React.Component {
 
         if (this.props.showingMap) {
             return (
-                <View style={buttonStyles.container}>
+                <View style={buttonFieldStyles.container}>
                     <Button
-                        style={buttonStyles.button}
-                        textStyle={buttonStyles.buttonText}
+                        style={buttonFieldStyles.button}
+
                         onPress={() => this.props.getConnectionInfo()}
-                        title="Update Data"
+                        title="Get All Data"
                     />
                     <Button
-                        style={buttonStyles.button}
+                        style={buttonFieldStyles.button}
                         onPress={() =>
                             this.props.getConnectionInfoByRadius(this.props)
                         }
                         title="Get Nearby Data"
                     />
                     <Button
-                        style={buttonStyles.button}
+                        style={buttonFieldStyles.button}
                         onPress={() =>
                             this.props.storeConnectionInfo(this.props)
                         }
