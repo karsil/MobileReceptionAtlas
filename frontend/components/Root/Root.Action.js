@@ -1,7 +1,6 @@
-import { Constants } from 'expo';
-
 import getCurrentLocationLatLong from '../../handler/GeoLocationHandler';
 import getConnectionType from '../../handler/ConnectionInformationHandler';
+import getDistributionPlatform from '../../handler/MobilePlatformHandler';
 
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
@@ -10,9 +9,8 @@ export const FETCHING_DEVICE_GPS = 'fetchingDeviceGPS';
 
 export const getPlatform = () => {
     return function(dispatch) {
-        for (let platform in Constants.platform) {
-            dispatch(updatePlatform(platform));
-        }
+        const platform = getDistributionPlatform();
+        dispatch(updatePlatform(platform));
     };
 };
 
@@ -43,7 +41,6 @@ export const requestLocation = () => {
         dispatch(isSearchingForLocation(true));
         return getCurrentLocationLatLong()
             .then((location) => {
-                console.log(location);
                 dispatch(updateGPS(location));
                 dispatch(isSearchingForLocation(false));
             })
