@@ -7,3 +7,6 @@ logs
 node_modules/
 .npm
 npm-debug.*
+
+# IDE
+.idea

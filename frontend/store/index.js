@@ -1,5 +1,5 @@
 import { NO_PROVIDER } from '../components/ProviderPicker/ProviderPicker';
-
+import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker';
 const initialState = {
     data: [],
     currentInformation: {
@@ -7,12 +7,12 @@ const initialState = {
             latitude: 0,
             longitude: 0,
         },
-        signal: 100,
         provider: NO_PROVIDER,
         connectionType: '4G',
         platform: 'Android',
     },
     showingMap: false,
+    filterByProvider: NO_FILTER,
     isFetchingDeviceGPS: false,
 };
 

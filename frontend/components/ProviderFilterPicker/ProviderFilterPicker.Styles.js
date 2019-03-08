@@ -1,29 +1,21 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../settings/colors';
 
-export const providerPickerStyles = StyleSheet.create({
+export const providerFilterStyles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: colors.background,
         alignItems: 'center',
+        maxHeight: 40,
     },
 
     picker: {
-        height: 250,
-        width: 200,
+        width: 100,
+        height: 30,
+        justifyContent: 'center',
     },
-    pickerItem: {
-        fontSize: 18,
-    },
-
     text: {
         fontSize: 18,
-    },
-
-    headerText: {
-        fontSize: 22,
-        margin: 10,
-        fontWeight: 'bold',
     },
 });

@@ -38,7 +38,6 @@ function generateRandomData() {
     const platforms = ['android', 'ios'];
     const connectionTypes = ['2G', '3G', '4G'];
     const provider = ['Telekom', 'Vodafone', 'O2'];
-    const signal = randomFloatGenerator(100);
     const location = {
         latitude: randomFloatGenerator(1, 53.901706),
         longitude: randomFloatGenerator(2.09, 8.753612),
@@ -48,7 +47,6 @@ function generateRandomData() {
         platform: platforms[randomIntegerGenerator(2)],
         connectionType: connectionTypes[randomIntegerGenerator(3)],
         provider: provider[randomIntegerGenerator(3)],
-        signal,
         location: { coordinates: location },
     };
 }

@@ -1,8 +1,14 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
+import MapView, {
+    PROVIDER_GOOGLE,
+    Marker,
+    Circle,
+    Callout,
+} from 'react-native-maps';
 import { connect } from 'react-redux';
-
+import { Text, View } from 'react-native';
 import { MapStyles } from './Map.Styles';
+import { mapProviderFromKey } from '../../helper';
 
 class Map extends React.Component {
     constructor(props) {
@@ -24,7 +30,7 @@ class Map extends React.Component {
 
         const dataMarker = data.map((information) => {
             if (information.location) {
-                return getCircleBySignalStrength(information);
+                return getCircleByConnectionType(information);
             }
         });
 
@@ -35,7 +41,22 @@ class Map extends React.Component {
                     title="your position"
                     key="own-data-marker"
                     coordinate={this.props.location}
-                />
+                >
+                    <Callout>
+                        <View>
+                            <Text>
+                                Your Provider:{' '}
+                                {mapProviderFromKey(this.props.provider)}
+                            </Text>
+                            <Text>
+                                Longitude: {this.props.location.longitude}
+                            </Text>
+                            <Text>
+                                Latitude: {this.props.location.latitude}
+                            </Text>
+                        </View>
+                    </Callout>
+                </Marker>
             );
             this.setState({ currentPositionMarker: position });
         }
@@ -78,25 +99,26 @@ class Map extends React.Component {
         );
     }
 }
-function getCircleBySignalStrength(information) {
+
+function getCircleByConnectionType(information) {
     const {
         id,
         location: { coordinates },
-        signal,
+        connectionType,
     } = information;
     return (
         <Circle
             key={id}
             center={coordinates}
-            radius={signal * 100}
-            fillColor={getColorBySignal(signal)}
+            radius={5000}
+            fillColor={getColorByConnectionType(connectionType)}
             strokeWidth={0}
             lineJoin={'round'}
         />
     );
 }
 
-function getColorBySignal(signal) {
+function getColorByConnectionType(connectionType) {
     let color = {
         r: 69,
         g: 139,
@@ -104,17 +126,17 @@ function getColorBySignal(signal) {
         a: 0.5,
     };
 
-    if (signal < 20) {
+    if (connectionType === '2G') {
         color.r = 127;
         color.g = 255;
         color.b = 0;
         color.a = 0.3;
-    } else if (signal < 50) {
+    } else if (connectionType === '3G') {
         color.r = 118;
         color.g = 238;
         color.b = 0;
         color.a = 0.35;
-    } else if (signal < 90) {
+    } else if (connectionType === '4G') {
         color.r = 102;
         color.g = 205;
         color.b = 0;
@@ -128,6 +150,7 @@ function mapStateToProps(state) {
     return {
         data: state.data,
         location: state.currentInformation.location,
+        provider: state.currentInformation.provider,
     };
 }
 

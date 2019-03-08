@@ -1,15 +1,19 @@
 import { StyleSheet } from 'react-native';
-import styleVariables from '../../settings/styles';
+import colors from '../../settings/colors';
 
-export const buttonStyles = StyleSheet.create({
+export const buttonFieldStyles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: styleVariables.content.justify,
-        backgroundColor: styleVariables.color.background,
-        alignItems: 'stretch',
+        alignItems: 'center',
+        flexDirection: 'row',
     },
-
+    buttonText: {},
     button: {
-        width: '100',
+        borderWidth: 0.3,
+        borderColor: '#fff',
+        flex: 1,
+        height: '100%',
+        paddingTop: 20,
+        paddingBottom: 20,
+        backgroundColor: colors.primaryColor,
     },
 });
