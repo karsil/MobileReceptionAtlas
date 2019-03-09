@@ -2,7 +2,7 @@
 build-dev:
 	npm install
 
-run-dev: build-dev
+run-dev:
 	npm run start
 
 clear:

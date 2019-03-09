@@ -40,7 +40,6 @@ export const getConnectionDataByRadius = (currentLocation, radius) => {
 };
 
 export const connectionDataByProvider = (provider) => {
-    console.log('request by provider ' + provider)
     return gql`
     query {
         connectionDataByProvider(provider: "${provider}") {
@@ -48,8 +47,11 @@ export const connectionDataByProvider = (provider) => {
             platform
             connectionType
             location {
-                latitude
-                longitude
+                type
+                coordinates {
+                    latitude
+                    longitude
+                }
             }
             provider
         }
