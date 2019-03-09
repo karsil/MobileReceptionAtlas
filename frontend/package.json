@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "apollo-boost": "^0.1.27",
+        "apollo-cache-inmemory": "^1.5.1",
         "apollo-client": "^2.4.12",
         "expo": "^32.0.0",
         "expo-cli": "^2.7.1",

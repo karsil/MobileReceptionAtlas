@@ -35,7 +35,6 @@ export const getAllConnectionDataAction = () => {
 export const getConnectionDataByRadiusAction = () => {
     return (dispatch, getState) => {
         const { currentInformation } = getState();
-
         return client
             .query({
                 query: getConnectionDataByRadius(
@@ -63,6 +62,7 @@ export const createConnectionData = ({
     return (dispatch) => {
         return client
             .mutate({
+                refetchQueries: [{ query: getAllConnectionData }],
                 mutation: createNewConnectionData,
                 variables: {
                     location: { latitude, longitude },
