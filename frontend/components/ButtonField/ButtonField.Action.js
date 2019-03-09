@@ -11,7 +11,7 @@ export const SHOW_MAP = 'showMap';
 
 export const ADD_DATA = 'add-data';
 
-const DISTANCE = 5000; // in meter
+const DISTANCE = 50000; // in meter
 
 /**
  * Queries the _getAllConnectionData_ endpoint on backend.
