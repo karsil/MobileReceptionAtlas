@@ -11,7 +11,7 @@ export const SHOW_MAP = 'showMap';
 
 export const ADD_DATA = 'add-data';
 
-const DISTANCE = 5000; // in meter
+const DISTANCE = 50000; // in meter
 
 /**
  * Queries the _getAllConnectionData_ endpoint on backend.
@@ -35,7 +35,6 @@ export const getAllConnectionDataAction = () => {
 export const getConnectionDataByRadiusAction = () => {
     return (dispatch, getState) => {
         const { currentInformation } = getState();
-
         return client
             .query({
                 query: getConnectionDataByRadius(
@@ -63,6 +62,7 @@ export const createConnectionData = ({
     return (dispatch) => {
         return client
             .mutate({
+                refetchQueries: [{ query: getAllConnectionData }],
                 mutation: createNewConnectionData,
                 variables: {
                     location: { latitude, longitude },

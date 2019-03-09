@@ -40,9 +40,6 @@ async function getConnectionDataByProvider({ provider }) {
  * This solution should fit for now
  */
 async function getConnectionDataByRadius({ currentLocation, radius }) {
-    const R = 6378.137; // earth as reference
-    const alpha = (180 * radius) / (R * Math.PI);
-
     return new Promise((resolve, reject) => {
         ConnectionData.find({
             location: {
