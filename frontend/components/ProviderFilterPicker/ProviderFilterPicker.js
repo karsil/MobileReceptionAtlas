@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { providerFilterStyles } from './ProviderFilterPicker.Styles';
 import { filterMapByProvider } from './ProviderFilterPicker.Action';
 
@@ -14,7 +14,7 @@ export const NO_FILTER = 'no-filter';
 class ProviderFilterPicker extends React.Component {
 
     providers = [
-        NO_FILTER,
+        "- All -",
         'Telekom',
         'Vodafone',
         'O2',
@@ -33,8 +33,13 @@ class ProviderFilterPicker extends React.Component {
     render() {
         return (
             <View style={providerFilterStyles.container}>
+                <Text>Provider: </Text>
                 <ModalDropdown
-                        defaultIndex={0}
+                        defaultValue={this.providers[0]}
+                        style={providerFilterStyles.pickerSelect}
+                        textStyle={providerFilterStyles.picker}
+                        dropdownTextStyle={providerFilterStyles.text}
+                        dropdownTextHighlightStyle={[providerFilterStyles.text, {fontWeight: "bold"}]}
                         options={this.providers}
                         onSelect={(idx, value) => this.filterSelected(value)}
                     />
