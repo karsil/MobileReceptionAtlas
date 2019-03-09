@@ -1,6 +1,6 @@
 'use strict';
 const chai = require('chai');
-const { expect, assert } = chai;
+const { expect } = chai;
 
 const mockFunction = require('./index');
 
@@ -33,7 +33,7 @@ describe('random data generator', () => {
     });
 
     it('generates the right provider', async () => {
-        expect(data.provider).oneOf(['Telekom', 'Vodafone', 'O2']);
+        expect(data.provider).oneOf(['telekom', 'vodafone', 'o2']);
     });
 
     it('generates the right location', async () => {

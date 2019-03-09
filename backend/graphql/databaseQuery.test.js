@@ -8,7 +8,7 @@ const data = {
     platform: 'Android',
     connectionType: '3G',
     location: { latitude: 54.3196, longitude: 10.1378 },
-    provider: 'Telekom',
+    provider: 'telekom',
 };
 
 describe('Mongodb Data Schema', () => {
@@ -23,7 +23,11 @@ describe('Mongodb Data Schema', () => {
         });
 
         it('Can access the stored data', async () => {
-            const result = await dbOperations.getConnectionData();
+            const result = await dbOperations.getConnectionData({
+                provider: 'no-filter',
+                location: data.location,
+                radius: 0,
+            });
             assert.isArray(
                 result,
                 'The database operation returns the stored data as object'
@@ -37,11 +41,13 @@ describe('Mongodb Data Schema', () => {
         it('Can select data by provider', async () => {
             dbOperations.createConnectionData({
                 ...data,
-                provider: 'Vodafone',
+                provider: 'vodafone',
                 id: 'test1',
             });
-            const result = await dbOperations.getConnectionDataByProvider({
-                provider: 'Telekom',
+            const result = await dbOperations.getConnectionData({
+                provider: 'telekom',
+                location: data.location,
+                radius: 0,
             });
             assert.lengthOf(result, 1, 'Return just the "Telekom" entries');
         });
