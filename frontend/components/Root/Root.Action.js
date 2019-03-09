@@ -2,6 +2,8 @@ import getCurrentLocationLatLong from '../../handler/GeoLocationHandler';
 import getConnectionType from '../../handler/ConnectionInformationHandler';
 import getDistributionPlatform from '../../handler/MobilePlatformHandler';
 
+import { getAllConnectionDataAction } from '../ButtonField/ButtonField.Action';
+
 export const UPDATE_PLATFORM = 'updatePlatform';
 export const UPDATE_GPS = 'updateGPS';
 export const UPDATE_CONNECTION_TYPE = 'updateConnectionType';
@@ -42,6 +44,7 @@ export const requestLocation = () => {
         return getCurrentLocationLatLong()
             .then((location) => {
                 dispatch(updateGPS(location));
+                dispatch(getAllConnectionDataAction());
                 dispatch(isSearchingForLocation(false));
             })
             .catch((err) => isSearchingForLocation(false));
