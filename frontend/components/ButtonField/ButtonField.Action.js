@@ -67,7 +67,7 @@ export const createConnectionData = ({
                 refetchQueries: [
                     { query: getAllConnectionData },
                     {
-                        query: currentInformation(
+                        query: getConnectionDataByRadius(
                             currentInformation.location,
                             DISTANCE
                         ),
