@@ -101,11 +101,15 @@ class Map extends React.Component {
 }
 
 function getCircleByConnectionType(information) {
-    const { id, location, connectionType } = information;
+    const {
+        id,
+        location: { coordinates },
+        connectionType,
+    } = information;
     return (
         <Circle
             key={id}
-            center={location}
+            center={coordinates}
             radius={5000}
             fillColor={getColorByConnectionType(connectionType)}
             strokeWidth={0}
