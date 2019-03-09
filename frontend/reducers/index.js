@@ -2,6 +2,7 @@ import {
     FETCH_RESULT,
     SHOW_MAP,
     ADD_DATA,
+    SET_RADIUS,
 } from './../components/ButtonField/ButtonField.Action';
 
 import { FILTER_MAP_BY_PROVIDER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
@@ -42,6 +43,11 @@ export default function reducer(state = initialState, action) {
                     platform: action.payload,
                 },
             };
+        case SET_RADIUS:
+            return {
+                ...state,
+                searchRadius: action.payload,
+            };
         case UPDATE_CONNECTION_TYPE:
             return {
                 ...state,
@@ -54,7 +60,9 @@ export default function reducer(state = initialState, action) {
         case FILTER_MAP_BY_PROVIDER:
             return {
                 ...state,
-                filterByProvider: action.payload.provider,
+                filter: {
+                    provider: action.payload.provider,
+                },
             };
 
         case UPDATE_PROVIDER:

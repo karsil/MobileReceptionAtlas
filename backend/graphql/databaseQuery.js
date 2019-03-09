@@ -2,65 +2,46 @@ const ConnectionData = require('../model/data');
 const uuid = require('uuid/v4');
 const logger = require('./../logging');
 
-async function getConnectionData() {
+async function getConnectionData({ provider, location, radius }) {
+    const Provider = ['telekom', 'vodafone', 'o2', 'e-plus'];
+    let filter = Provider.filter((elem) => elem === provider.toLowerCase());
+    let filterByProvider = [];
+    let databaseQuery = {};
+
+    if (filter.length === 0) {
+        filterByProvider = Provider;
+    } else {
+        filterByProvider.push(filter);
+    }
+
+    databaseQuery = {
+        provider: { $in: filterByProvider },
+    };
+
+    if (radius !== 0) {
+        databaseQuery = {
+            ...databaseQuery,
+            location: {
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: [location.latitude, location.longitude],
+                    },
+                    $maxDistance: radius,
+                },
+            },
+        };
+    }
+    console.log(databaseQuery);
+
     return new Promise((resolve, reject) => {
-        ConnectionData.find({}).then((res, err) => {
+        ConnectionData.find(databaseQuery).then((res, err) => {
             if (err) {
                 reject(err);
             }
 
             if (res) {
                 resolve(res);
-            }
-
-            reject('Something went wrong');
-        });
-    });
-}
-
-async function getConnectionDataByProvider({ provider }) {
-    return new Promise((resolve, reject) => {
-        ConnectionData.find()
-            .where({ provider: provider })
-            .then((res, err) => {
-                if (err) {
-                    reject(err);
-                }
-
-                if (res) {
-                    resolve(res);
-                }
-            });
-    });
-}
-
-/**
- * the actual calculation just reduces the result to an square with radius on longitude and latitude axis.
- * To improve to filter per distance, you have to do some math here.
- * This solution should fit for now
- */
-async function getConnectionDataByRadius({ currentLocation, radius }) {
-    return new Promise((resolve, reject) => {
-        ConnectionData.find({
-            location: {
-                $near: {
-                    $geometry: {
-                        type: 'Point',
-                        coordinates: [
-                            currentLocation.latitude,
-                            currentLocation.longitude,
-                        ],
-                    },
-                    $maxDistance: radius,
-                },
-            },
-        }).then((res, err) => {
-            if (err) {
-                reject(err);
-            } else if (res) {
-                resolve(res);
-            } else {
-                reject(new Error('Something went wrong...'));
             }
         });
     });
@@ -95,8 +76,6 @@ async function createConnectionData({
 }
 
 module.exports = {
-    getConnectionDataByRadius,
-    getConnectionDataByProvider,
     createConnectionData,
     getConnectionData,
 };

@@ -1,29 +1,23 @@
-import gql from 'graphql-tag';
+import client from './client';
+import getAllConnectionData from './querySchema';
+import { createNewConnectionData } from './mutationSchema';
 
-export const createNewConnectionData = gql`
-    mutation createConnectionData(
-        $location: LocationInput!
-        $provider: String!
-        $platform: Platform!
-        $connectionType: String!
-    ) {
-        createConnectionData(
-            location: $location
-            provider: $provider
-            platform: $platform
-            connectionType: $connectionType
-        ) {
-            id
-            location {
-                type
-                coordinates {
-                    latitude
-                    longitude
-                }
-            }
-            provider
-            platform
-            connectionType
-        }
-    }
-`;
+function submitConnectionData({
+    location: { latitude, longitude },
+    provider,
+    platform,
+    connectionType,
+}) {
+    return client.mutate({
+        refetchQueries: [{ query: getAllConnectionData }],
+        mutation: createNewConnectionData,
+        variables: {
+            location: { latitude, longitude },
+            provider,
+            platform,
+            connectionType,
+        },
+    });
+}
+
+export default submitConnectionData;

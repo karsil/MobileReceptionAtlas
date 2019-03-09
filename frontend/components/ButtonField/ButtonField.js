@@ -6,7 +6,7 @@ import { buttonFieldStyles } from './ButtonField.Styles';
 import Button from './Button.js';
 
 import {
-    getAllConnectionDataAction,
+    getConnectionDataAction,
     getConnectionDataByRadiusAction,
     createConnectionData,
     showMap,
@@ -25,13 +25,13 @@ class ButtonField extends React.Component {
                 <View style={buttonFieldStyles.container}>
                     <Button
                         style={buttonFieldStyles.button}
-                        onPress={() => this.props.getConnectionInfo()}
+                        onPress={() => this.props.getConnectionDataAction()}
                         title="Get All Data"
                     />
                     <Button
                         style={buttonFieldStyles.button}
                         onPress={() =>
-                            this.props.getConnectionInfoByRadius(this.props)
+                            this.props.getConnectionDataAction(50000)
                         }
                         title="Get Nearby Data"
                     />
@@ -63,8 +63,7 @@ function mapStateToProps({ currentInformation, showingMap }) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getConnectionInfo: getAllConnectionDataAction,
-            getConnectionInfoByRadius: getConnectionDataByRadiusAction,
+            getConnectionDataAction: getConnectionDataAction,
             storeConnectionInfo: createConnectionData,
             showMap: showMap,
         },

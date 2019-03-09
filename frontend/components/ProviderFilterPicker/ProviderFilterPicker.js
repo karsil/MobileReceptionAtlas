@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text } from 'react-native';
 import { providerFilterStyles } from './ProviderFilterPicker.Styles';
-import { filterMapByProvider } from './ProviderFilterPicker.Action';
+import { updateProviderFilter } from './ProviderFilterPicker.Action';
 
-import { getAllConnectionDataAction } from '../ButtonField/ButtonField.Action';
+import { getConnectionDataAction } from '../ButtonField/ButtonField.Action';
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -15,11 +15,8 @@ class ProviderFilterPicker extends React.Component {
     providers = ['- All -', 'Telekom', 'Vodafone', 'O2', 'E-Plus'];
 
     filterSelected = (provider) => {
-        if (provider !== this.providers[0]) {
-            this.props.filterMapByProvider(provider);
-        } else {
-            this.props.getAllConnectionDataAction();
-        }
+        this.props.updateProviderFilter(provider);
+        this.props.getConnectionDataAction(this.props.searchRadius);
     };
 
     render() {
@@ -45,15 +42,17 @@ class ProviderFilterPicker extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        filterProvider: state.filterByProvider,
+        filterProvider: state.filter.provider,
+        searchRadius: state.searchRadius,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            filterMapByProvider: filterMapByProvider,
-            getAllConnectionDataAction: getAllConnectionDataAction,
+            updateProviderFilter: updateProviderFilter,
+            getConnectionData: getConnectionDataAction,
+            getConnectionDataAction,
         },
         dispatch
     );

@@ -8,11 +8,14 @@ const initialState = {
             longitude: 0,
         },
         provider: NO_PROVIDER,
-        connectionType: '4G',
-        platform: 'Android',
+        connectionType: '',
+        platform: '',
     },
+    searchRadius: 0,
     showingMap: false,
-    filterByProvider: NO_FILTER,
+    filter: {
+        provider: NO_FILTER,
+    },
     isFetchingDeviceGPS: false,
 };
 
