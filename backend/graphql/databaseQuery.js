@@ -32,7 +32,6 @@ async function getConnectionData({ provider, location, radius }) {
             },
         };
     }
-    console.log(databaseQuery);
 
     return new Promise((resolve, reject) => {
         ConnectionData.find(databaseQuery).then((res, err) => {
