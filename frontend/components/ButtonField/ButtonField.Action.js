@@ -59,10 +59,20 @@ export const createConnectionData = ({
     platform,
     connectionType,
 }) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const { currentInformation } = getState();
+
         return client
             .mutate({
-                refetchQueries: [{ query: getAllConnectionData }],
+                refetchQueries: [
+                    { query: getAllConnectionData },
+                    {
+                        query: currentInformation(
+                            currentInformation.location,
+                            DISTANCE
+                        ),
+                    },
+                ],
                 mutation: createNewConnectionData,
                 variables: {
                     location: { latitude, longitude },
