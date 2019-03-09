@@ -3,6 +3,7 @@ import colors from '../../settings/colors';
 
 export const providerFilterStyles = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: colors.primaryColor,
@@ -12,16 +13,16 @@ export const providerFilterStyles = StyleSheet.create({
 
     picker: {
         backgroundColor: colors.primaryColor,
-        fontWeight: "bold",
-        fontSize: 14
+        fontWeight: 'bold',
+        fontSize: 14,
     },
     pickerSelect: {
-        backgroundColor: colors.secondaryColor
+        backgroundColor: colors.secondaryColor,
     },
 
     text: {
         fontSize: 18,
         color: colors.textColor,
-        backgroundColor: colors.primaryColor
+        backgroundColor: colors.primaryColor,
     },
 });
