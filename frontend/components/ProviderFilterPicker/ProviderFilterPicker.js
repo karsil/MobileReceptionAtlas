@@ -1,31 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Picker, Text } from 'react-native';
+import { View } from 'react-native';
 import { providerFilterStyles } from './ProviderFilterPicker.Styles';
-
 import { filterMapByProvider } from './ProviderFilterPicker.Action';
+
+import { getAllConnectionDataAction } from '../ButtonField/ButtonField.Action'
+
+import ModalDropdown from 'react-native-modal-dropdown';
 
 export const NO_FILTER = 'no-filter';
 
 class ProviderFilterPicker extends React.Component {
+
+    providers = [
+        NO_FILTER,
+        'Telekom',
+        'Vodafone',
+        'O2',
+        'E-Plus'
+    ]
+
+    filterSelected = (provider) => {
+        if (provider !== this.providers[0]){
+            this.props.filterMapByProvider(provider)
+        }
+        else {
+            this.props.getAllConnectionDataAction()
+        }
+    }
+
     render() {
         return (
             <View style={providerFilterStyles.container}>
-                <Text style={providerFilterStyles.text}>Filter by</Text>
-                <Picker
-                    // default case is 'Unfiltered' item
-                    selectedValue={this.props.filterProvider || 'Unfiltered'}
-                    style={providerFilterStyles.picker}
-                    itemStyle={providerFilterStyles.text}
-                    onValueChange={(value) => this.props.filterBy(value)}
-                >
-                    <Picker.Item label="None" value={NO_FILTER} />
-                    <Picker.Item label="Telekom" value="telekom" />
-                    <Picker.Item label="Vodafone" value="vodafone" />
-                    <Picker.Item label="O2" value="o2" />
-                    <Picker.Item label="e-plus" value="e-plus" />
-                </Picker>
+                <ModalDropdown
+                        defaultIndex={0}
+                        options={this.providers}
+                        onSelect={(idx, value) => this.filterSelected(value)}
+                    />
             </View>
         );
     }
@@ -40,7 +52,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            filterBy: filterMapByProvider,
+            filterMapByProvider: filterMapByProvider,
+            getAllConnectionDataAction: getAllConnectionDataAction
         },
         dispatch
     );
