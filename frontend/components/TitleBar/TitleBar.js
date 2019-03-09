@@ -12,18 +12,14 @@ import {
     showMap,
 } from '../ButtonField/ButtonField.Action';
 import { connect } from 'react-redux';
-import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker';
+import ProviderFilterPicker from '../ProviderFilterPicker/ProviderFilterPicker'
 
 class TitleBar extends React.Component {
     renderTitle = () => {
         const { showingMap } = this.props;
         if (showingMap) {
             return (
-                <View style={[styles.toolbarTitle, { alignItems: 'center' }]}>
-                    <Text style={{ textAlign: 'center' }}>
-                        Click on your position
-                    </Text>
-                </View>
+                <ProviderFilterPicker />
             );
         }
         return (
@@ -70,7 +66,7 @@ function mapDispatchToProps(dispatch) {
             getConnectionInfo: getAllConnectionDataAction,
             getConnectionInfoByRadius: getConnectionDataByRadiusAction,
             storeConnectionInfo: createConnectionData,
-            showMap: showMap,
+            showMap: showMap
         },
         dispatch
     );

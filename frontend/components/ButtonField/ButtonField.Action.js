@@ -94,7 +94,7 @@ function addData(result) {
  *
  * @param {Array} result the array of data objects
  */
-function fetchResult(result) {
+export function fetchResult(result) {
     return {
         type: FETCH_RESULT,
         payload: {
@@ -103,7 +103,7 @@ function fetchResult(result) {
     };
 }
 
-function fetchError(error) {
+export function fetchError(error) {
     return {
         type: FETCH_ERROR,
         payload: {
