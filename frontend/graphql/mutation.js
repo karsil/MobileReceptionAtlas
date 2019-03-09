@@ -15,8 +15,11 @@ export const createNewConnectionData = gql`
         ) {
             id
             location {
-                latitude
-                longitude
+                type
+                coordinates {
+                    latitude
+                    longitude
+                }
             }
             provider
             platform

@@ -25,7 +25,6 @@ class ButtonField extends React.Component {
                 <View style={buttonFieldStyles.container}>
                     <Button
                         style={buttonFieldStyles.button}
-
                         onPress={() => this.props.getConnectionInfo()}
                         title="Get All Data"
                     />

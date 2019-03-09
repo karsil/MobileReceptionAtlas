@@ -47,7 +47,7 @@ function generateRandomData() {
         platform: platforms[randomIntegerGenerator(2)],
         connectionType: connectionTypes[randomIntegerGenerator(3)],
         provider: provider[randomIntegerGenerator(3)],
-        location,
+        location: { coordinates: location },
     };
 }
 

@@ -7,8 +7,11 @@ export const getAllConnectionData = gql`
             platform
             connectionType
             location {
-                latitude
-                longitude
+                type
+                coordinates {
+                    latitude
+                    longitude
+                }
             }
             provider
         }
@@ -25,8 +28,11 @@ export const getConnectionDataByRadius = (currentLocation, radius) => {
             platform
             connectionType
             location {
-                latitude
-                longitude
+                type
+                coordinates {
+                    latitude
+                    longitude
+                }
             }
             provider
         }

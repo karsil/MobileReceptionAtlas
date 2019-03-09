@@ -40,30 +40,29 @@ async function getConnectionDataByProvider({ provider }) {
  * This solution should fit for now
  */
 async function getConnectionDataByRadius({ currentLocation, radius }) {
-    const R = 6378.137; // earth as reference
-    const alpha = (180 * radius) / (R * Math.PI);
-
     return new Promise((resolve, reject) => {
-        ConnectionData.find()
-            .where({
-                'location.latitude': {
-                    $gte: currentLocation.latitude - alpha,
-                    $lte: currentLocation.latitude + alpha,
+        ConnectionData.find({
+            location: {
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            currentLocation.latitude,
+                            currentLocation.longitude,
+                        ],
+                    },
+                    $maxDistance: radius,
                 },
-                'location.longitude': {
-                    $gte: currentLocation.longitude - alpha,
-                    $lte: currentLocation.longitude + alpha,
-                },
-            })
-            .then((res, err) => {
-                if (err) {
-                    reject(err);
-                } else if (res) {
-                    resolve(res);
-                } else {
-                    reject(new Error('Something went wrong...'));
-                }
-            });
+            },
+        }).then((res, err) => {
+            if (err) {
+                reject(err);
+            } else if (res) {
+                resolve(res);
+            } else {
+                reject(new Error('Something went wrong...'));
+            }
+        });
     });
 }
 
@@ -77,7 +76,7 @@ async function createConnectionData({
         ConnectionData.create(
             {
                 id: uuid(),
-                location: location,
+                location: { type: 'Point', coordinates: location },
                 provider: provider,
                 platform: platform,
                 connectionType: connectionType,
