@@ -41,9 +41,11 @@ export const getConnectionDataAction = (radius = 0) => {
     };
 };
 
-export const createConnectionData = (data) => {
-    return (dispatch) => {
-        return submitConnectionData(data)
+export const createConnectionData = () => {
+    return (dispatch, getStore) => {
+        const { searchRadius, currentInformation } = getStore();
+
+        return submitConnectionData(currentInformation, searchRadius)
             .then((result) => {
                 return dispatch(addData(result.data.createConnectionData));
             })
