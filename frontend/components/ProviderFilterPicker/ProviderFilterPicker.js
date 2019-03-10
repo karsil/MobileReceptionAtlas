@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { providerFilterStyles } from './ProviderFilterPicker.Styles';
 import { updateProviderFilter } from './ProviderFilterPicker.Action';
 
 import { getConnectionDataAction } from '../ButtonField/ButtonField.Action';
 
 import ModalDropdown from 'react-native-modal-dropdown';
-
-export const NO_FILTER = 'no-filter';
 
 class ProviderFilterPicker extends React.Component {
     providers = ['- All -', 'Telekom', 'Vodafone', 'O2', 'E-Plus'];

@@ -1,7 +1,7 @@
 import client from './client';
 import getAllConnectionData from './querySchema';
 import { createNewConnectionData } from './mutationSchema';
-import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker';
+import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
 
 function submitConnectionData(
     { location, provider, platform, connectionType },

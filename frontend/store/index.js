@@ -1,5 +1,5 @@
 import { NO_PROVIDER } from '../components/ProviderPicker/ProviderPicker';
-import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker';
+import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
 const initialState = {
     data: [],
     currentInformation: {
