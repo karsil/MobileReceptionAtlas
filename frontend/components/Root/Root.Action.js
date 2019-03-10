@@ -47,7 +47,7 @@ export const requestLocation = () => {
                 dispatch(getConnectionDataAction());
                 dispatch(isSearchingForLocation(false));
             })
-            .catch(() => isSearchingForLocation(false));
+            .catch(() => dispatch(isSearchingForLocation(false)));
     };
 };
 
