@@ -18,7 +18,7 @@ async function getConnectionData({ provider, location, radius }) {
         provider: { $in: filterByProvider },
     };
 
-    if (radius !== 0) {
+    if (radius > 0) {
         databaseQuery = {
             ...databaseQuery,
             location: {
