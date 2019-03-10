@@ -1,29 +1,28 @@
-import gql from 'graphql-tag';
+import client from './client';
+import getAllConnectionData from './querySchema';
+import { createNewConnectionData } from './mutationSchema';
+import { NO_FILTER } from '../components/ProviderFilterPicker/ProviderFilterPicker.Action';
 
-export const createNewConnectionData = gql`
-    mutation createConnectionData(
-        $location: LocationInput!
-        $provider: String!
-        $platform: Platform!
-        $connectionType: String!
-    ) {
-        createConnectionData(
-            location: $location
-            provider: $provider
-            platform: $platform
-            connectionType: $connectionType
-        ) {
-            id
-            location {
-                type
-                coordinates {
-                    latitude
-                    longitude
-                }
-            }
-            provider
-            platform
-            connectionType
-        }
-    }
-`;
+function submitConnectionData(
+    { location, provider, platform, connectionType },
+    radius
+) {
+    return client.mutate({
+        refetchQueries: [
+            { query: getAllConnectionData(NO_FILTER, location, radius) },
+            { query: getAllConnectionData(NO_FILTER, location, 0) },
+        ],
+        mutation: createNewConnectionData,
+        variables: {
+            location: {
+                latitude: location.latitude,
+                longitude: location.longitude,
+            },
+            provider,
+            platform,
+            connectionType,
+        },
+    });
+}
+
+export default submitConnectionData;

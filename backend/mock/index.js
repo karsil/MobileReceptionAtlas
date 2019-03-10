@@ -20,7 +20,6 @@ const mockData = () => {
     ConnectionData.insertMany(data).then((data, err) => {
         if (err) {
             logger.error(err);
-            return;
         } else {
             logger.info('Data successfully mocked');
         }
@@ -37,7 +36,7 @@ const mockData = () => {
 function generateRandomData() {
     const platforms = ['android', 'ios'];
     const connectionTypes = ['2G', '3G', '4G'];
-    const provider = ['Telekom', 'Vodafone', 'O2'];
+    const provider = ['telekom', 'vodafone', 'o2', 'e-plus'];
     const location = {
         latitude: randomFloatGenerator(1, 53.901706),
         longitude: randomFloatGenerator(2.09, 8.753612),

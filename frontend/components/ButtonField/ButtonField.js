@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { buttonFieldStyles } from './ButtonField.Styles';
 import Button from './Button.js';
+import { config } from '../../settings/config';
 
 import {
-    getAllConnectionDataAction,
-    getConnectionDataByRadiusAction,
+    getConnectionDataAction,
     createConnectionData,
     showMap,
 } from './ButtonField.Action';
@@ -25,21 +25,21 @@ class ButtonField extends React.Component {
                 <View style={buttonFieldStyles.container}>
                     <Button
                         style={buttonFieldStyles.button}
-                        onPress={() => this.props.getConnectionInfo()}
+                        onPress={() => this.props.getConnectionDataAction()}
                         title="Get All Data"
                     />
                     <Button
                         style={buttonFieldStyles.button}
                         onPress={() =>
-                            this.props.getConnectionInfoByRadius(this.props)
+                            this.props.getConnectionDataAction(
+                                config.searchRadius
+                            )
                         }
                         title="Get Nearby Data"
                     />
                     <Button
                         style={buttonFieldStyles.button}
-                        onPress={() =>
-                            this.props.storeConnectionInfo(this.props)
-                        }
+                        onPress={() => this.props.createConnectionInfo()}
                         title="Send your Location Data"
                         disabled={(hasNoProvider || hasWifi) && isProduction}
                     />
@@ -52,7 +52,6 @@ class ButtonField extends React.Component {
 
 function mapStateToProps({ currentInformation, showingMap }) {
     return {
-        location: currentInformation.location,
         provider: currentInformation.provider,
         platform: currentInformation.platform,
         connectionType: currentInformation.connectionType,
@@ -63,9 +62,8 @@ function mapStateToProps({ currentInformation, showingMap }) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getConnectionInfo: getAllConnectionDataAction,
-            getConnectionInfoByRadius: getConnectionDataByRadiusAction,
-            storeConnectionInfo: createConnectionData,
+            getConnectionDataAction: getConnectionDataAction,
+            createConnectionInfo: createConnectionData,
             showMap: showMap,
         },
         dispatch

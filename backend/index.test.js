@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const config = require('./config');
 
 before(function(done) {
+    // drop existing databases
+    mongoose.connection.dropDatabase(() => {
+        console.log('database dropped...');
+    });
+
     // start mongo connection for database testing
     mongoose.connect(`${config.database.url}/${config.database.name}`);
     mongoose.connection.on('error', () => {

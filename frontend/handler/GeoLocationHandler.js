@@ -8,13 +8,15 @@ const getCurrentLocationLatLong = async () => {
         console.log('Error while asking for Permission Status: ', e);
     }
 
-    if (permission.status === 'granted') {
-        try {
+    try {
+        if (permission.status === 'granted') {
             let { coords } = await Location.getCurrentPositionAsync({});
             return coords;
-        } catch (e) {
-            console.log(e);
+        } else {
+            return new Error();
         }
+    } catch (e) {
+        console.log(e);
     }
 };
 
